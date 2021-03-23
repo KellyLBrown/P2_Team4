@@ -18,7 +18,7 @@ export default function LoginForm() {
 
     return (
         <div class="container-sm" id="login-container">
-            <form method="post">
+            <form>
                <label for="username">Username: </label>
                <input name='username' type='text' onChange={handleChange} />
                <label for="password">Password: </label>

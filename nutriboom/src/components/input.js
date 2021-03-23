@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 
+export const getByCredentials = async (username, password) => {
+    return username + " " + password;
+}
+
 export default function Login(props) {
     let uname = props.uname;
     let pword = props.pword;
@@ -10,6 +14,7 @@ export default function Login(props) {
         console.log(res.username);
         if (res.username == uname && res.password == pword) {
             setLogged({uname: res.username, pword: res.password});
+            console.log(logged);
         }
     }
 
