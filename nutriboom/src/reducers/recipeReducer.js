@@ -1,6 +1,5 @@
-import {FETCH_POSTS, NEW_POST} from '../actions/types/types';
+import {FETCH_RECIPES, FETCH_USER, FETCH_FOOD, NEW_USER, NEW_RECIPE} from '../actions/types/types';
 
-// TOOD change posts to constants we need for the program
 const initialState = {
     items: [],
     item: {}
@@ -8,12 +7,12 @@ const initialState = {
 
 export default function(state=initialState, action) {
     switch (action.type) {
-        case FETCH_POSTS: 
+        case FETCH_RECIPES: 
         return {
             ...state,
             items:action.payload
         }
-        case NEW_POST: 
+        case NEW_RECIPE: 
         return {
             ...state,
             item: action.payload

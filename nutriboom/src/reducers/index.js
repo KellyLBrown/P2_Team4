@@ -1,6 +1,10 @@
 import {combineReducers} from 'redux';
-import postReducer from './postReducer';
+import recipeReducer from './recipeReducer';
+import userReducer from './userReducer';
+import foodReducer from './foodReducer';
 
 export default combineReducers({
-    posts: postReducer
+    recipes: recipeReducer,
+    user: userReducer,
+    food: foodReducer
 }) 

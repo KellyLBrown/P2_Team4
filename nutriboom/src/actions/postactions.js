@@ -1,23 +1,34 @@
-import {FETCH_POSTS, NEW_POST} from './types/types'
+import {FETCH_RECIPES, FETCH_USER, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types/types';
 
-export function fetchPosts() {
+export function fetchRecipes() {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
     return function(dispatch) {
-        fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json()).then(data => dispatch({
-            type: FETCH_POSTS,
-            payload: data
-        }))
+        // TODO fetch recipes
     }
 }
 
-export function createPost(postData) {
+export function fetchFood() {
+    // This is the middleware that allows us to call the dispatch function directly and make async requests.
     return function(dispatch) {
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-                'content-type':'application/json'
-            },
-            body: JSON.stringify(postData)
-        }).then(res=>res.json()).then(data=>dispatch({type: NEW_POST, payload: data}));
+        // TODO fetch food
+    }
+}
+
+export function fetchUser() {
+    // This is the middleware that allows us to call the dispatch function directly and make async requests.
+    return function(dispatch) {
+        // TODO fetch user
+    }
+}
+
+export function createRecipe(recipeData) {
+    return function(dispatch) {
+        // TODO create recipe
+    }
+} 
+
+export function registerUser(userData) {
+    return function(dispatch) {
+        // TODO register new user
     }
 } 
