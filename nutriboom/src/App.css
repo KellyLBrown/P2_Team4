@@ -37,6 +37,10 @@
   }
 }
 
+footer {
+  background-color: chartreuse;
+}
+
 #fine-print {
   font-size: 8pt;
   color: gray;
