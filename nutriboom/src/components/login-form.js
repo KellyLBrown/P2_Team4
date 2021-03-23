@@ -21,6 +21,7 @@ export default function LoginForm() {
             <form>
                <label for="username">Username: </label>
                <input name='username' type='text' onChange={handleChange} />
+               <br />
                <label for="password">Password: </label>
                <input name='password' type='password' onChange={handleChange}/>
                <Login username={user.username} password={user.password}/>
