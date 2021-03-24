@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Login from './input';
 
-export default function LoginForm() {
+export default function LoginForm(props) {
     const [user, setUser] = useState({username: null, password: null});
 
     function handleChange(e) {
@@ -24,7 +24,7 @@ export default function LoginForm() {
                <br />
                <label for="password">Password: </label>
                <input name='password' type='password' onChange={handleChange}/>
-               <Login uname={user.username} pword={user.password}/>
+               <Login uname={user.username} pword={user.password} />
            </form>
         </div>
     )
