@@ -15,7 +15,7 @@ export default function MealList(props) {
         const jsxRecipes = [];
         for (let r of recipes) {
             jsxRecipes.push(
-                <Meal id={r.id} title={r.title} recipe={r.recipe} /> 
+                <Meal id={r.id} name={r.name} ingredients={r.ingredients} /> 
             )
         }
         return (

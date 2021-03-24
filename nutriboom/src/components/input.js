@@ -1,7 +1,16 @@
 import React, {useState} from "react";
+import { fetchUser } from "../actions/postactions";
 
 export const getByCredentials = async (username, password) => {
-    return username + " " + password;
+    let user = fetchUser();
+    //console.log(user);
+    console.log(username);
+    console.log(user.username);
+    if (user.username == username /*&& user.password == password*/) {
+        console.log(user);
+        return user;
+    }
+    return null;
 }
 
 export default function Login(props) {
@@ -9,13 +18,14 @@ export default function Login(props) {
     let pword = props.pword;
 
     const [logged, setLogged] = useState({uname: null, pword: null});
-    const getUser = async () => {
+    const getUser = async (e) => {
         let res = await getByCredentials(uname, pword);
-        console.log(res.username);
+        //console.log(res);
         if (res.username == uname && res.password == pword) {
             setLogged({uname: res.username, pword: res.password});
-            console.log(logged);
         }
+        //console.log(logged);
+        e.preventDefault();
     }
 
     return (

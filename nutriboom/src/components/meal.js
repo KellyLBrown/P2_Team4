@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 export default function Meal(props) {
-    let title = props.title;
-    let recipe = props.recipe;
+    let name = props.name;
+    let ingredients = props.ingredients;
 
     return (
         <div class="recipe">
-            <p><b>{this.props.title}</b></p>
-            <p>{this.props.recipe}</p>
+            <p><b>{name}</b></p>
+            <p>{ingredients}</p>
         </div>
     )
 }
