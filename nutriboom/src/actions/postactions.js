@@ -1,4 +1,4 @@
-import {FETCH_RECIPES, FETCH_USER, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types/types';
+import {FETCH_RECIPES, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
 
 export function fetchRecipes() {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
@@ -29,14 +29,33 @@ export function fetchFood() {
     }
 }
 
-export function fetchUser() {
+// User Actions
+const userLogin = username => ({
+    type: AUTH_LOGIN,
+    username,
+  });
+
+const fakeLoginRequest = username =>
+  new Promise((resolve, reject) =>
+    setTimeout(() => {
+      username === "testuser" ? resolve(username) : reject("No such user");
+    }, 1000),
+  );
+
+export const fetchUser = username => async dispatch => {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
-    let user = {
-        username:"testuser",
-        password:"p4ssw0rd"
+    //dispatch(incrementProgress());
+    try {
+      const userResponse = await fakeLoginRequest(username);
+      dispatch(userLogin(userResponse));
+      // if successfull return the username
+      console.log(username);
+      return userResponse;
+    } catch (error) {
+      handleError(error);
     }
-    return user;
 }
+// End User Actions
 
 export function createRecipe(recipeData) {
     return function(dispatch) {
@@ -48,4 +67,8 @@ export function registerUser(userData) {
     return function(dispatch) {
         // TODO register new user
     }
-} 
+}
+
+const handleError = (e) => {
+    console.log(e);
+}

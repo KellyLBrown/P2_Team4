@@ -1,22 +1,20 @@
-import {FETCH_USER, NEW_USER} from "../actions/types/types";
+import {AUTH_LOGIN, AUTH_LOGOUT, NEW_USER} from "../actions/types";
 
 const initialState = {
-    item: {},
-    regItem: {}
+    username: "", 
+    isLoggedIn: false
 }
 
 export default function(state=initialState, action) {
     switch (action.type) {
-        case FETCH_USER: 
-        return {
-            ...state,
-            item:action.payload
-        }
-        case NEW_USER: 
-        return {
-            ...state,
-            regItem:action.payload
-        }
+        case AUTH_LOGIN: 
+            return {
+                ...state,
+                username:action.username,
+                isLoggedIn:false
+            }
+        case AUTH_LOGOUT: 
+            return initialState;
         default:
             return state;
     }

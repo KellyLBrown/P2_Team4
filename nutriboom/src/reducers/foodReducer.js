@@ -1,4 +1,4 @@
-import {FETCH_FOOD} from "../actions/types/types";
+import {FETCH_FOOD} from "../actions/types";
 
 const initialState = {
     items: []
