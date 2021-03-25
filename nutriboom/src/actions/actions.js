@@ -24,9 +24,38 @@ export function fetchRecipes() {
 
 export function fetchFood() {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
-    return function(dispatch) {
-        // TODO fetch food
+    let foodList = [
+    {
+      "id" : 0,
+      "name" : "apple",
+      "calories" : "50"
+    },
+    {
+      "id": 1,
+      "name":"strawberry",
+      "calories":"30"
+    },
+    {
+      "id": 2,
+      "name":"Pizza",
+      "calories":"300"
     }
+  ]
+  return foodList;
+    // return function(dispatch) {
+    //     // TODO fetch food
+    // }
+}
+
+export function getFoodById(id) {
+  let foodList = fetchFood();
+  for (let food of foodList) {
+    console.log(food.id);
+    if (food.id == id) {
+      return food;
+    }
+  }
+  return id;
 }
 
 // User Actions

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {fetchRecipes} from '../actions/postactions';
+import {fetchRecipes} from '../actions/actions';
 import Meal from './meal';
 
 export default function MealList(props) {

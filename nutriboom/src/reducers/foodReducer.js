@@ -1,7 +1,8 @@
-import {FETCH_FOOD} from "../actions/types";
+import {FETCH_FOOD, GET_FOOD_BY_ID} from "../actions/types";
 
 const initialState = {
-    items: []
+    items: [],
+    item: {}
 }
 
 export default function(state=initialState, action) {
@@ -9,7 +10,12 @@ export default function(state=initialState, action) {
         case FETCH_FOOD: 
         return {
             ...state,
-            itemS:action.payload
+            items:action.payload
+        }
+        case GET_FOOD_BY_ID:
+        return {
+            ...state,
+            item:action.payload
         }
         default:
             return state;
