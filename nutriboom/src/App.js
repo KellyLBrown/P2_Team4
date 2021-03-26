@@ -7,6 +7,7 @@ import Footer from './components/footer';
 import {store} from './store';
 import {Provider} from 'react-redux';
 import Home from './components/home';
+import EventCalendar from './components/event-calendar';
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
 
           </Route>
           <Route path="/error">
+
+          </Route>
+          <Route path="/calendar">
+            <br />
+            <br />
+            <EventCalendar />
+          </Route>
+          <Route path="/logout">
 
           </Route>
           <Route path="/">
