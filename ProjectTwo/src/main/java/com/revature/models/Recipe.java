@@ -46,21 +46,21 @@ public class Recipe {
 	@Column(name="description")
 	private String description;
 	
-	@ManyToMany(mappedBy="rId")
-//	 @JoinTable(
-//	            name = "recipe_ingredient",
-//	            joinColumns = {@JoinColumn(name = "recipe_id", referencedColumnName = "rId")},
-//	            inverseJoinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "iId")}
-//	    )
+	@ManyToMany
+	 @JoinTable(
+	            name = "recipe_ingredient",
+	            joinColumns = @JoinColumn(name = "recipe_id"),
+	            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+	    )
 	private List<Ingredient> iList;
 
-	public Recipe(String name,int a_id, int time, String description/*, List<Ingredient> iList*/) {
+	public Recipe(String name,int a_id, int time, String description, List<Ingredient> iList) {
 		super();
 		this.name = name;
 		this.author = a_id;
 		this.time = time;
 		this.description = description;
-		//this.iList = iList;
+		this.iList = iList;
 	}
 	
 	

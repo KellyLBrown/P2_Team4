@@ -44,7 +44,7 @@ public class Ingredient {
 	@Column(name="amount")
 	private int amount;
 	
-	@ManyToMany(mappedBy="iId", cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="iList")
 	//@JoinTable
 	private List<Recipe> rList;
 
