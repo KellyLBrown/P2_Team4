@@ -57,7 +57,7 @@ export default function EventCalendar(props) {
             default: monthOfYear = "Invalid Month!";
         }
 
-        setDateString(`${dayOfWeek} ${monthOfYear} ${d.getDate()}, ${d.getFullYear()}`);
+        setDateString(`${dayOfWeek}, ${monthOfYear} ${d.getDate()}, ${d.getFullYear()}`);
         // TODO change event list
     }
 
