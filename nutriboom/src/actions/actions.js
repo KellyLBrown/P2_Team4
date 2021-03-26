@@ -22,7 +22,7 @@ export const fetchRecipes = async () => {
       const APP_KEY = "5ae08933f60c2e327d2f0790371bd56e";
       let query = 'asparagus';
       let temp = await recipeapi.get(`/parser?ingr=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
-      return temp.data.hints;
+      return temp.data;
     } catch (e) {
       console.log(e);
     }
@@ -52,12 +52,12 @@ export function fetchFood() {
 
 export function getFoodById(id) {
   let foodList = fetchFood();
-  // for (let food of foodList) {
-  //   console.log(food.id);
-  //   if (food.id == id) {
-  //     return food;
-  //   }
-  // }
+  for (let food of foodList) {
+    console.log(food.id);
+    if (food.id == id) {
+      return food;
+    }
+  }
   return foodList;
 }
 

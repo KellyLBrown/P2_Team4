@@ -1,32 +1,40 @@
 import React, {useState} from 'react';
 import {fetchRecipes} from '../actions/actions';
 import Meal from './meal';
+import recipeapi from '../apis/endpoints';
 
 export default function MealList(props) {
-    let recipes = fetchRecipes();
-    console.log(recipes);
+    const [recipe, setRecipe] = useState("empty");
 
-    if (!recipes.length) {
-        return (
-            <p id="warnMessage">You don't have any recipes! Create some to build your list!</p>
-        )
+    const getRecipe = async () => {
+        let recipes = await fetchRecipes();
+        console.log(recipes);
+        setRecipe(recipes.parsed[0].food.label);
     }
-    else {
+
+    getRecipe();
+    // if (!recipes.length) {
+    //     return (
+    //         <p id="warnMessage">You don't have any recipes! Create some to build your list!</p>
+    //     )
+    // }
+    //else {
         // const jsxRecipes = [];
         // let index = 0;
-        // // for (let r of recipes) {
+        // for (let r of recipes) {
         //     jsxRecipes.push( 
-        //         <Meal id={"1"} name={recipes[0].food} ingredients={"stuff"} /> 
         //     )
-        // //}
+        //}
         return (
-            <ul>
-                {recipes.map(food => {
-                    <Meal id={food.food.foodId} name={food.food.label} ingredients={food.food.nutrients} />
-                })}
-            </ul>
-        )
-    }
+            // <ul>
+            //     {recipes.map(food => {
+            //         // console.log(food);
+            //         <Meal id={food.food.foodId.toString()} name={food.food.label.toString()} ingredients={food.food.nutrients.toString()} />
+            //     })}
+            // </ul>
+            <Meal id={"1"} name={recipe} ingredients={"stuff"} /> 
+            )
+    //}
 
     // return (
     //     <Meal id={""} name={recipes.result} ingredients={""} />
