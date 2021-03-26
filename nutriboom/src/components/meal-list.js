@@ -12,16 +12,23 @@ export default function MealList(props) {
         )
     }
     else {
-        const jsxRecipes = [];
-        for (let r of recipes) {
-            jsxRecipes.push(
-                <Meal id={r.id} name={r.name} ingredients={r.ingredients} /> 
-            )
-        }
+        // const jsxRecipes = [];
+        // let index = 0;
+        // // for (let r of recipes) {
+        //     jsxRecipes.push( 
+        //         <Meal id={"1"} name={recipes[0].food} ingredients={"stuff"} /> 
+        //     )
+        // //}
         return (
             <ul>
-                {jsxRecipes}
+                {recipes.map(food => {
+                    <Meal id={food.food.foodId} name={food.food.label} ingredients={food.food.nutrients} />
+                })}
             </ul>
         )
     }
+
+    // return (
+    //     <Meal id={""} name={recipes.result} ingredients={""} />
+    // )
 }

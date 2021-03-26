@@ -2,16 +2,14 @@ import React, {useState} from 'react';
 import Calendar from 'react-calendar';
 
 export default function EventCalendar(props) {
-    let [date, setDate] = useState(new Date());
     let [dateString, setDateString] = useState('');
 
     const handleDayClicked = (d) => {
         // In this case, e represents the date value as opposed
         // to the event object.
         console.log(d);
-        setDate(d);
-        let dayOfWeek = date.getDay();
-        let monthOfYear = date.getMonth();
+        let dayOfWeek = d.getDay();
+        let monthOfYear = d.getMonth();
 
         switch(dayOfWeek) {
             case 0: dayOfWeek = "Sunday";
@@ -59,7 +57,7 @@ export default function EventCalendar(props) {
             default: monthOfYear = "Invalid Month!";
         }
 
-        setDateString(`${dayOfWeek} ${monthOfYear} ${date.getDate()}, ${date.getFullYear()}`);
+        setDateString(`${dayOfWeek} ${monthOfYear} ${d.getDate()}, ${d.getFullYear()}`);
         // TODO change event list
     }
 

@@ -1,25 +1,31 @@
 import {FETCH_RECIPES, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+import {recipeapi} from '../apis/endpoints';
 
-export function fetchRecipes() {
+export const fetchRecipes = async () => {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
-    // return function(dispatch) {
-    //     // TODO fetch recipes
-    // }
-    let temp = [
-            {
-                "id" : 0,
-                "name":"meal1",
-                "ingredients":"cabbage"
+    // let temp = [
+    //         {
+    //             "id" : 0,
+    //             "name":"meal1",
+    //             "ingredients":"cabbage"
                     
-                    // "beat": {
-                    //     "cal": 1,
-                    //     "sug": 1,
-                    //     "fiber": 1
-                    // }
-            }
+    //                 // "beat": {
+    //                 //     "cal": 1,
+    //                 //     "sug": 1,
+    //                 //     "fiber": 1
+    //                 // }
+    //         }
         
-        ]
-    return temp;
+    //     ]
+    try {
+      const APP_ID = "7ad6b381";
+      const APP_KEY = "5ae08933f60c2e327d2f0790371bd56e";
+      let query = 'asparagus';
+      let temp = await recipeapi.get(`/parser?ingr=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
+      return temp.data.hints;
+    } catch (e) {
+      console.log(e);
+    }
 }   
 
 export function fetchFood() {
@@ -42,20 +48,17 @@ export function fetchFood() {
     }
   ]
   return foodList;
-    // return function(dispatch) {
-    //     // TODO fetch food
-    // }
 }
 
 export function getFoodById(id) {
   let foodList = fetchFood();
-  for (let food of foodList) {
-    console.log(food.id);
-    if (food.id == id) {
-      return food;
-    }
-  }
-  return id;
+  // for (let food of foodList) {
+  //   console.log(food.id);
+  //   if (food.id == id) {
+  //     return food;
+  //   }
+  // }
+  return foodList;
 }
 
 // User Actions
