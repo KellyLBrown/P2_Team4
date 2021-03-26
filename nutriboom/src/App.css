@@ -58,16 +58,21 @@ nav {
 
 #header {
   margin-bottom: 20px;
+  background-color: white;
 }
 
 #home {
   margin-top: 90px;
+  background-color: white;
+  width: 30%;
+  margin-left: 35%;
 }
 
 .link {
   float: left;
   padding-left: 5%;
   list-style-type: none;
+  background-color: white;
 }
 
 .link > a {

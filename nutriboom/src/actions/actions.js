@@ -1,7 +1,7 @@
 import {FETCH_RECIPES, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
 import {recipeapi} from '../apis/endpoints';
 
-export const fetchRecipes = async () => {
+export const fetchRecipes = async (name) => {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
     // let temp = [
     //         {
@@ -18,9 +18,10 @@ export const fetchRecipes = async () => {
         
     //     ]
     try {
+      console.log(name);
       const APP_ID = "7ad6b381";
       const APP_KEY = "5ae08933f60c2e327d2f0790371bd56e";
-      let query = 'asparagus';
+      let query = name;
       let temp = await recipeapi.get(`/parser?ingr=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
       return temp.data;
     } catch (e) {

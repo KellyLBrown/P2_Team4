@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {fetchRecipes} from '../actions/actions';
 import Meal from './meal';
-import recipeapi from '../apis/endpoints';
 
 export default function MealList(props) {
     const [recipe, setRecipe] = useState("empty");
+    const [calories, setCalories] = useState(0);
 
     const getRecipe = async () => {
-        let recipes = await fetchRecipes();
+        let recipes = await fetchRecipes('asparagus');
         console.log(recipes);
         setRecipe(recipes.parsed[0].food.label);
     }
