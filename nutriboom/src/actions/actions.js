@@ -63,30 +63,27 @@ export function getFoodById(id) {
 }
 
 // User Actions
-const userLogin = username => ({
-    type: AUTH_LOGIN,
-    username,
-  });
+// const userLogin = username => ({
+//     type: AUTH_LOGIN,
+//     username,
+//   });
 
-const fakeLoginRequest = username =>
-  new Promise((resolve, reject) =>
-    setTimeout(() => {
-      username === "testuser" ? resolve(username) : reject("No such user");
-    }, 1000),
-  );
+// const fakeLoginRequest = username =>
+//   new Promise((resolve, reject) =>
+//     setTimeout(() => {
+//       username === "testuser" ? resolve(username) : reject("No such user");
+//     }, 1000),
+//   );
 
-export const fetchUser = username => async dispatch => {
-    // This is the middleware that allows us to call the dispatch function directly and make async requests.
-    //dispatch(incrementProgress());
-    try {
-      const userResponse = await fakeLoginRequest(username);
-      dispatch(userLogin(userResponse));
-      // if successfull return the username
-      console.log(username);
-      return userResponse;
-    } catch (error) {
-      handleError(error);
-    }
+export const fetchUser = async () => {
+  let user = {
+    uname: "username",
+    pword: "testpass",
+    firstname: "testfirst",
+    lastname: "testlast",
+    email: "test@example.com"
+  }
+  return user;
 }
 // End User Actions
 
