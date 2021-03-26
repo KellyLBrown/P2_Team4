@@ -50,3 +50,37 @@ footer {
   color: red;
   font-weight: bold;
 }
+
+nav {
+  background-color: lightgreen;
+  color: black;
+}
+
+#header {
+  margin-bottom: 20px;
+}
+
+#home {
+  margin-top: 90px;
+}
+
+.link {
+  float: left;
+  padding-left: 5%;
+  list-style-type: none;
+}
+
+.link > a {
+  text-decoration: none;
+  font-size: 14pt;
+  color: black;
+}
+
+.link > a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+.link:clicked {
+  color: red;
+}
