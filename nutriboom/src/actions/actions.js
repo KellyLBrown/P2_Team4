@@ -77,8 +77,8 @@ export function getFoodById(id) {
 
 export const fetchUser = async () => {
   let user = {
-    uname: "username",
-    pword: "testpass",
+    username: "username",
+    password: "testpass",
     firstname: "testfirst",
     lastname: "testlast",
     email: "test@example.com"

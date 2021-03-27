@@ -1,19 +1,23 @@
 import React, {useState} from 'react';
 import { fetchUser } from '../actions/actions';
 import FormInput from './form-input';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function LoginForm(props) {
-    const [user, setUser] = useState({uname: null, pword: null});
+    const [logged, setLogged] = useState(false);
+    const [user, setUser] = useState({username: null, password: null});
 
-    function handleChange(e) {
-        console.log(e.target.value);
-        if (e.target.name == 'uname') {
-            setUser({uname:e.target.value, pword:user.pword});
-        } else if (e.target.name == 'pword') {
-            setUser({uname: user.uname, pword: e.target.value});
+    const handleChange = (e) => {
+        //console.log(e.target.value);
+        console.log(e.target.name);
+        //console.log(e.target);
+        if (e.target.name == 'Username') {
+            setUser({username: e.target.value, password:user.password});
+        } else if (e.target.name == 'Password') {
+            setUser({username: user.username, password: e.target.value});
         } else {
-            setUser({uname: user.uname, pword: user.pword})
+            setUser({username: user.username, password: user.password})
         }
     }
     
@@ -21,20 +25,36 @@ export default function LoginForm(props) {
         e.preventDefault();
         let currentUser = await fetchUser();
         console.log(currentUser);
-        if (user.uname == currentUser.username && user.pword == currentUser.password) {
-            <Redirect to="./home" />
+        //console.log(currentUser.username == user.username);
+        //console.log(currentUser.password == user.password);
+        console.log(currentUser.username == user.username && currentUser.password == user.password);
+        if (user.username == currentUser.username && user.password == currentUser.password) {
+            console.log("In redirect to home");
+            setLogged(true);
         } else {
-            <Redirect to="./login" />
+            console.log("In redirect to login");
         }
     }
 
-    return (
-        <div id="login" className="row" class="row">
-            <form onSubmit={handleSubmit}>
-                <FormInput type="text" value={user.uname} onChange={handleChange} />
-                <FormInput type="password" value={user.uname} onChange={handleChange} />
-                <input type="submit" value="Log in" />
-            </form>
-        </div>
-    )
+    if (logged) {
+        return (
+            <Redirect to="/home" />
+        )
+    }
+    else {
+        return (
+            <div id="login" className="row" class="row">
+                <form onSubmit={handleSubmit}>
+                    <FormInput type="text" name="Username" value={user.username} handleChange={handleChange} />
+                    <FormInput type="password" name="Password" value={user.password} handleChange={handleChange} />
+                    <input type="submit" value="Log in" />
+                </form>
+            </div>
+        )
+    }
+}
+
+LoginForm.propTypes = {
+    username: PropTypes.string,
+    isLoggedIn: PropTypes.bool.isRequired
 }
