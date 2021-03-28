@@ -6,19 +6,19 @@ export default function NutritionInfo(props) {
     const [calories, setCalories] = useState(0);
 
     const getRecipe = async () => {
-        let recipes = await fetchRecipes('asparagus');
+        /* let recipes =  */await fetchRecipes('asparagus');
         //console.log(recipes);
-        setFood(recipes.parsed[0].food.label);
+        //setFood(recipes.parsed[0].food.label);
     }
 
     const getCalories = async () => {
-        let recipes = await fetchRecipes('asparagus');
+        //let recipes = await fetchRecipes('asparagus');
         //console.log(recipes);
-        setCalories(recipes.parsed[0].food.nutrients.ENERC_KCAL);
+        //setCalories(recipes.parsed[0].food.nutrients.ENERC_KCAL);
     }
 
-    getRecipe();
-    getCalories();
+    //getRecipe();
+    //getCalories();
     console.log(food);
 
     if (!food) {

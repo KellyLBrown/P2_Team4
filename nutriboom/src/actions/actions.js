@@ -3,27 +3,18 @@ import {recipeapi} from '../apis/endpoints';
 
 export const fetchRecipes = async (name) => {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
-    // let temp = [
-    //         {
-    //             "id" : 0,
-    //             "name":"meal1",
-    //             "ingredients":"cabbage"
-                    
-    //                 // "beat": {
-    //                 //     "cal": 1,
-    //                 //     "sug": 1,
-    //                 //     "fiber": 1
-    //                 // }
-    //         }
-        
-    //     ]
     try {
       console.log(name);
       const APP_ID = "7ad6b381";
       const APP_KEY = "5ae08933f60c2e327d2f0790371bd56e";
-      let query = name;
-      let temp = await recipeapi.get(`/parser?ingr=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
-      return temp.data;
+      // let temp = await recipeapi.get(`/parser?ingr=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
+      // return temp.data;
+      return function(dispatch) {
+        recipeapi.get(`/parser?ingr=${name}&app_id=${APP_ID}&app_key=${APP_KEY}`).then(data => dispatch({
+          type: FETCH_RECIPES,
+          payload: data
+        }));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -83,6 +74,13 @@ export const fetchUser = async () => {
     lastname: "testlast",
     email: "test@example.com"
   }
+
+  // return function(dispatch) {
+  //   let data = dispatch({
+  //     type: AUTH_LOGIN,
+  //     currentUser: user
+  //   })
+  // }
   return user;
 }
 // End User Actions

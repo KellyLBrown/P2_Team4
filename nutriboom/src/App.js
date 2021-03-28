@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import Header from "./components/header";
 import LoginForm from "./components/login-form";
 import Footer from './components/footer';
@@ -13,30 +13,34 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Router>
-          <Header title="Test Header" />
+        <Router>  
           <Route path="/login">
+            <Header title="Please log in or click 'Register' to sign up!" navHidden={true} />
             <LoginForm />
           </Route>
           <Route path="/home">
+            <Header title={`Welcome, ${store.getState().currentUser}!`}/>
+
             <Home />
           </Route>
           <Route path="/register">
+            <Header title="Please enter your information below." />
 
           </Route>
           <Route path="/error">
-
+            <Header title="Oops, something went wrong! Please try again later." />
           </Route>
           <Route path="/calendar">
+            <Header title="Recipe Calendar" />
             <br />
             <br />
             <EventCalendar />
           </Route>
           <Route path="/logout">
-
+            <Header title="Thank you for using this service! Have a wonderful day!" />
           </Route>
           <Route path="/">
-          
+            <Redirect to="/login" />
           </Route>
           <Footer />
         </Router>

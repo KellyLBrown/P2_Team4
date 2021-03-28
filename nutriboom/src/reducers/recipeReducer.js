@@ -1,4 +1,4 @@
-import {FETCH_RECIPES, FETCH_USER, FETCH_FOOD, NEW_USER, NEW_RECIPE} from '../actions/types';
+import {FETCH_RECIPES, NEW_RECIPE} from '../actions/types';
 
 const initialState = {
     items: [],

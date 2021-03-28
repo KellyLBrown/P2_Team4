@@ -1,5 +1,6 @@
 import {FETCH_FOOD, GET_FOOD_BY_ID} from "../actions/types";
 
+// 
 const initialState = {
     items: [],
     item: {}

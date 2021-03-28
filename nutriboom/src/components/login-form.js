@@ -3,15 +3,20 @@ import { fetchUser } from '../actions/actions';
 import FormInput from './form-input';
 import {Redirect, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AUTH_LOGIN } from '../actions/types';
+import { connect, useSelector } from 'react-redux';
+import {store} from '../store';
 
-export default function LoginForm(props) {
+/*export default*/ function LoginForm(props) {
+    // const state = useSelector(store => store);
     const [logged, setLogged] = useState(false);
     const [user, setUser] = useState({username: null, password: null});
-
+    let currentUser = useSelector(store => store.currentUser);
+    
     const handleChange = (e) => {
-        //console.log(e.target.value);
-        console.log(e.target.name);
-        //console.log(e.target);
+        // //console.log(e.target.value);
+        // console.log(e.target.name);
+        // //console.log(e.target);
         if (e.target.name == 'Username') {
             setUser({username: e.target.value, password:user.password});
         } else if (e.target.name == 'Password') {
@@ -23,7 +28,7 @@ export default function LoginForm(props) {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let currentUser = await fetchUser();
+        currentUser = await fetchUser();
         console.log(currentUser);
         //console.log(currentUser.username == user.username);
         //console.log(currentUser.password == user.password);
@@ -54,7 +59,15 @@ export default function LoginForm(props) {
     }
 }
 
-LoginForm.propTypes = {
-    username: PropTypes.string,
-    isLoggedIn: PropTypes.bool.isRequired
-}
+// LoginForm.propTypes = {
+//     fetchUser: PropTypes.func.isRequired,
+//     currentUser: PropTypes.object,
+//     isLoggedIn: PropTypes.bool.isRequired
+// }
+
+// const mapStateToProps = state => ({
+//     currentUser: state.props.user,
+//     isLoggedIn: state.props.isLoggedIn
+// })
+
+export default LoginForm;
