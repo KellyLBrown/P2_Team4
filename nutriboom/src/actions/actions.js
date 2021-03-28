@@ -58,38 +58,12 @@ export function getFoodById(id) {
   // return foodList;
 }
 
-// User Actions
-// const userLogin = username => ({
-//     type: AUTH_LOGIN,
-//     username,
-//   });
+export const fetchUser = async (username, password) => {
+  let user = await recipeapi.post(`/user/login`);
+  let action = {type: AUTH_LOGIN, currentUser: user.data};
 
-// const fakeLoginRequest = username =>
-//   new Promise((resolve, reject) =>
-//     setTimeout(() => {
-//       username === "testuser" ? resolve(username) : reject("No such user");
-//     }, 1000),
-//   );
-
-export const fetchUser = () => {
-  let user = {
-    username: "username",
-    password: "testpass",
-    firstname: "testfirst",
-    lastname: "testlast",
-    email: "test@example.com"
-  }
-  // return function(dispatch) {
-  //   new Promise((resolve, reject) => {
-  //     user.username == 'username' && user.password == 'testpass' ? resolve(user) : reject("No such user")
-  //   }).then(data => dispatch({
-  //     type: AUTH_LOGIN,
-  //     currentUser: data
-  //   }))
-  // }
-  return {
-    type: AUTH_LOGIN,
-    currentUser: user
+  return function(dispatch) {
+    user.then(data => dispatch(action))
   }
 }
 
@@ -98,7 +72,6 @@ export const logOut = () => {
     type: AUTH_LOGOUT
   }
 }
-// End User Actions
 
 export function createRecipe(recipeData) {
     return function(dispatch) {

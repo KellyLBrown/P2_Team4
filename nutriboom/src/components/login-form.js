@@ -29,7 +29,8 @@ import {store} from '../store';
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        store.dispatch(fetchUser());
+        //store.dispatch(fetchUser());
+        await fetchUser();
         currentUser = store.getState().user.currentUser;
         //console.log(store.getState().user.currentUser);
         //console.log(currentUser.username == user.username);

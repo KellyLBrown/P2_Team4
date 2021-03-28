@@ -11,10 +11,10 @@ export default function MealList(props) {
     //console.log(currentFood);
 
     const getFood = async () => {
-        console.log(await getFoodByName('asparagus'));
+        await getFoodByName('asparagus');
         setFood(currentFood.foodItem.name);
         setCalories(currentFood.foodItem.calories);
-        console.log(food);
+        //console.log(food);
     }
 
     getFood();

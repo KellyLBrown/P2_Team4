@@ -7,12 +7,10 @@ export default function NutritionInfo(props) {
     const [calories, setCalories] = useState(0);
     let recipes = useSelector(store => store.food);
 
-    const getRecipe = async () => {
-        await getFoodByName('asparagus');
+    const getFood = async () => {
+        console.log(await getFoodByName('asparagus'));
         console.log(recipes.foodItem.name);
         setFood(recipes.foodItem.name);
-        //console.log(recipes);
-        //setFood(recipes.parsed[0].food.label);
     }
 
     const getCalories = async () => {
@@ -21,7 +19,7 @@ export default function NutritionInfo(props) {
         //setCalories(recipes.parsed[0].food.nutrients.ENERC_KCAL);
     }
 
-    getRecipe();
+    getFood();
     //getCalories();
     console.log(food);
 
