@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class Calendar {
 	private int uId;
 	
 	@Column(name="date")
-	private LocalDate date;
+	private Timestamp date;
 	
 	@ManyToMany
 	 @JoinTable(
@@ -47,7 +48,7 @@ public class Calendar {
 	    )
 	private List<Recipe> scheduledRecipes;
 	
-	public Calendar(int u_id, LocalDate date, List<Recipe> schRecipes) {
+	public Calendar(int u_id, Timestamp date, List<Recipe> schRecipes) {
 		super();
 		this.uId = u_id;
 		this.date = date;

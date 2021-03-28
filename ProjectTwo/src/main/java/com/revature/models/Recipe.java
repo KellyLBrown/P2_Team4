@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -55,7 +57,7 @@ public class Recipe {
 	private List<Ingredient> iList;
 	
 	@ManyToMany(mappedBy="scheduledRecipes")
-	//@JoinTable
+	@JsonIgnore
 	private List<Calendar> scheduledDates;
 
 	public Recipe(String name,int a_id, int time, String description, List<Ingredient> iList) {
