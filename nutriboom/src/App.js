@@ -19,7 +19,7 @@ function App() {
             <LoginForm />
           </Route>
           <Route path="/home">
-            <Header title={`Welcome, ${store.getState().currentUser}!`}/>
+            <Header title={store.getState().user.currentUser != null ? `Welcome, ${store.getState().user.currentUser.firstname}!` : "Welcome, user!"}/>
 
             <Home />
           </Route>

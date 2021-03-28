@@ -11,8 +11,8 @@ import {store} from '../store';
     // const state = useSelector(store => store);
     const [logged, setLogged] = useState(false);
     const [user, setUser] = useState({username: null, password: null});
-    let currentUser = useSelector(state => state.currentUser);
-    console.log(currentUser);
+    let currentUser = useSelector(state => state.user);
+    //console.log(currentUser);
     
     const handleChange = (e) => {
         // //console.log(e.target.value);
@@ -34,12 +34,12 @@ import {store} from '../store';
         //console.log(store.getState().user.currentUser);
         //console.log(currentUser.username == user.username);
         //console.log(currentUser.password == user.password);
-        console.log(currentUser.username == user.username && currentUser.password == user.password);
+        //console.log(currentUser.username == user.username && currentUser.password == user.password);
         if (user.username == currentUser.username && user.password == currentUser.password) {
-            console.log("In redirect to home");
+           // console.log("In redirect to home");
             setLogged(true);
         } else {
-            console.log("In redirect to login");
+            //console.log("In redirect to login");
         }
     }
 

@@ -5,4 +5,9 @@ import rootReducer from './reducers';
 const initialState = {};
 const middleWare = [thunk];
 
-export const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+// const middlewareAndExtension = () => {
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+//     applyMiddleware(thunk);
+// }
+
+export const store = createStore(rootReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

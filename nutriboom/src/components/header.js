@@ -1,29 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 export default function Header(props) {
-    let title = props.title;
+    let [title, setTitle] = useState(props.title);
     let navHidden = props.navHidden;
-
-    // const resetTitle = (e) => {
-    //     console.log(title);
-    //     if (window.location.pathname == "/home" || window.location.pathname == "/calendar") {
-    //         title = "Welcome, user!";
-    //     } else if (window.location.pathname == "/login") {
-    //         title = "Please log in or click 'Register' to sign up!";
-    //     } else if (window.location.pathname == "/logout") {
-    //         title = "Thank you for using Nutriboom! Have a nice day!";
-    //     } else if (window.location.pathname == "/register") {
-    //         title = "Please type out your information in the form below.";
-    //     } else if (window.location.pathname == "/error") {
-    //         title = "Oops! Something went wrong! Please try again later.";
-    //     }
+    let currentUser = useSelector(state => state.user);
+    console.log(currentUser);
+    // if (currentUser != null) {
+    //     title = `Welcome, ${currentUser.firstname}!`;
     // }
-    // resetTitle();
 
+    const resetTitle = () => {
+        console.log(currentUser);
+        console.log("In resetTitle func");
+        if (currentUser.currentUser != null) {
+            console.log("*")
+            setTitle(`Welcome, ${currentUser.currentUser.firstname}!`);
+        } else {
+            console.log("**")
+            setTitle(props.title);
+        }
+    }
+
+    useEffect(() => {resetTitle();}, [])
     // Resets the header every half-second for a more dynamic header.
-    //setInterval(Header, 1000);
+    // setInterval(resetTitle, 1000);
 
     if (navHidden) {
         return (

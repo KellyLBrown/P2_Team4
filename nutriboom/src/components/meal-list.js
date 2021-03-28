@@ -1,21 +1,23 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
-import {fetchRecipes} from '../actions/actions';
+import {getFoodByName} from '../actions/actions';
 import Meal from './meal';
+import {store} from '../store';
 
 export default function MealList(props) {
-    const [recipe, setRecipe] = useState("empty");
+    const [food, setFood] = useState("empty");
     const [calories, setCalories] = useState(0);
-    let recipes = useSelector(store => store.recipes);
-    console.log(recipes);
+    let currentFood = useSelector(store => store.food);
+    //console.log(currentFood);
 
-    const getRecipe = async () => {
-        await fetchRecipes('asparagus');
-        console.log(recipes);
-        setRecipe(recipes.recipe);
+    const getFood = async () => {
+        console.log(await getFoodByName('asparagus'));
+        setFood(currentFood.foodItem.name);
+        setCalories(currentFood.foodItem.calories);
+        console.log(food);
     }
 
-    getRecipe();
+    getFood();
     // if (!recipes.length) {
     //     return (
     //         <p id="warnMessage">You don't have any recipes! Create some to build your list!</p>
@@ -35,7 +37,7 @@ export default function MealList(props) {
             //         <Meal id={food.food.foodId.toString()} name={food.food.label.toString()} ingredients={food.food.nutrients.toString()} />
             //     })}
             // </ul>
-            <Meal id={"1"} name={recipe} ingredients={"stuff"} /> 
+            <Meal id={"1"} name={food} calories={calories} ingredients={"stuff"} /> 
             )
     //}
 

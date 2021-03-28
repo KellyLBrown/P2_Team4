@@ -1,27 +1,32 @@
 import {FETCH_RECIPES, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
-import {recipeapi} from '../apis/endpoints';
+import {foodapi, recipeapi} from '../apis/endpoints';
 
-export const fetchRecipes = async (name) => {
+export const getFoodByName = async (name) => {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
     try {
       console.log(name);
       const APP_ID = "7ad6b381";
       const APP_KEY = "5ae08933f60c2e327d2f0790371bd56e";
-      // let temp = await recipeapi.get(`/parser?ingr=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
-      // return temp.data;
+      //let temp = await foodapi.get(`/parser?ingr=${name}&app_id=${APP_ID}&app_key=${APP_KEY}`);
+      
+      // return {
+      //   type: FETCH_RECIPES,
+      //   payload: temp.data
+      // }
       return function(dispatch) {
         console.log("In dispatch");
-        recipeapi.get(`/parser?ingr=${name}&app_id=${APP_ID}&app_key=${APP_KEY}`).then(data => dispatch({
-          type: FETCH_RECIPES,
+        foodapi.get(`/parser?ingr=${name}&app_id=${APP_ID}&app_key=${APP_KEY}`).then(data => dispatch({
+          type: FETCH_FOOD,
           payload: data
         }));
       }
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
 }   
 
-export function fetchFood() {
+// This and the fetchFood() method have been swapped in order for the code to make more sense.
+export function fetchRecipes() {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
     let foodList = [
     {
@@ -44,14 +49,13 @@ export function fetchFood() {
 }
 
 export function getFoodById(id) {
-  let foodList = fetchFood();
-  for (let food of foodList) {
-    console.log(food.id);
-    if (food.id == id) {
-      return food;
-    }
-  }
-  return foodList;
+  // for (let food of foodList) {
+  //   console.log(food.id);
+  //   if (food.id == id) {
+  //     return food;
+  //   }
+  // }
+  // return foodList;
 }
 
 // User Actions
@@ -86,6 +90,12 @@ export const fetchUser = () => {
   return {
     type: AUTH_LOGIN,
     currentUser: user
+  }
+}
+
+export const logOut = () => {
+  return {
+    type: AUTH_LOGOUT
   }
 }
 // End User Actions
