@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.dao.RecipeDao;
-import com.revature.dao.UserDao;
 import com.revature.models.Recipe;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +32,10 @@ public class RecipeService {
 	public List<Recipe> getAllRecipes() {
 		List<Recipe> rlist = rdao.findAll();
 		return rlist;
+	}
+	
+	public Recipe getRecipeByName(String name) {
+		return rdao.getRecipeByName(name);
 	}
 	
 	

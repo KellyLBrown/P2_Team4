@@ -31,5 +31,21 @@ public class UserController {
 		return new ResponseEntity<>("User was registered", HttpStatus.CREATED);
 	}
 	
+	@PostMapping(value="/login")
+	public ResponseEntity<User> login(@RequestBody LinkedHashMap<String,String> uMap) {
+		User u = uServ.login(uMap.get("username"), uMap.get("password"));
+		return new ResponseEntity<>(u, HttpStatus.ACCEPTED);
+	}
+	
+	// only update password, email
+	@PostMapping(value="/update")
+	public ResponseEntity<User> update(@RequestBody LinkedHashMap<String,String> uMap) {
+		User u = uServ.getUserById(Integer.parseInt(uMap.get("id")));
+		u.setEmail(uMap.get("email"));
+		u.setPassword(uMap.get("password"));
+		User un = uServ.update(u);
+		return new ResponseEntity<>(un, HttpStatus.OK);
+	}
+	
 
 }

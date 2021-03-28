@@ -1,10 +1,16 @@
 package com.revature.models;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -13,17 +19,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import Recipe;
-import LocalDate;
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
-@Table(name="Calen")
-public class Calen {
+@Table(name="Calendar")
+public class Calendar {
 	
 	@Id
 	@Column(name="calendar_id")
@@ -44,7 +47,7 @@ public class Calen {
 	    )
 	private List<Recipe> scheduledRecipes;
 	
-	public Calen(int u_id, LocalDate date, List<Recipe> schRecipes) {
+	public Calendar(int u_id, LocalDate date, List<Recipe> schRecipes) {
 		super();
 		this.uId = u_id;
 		this.date = date;

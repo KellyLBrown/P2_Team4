@@ -3,16 +3,15 @@ package com.revature.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +33,7 @@ public class Ingredient {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int iId;
 	
-	@Column(name="name", unique=true, nullable=false)
+	@Column(name="name", nullable=false)
 	private String name;
 	
 	@Column(name="calories")
@@ -46,6 +45,7 @@ public class Ingredient {
 	
 	@ManyToMany(mappedBy="iList")
 	//@JoinTable
+	@JsonIgnore
 	private List<Recipe> rList;
 
 	public Ingredient(String name, int calories, int amount) {

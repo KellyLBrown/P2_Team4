@@ -37,5 +37,10 @@ public class UserService {
 		User un = udao.save(u);
 		return un;
 	}
+	
+	public User getUserById(int id) {
+		return udao.getUserById(id);
+		
+	}
 
 }

@@ -56,7 +56,7 @@ public class Recipe {
 	
 	@ManyToMany(mappedBy="scheduledRecipes")
 	//@JoinTable
-	private List<Calen> scheduledDates;
+	private List<Calendar> scheduledDates;
 
 	public Recipe(String name,int a_id, int time, String description, List<Ingredient> iList) {
 		super();

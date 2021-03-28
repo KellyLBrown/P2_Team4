@@ -27,5 +27,9 @@ public class IngredientService {
 		List<Ingredient> iList = idao.findAll();
 		return iList;
 	}
+	
+	public Ingredient getIngredientByName(String name) {
+		return idao.getIngredientByName(name);
+	}
 
 }

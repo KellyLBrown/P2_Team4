@@ -30,5 +30,11 @@ public class IngredientController {
 		iServ.createIngredient(i);
 		return new ResponseEntity<>("Ingredient was Logged", HttpStatus.CREATED);
 	}
+	
+	@PostMapping(value="/get")
+	public ResponseEntity<Ingredient> getIngredient(@RequestBody LinkedHashMap<String,String> uMap) {
+		Ingredient i = iServ.getIngredientByName(uMap.get("name"));
+		return new ResponseEntity<>(i, HttpStatus.FOUND);
+	}
 
 }
