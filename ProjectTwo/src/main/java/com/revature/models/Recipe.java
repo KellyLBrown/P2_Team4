@@ -53,6 +53,10 @@ public class Recipe {
 	            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
 	    )
 	private List<Ingredient> iList;
+	
+	@ManyToMany(mappedBy="scheduledRecipes")
+	//@JoinTable
+	private List<Calen> scheduledDates;
 
 	public Recipe(String name,int a_id, int time, String description, List<Ingredient> iList) {
 		super();
