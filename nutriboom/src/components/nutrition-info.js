@@ -1,12 +1,16 @@
 import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 import {fetchRecipes} from '../actions/actions';
 
 export default function NutritionInfo(props) {
     const [food, setFood] = useState(null);
     const [calories, setCalories] = useState(0);
+    let recipes = useSelector(store => store.recipes);
 
     const getRecipe = async () => {
-        /* let recipes =  */await fetchRecipes('asparagus');
+        await fetchRecipes('asparagus');
+        console.log(recipes);
+        setFood(recipes);
         //console.log(recipes);
         //setFood(recipes.parsed[0].food.label);
     }

@@ -10,6 +10,7 @@ export const fetchRecipes = async (name) => {
       // let temp = await recipeapi.get(`/parser?ingr=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
       // return temp.data;
       return function(dispatch) {
+        console.log("In dispatch");
         recipeapi.get(`/parser?ingr=${name}&app_id=${APP_ID}&app_key=${APP_KEY}`).then(data => dispatch({
           type: FETCH_RECIPES,
           payload: data
@@ -66,7 +67,7 @@ export function getFoodById(id) {
 //     }, 1000),
 //   );
 
-export const fetchUser = async () => {
+export const fetchUser = () => {
   let user = {
     username: "username",
     password: "testpass",
@@ -74,14 +75,18 @@ export const fetchUser = async () => {
     lastname: "testlast",
     email: "test@example.com"
   }
-
   // return function(dispatch) {
-  //   let data = dispatch({
+  //   new Promise((resolve, reject) => {
+  //     user.username == 'username' && user.password == 'testpass' ? resolve(user) : reject("No such user")
+  //   }).then(data => dispatch({
   //     type: AUTH_LOGIN,
-  //     currentUser: user
-  //   })
+  //     currentUser: data
+  //   }))
   // }
-  return user;
+  return {
+    type: AUTH_LOGIN,
+    currentUser: user
+  }
 }
 // End User Actions
 

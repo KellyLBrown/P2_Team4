@@ -6,6 +6,8 @@ const initialState = {
 }
 
 export default function(state=initialState, action) {
+    console.log("In user reducer");
+    console.log(action);
     switch (action.type) {
         case AUTH_LOGIN: 
             return {

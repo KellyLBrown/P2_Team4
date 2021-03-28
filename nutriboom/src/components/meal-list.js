@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 import {fetchRecipes} from '../actions/actions';
 import Meal from './meal';
 
 export default function MealList(props) {
     const [recipe, setRecipe] = useState("empty");
     const [calories, setCalories] = useState(0);
+    let recipes = useSelector(store => store.recipes);
+    console.log(recipes);
 
     const getRecipe = async () => {
-        let recipes = await fetchRecipes('asparagus');
+        await fetchRecipes('asparagus');
         console.log(recipes);
-        setRecipe(recipes.parsed[0].food.label);
+        setRecipe(recipes.recipe);
     }
 
     getRecipe();

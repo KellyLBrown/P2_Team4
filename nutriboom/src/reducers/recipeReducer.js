@@ -1,21 +1,26 @@
 import {FETCH_RECIPES, NEW_RECIPE} from '../actions/types';
 
 const initialState = {
-    items: [],
-    item: {}
+    recipes: [],
+    recipe: {
+        title: '',
+        date: undefined,
+        steps: []
+    }
 }
 
 export default function(state=initialState, action) {
+    console.log(action);
     switch (action.type) {
         case FETCH_RECIPES: 
         return {
             ...state,
-            items:action.payload
+            recipes:action.payload
         }
         case NEW_RECIPE: 
         return {
             ...state,
-            item: action.payload
+            recipe: action.payload
         }
         default:
             return state;
