@@ -17,8 +17,9 @@ export default function NutritionInfo(props) {
     const getFood = async (name) => {
         let getCurrentFood = await getFoodByName(name);
         await getCurrentFood(store.dispatch);
-        console.log(currentFood.foodItems);
+        console.log(name);
         if (currentFood.foodItems.data != undefined) {
+            console.log(currentFood.foodItems.data);
             if (currentFood.foodItems.data.hints[0] != undefined) {
                 setFood(currentFood.foodItems.data.hints[0].food.label);
                 setCalories(currentFood.foodItems.data.parsed[0].food.nutrients.ENERC_KCAL);
@@ -30,20 +31,20 @@ export default function NutritionInfo(props) {
         }
     }
 
-    useEffect((name)  => {
+    useEffect(async (name)  => {
         console.log(name);
-        getFood(name);
+        await getFood(name);
     }, []);
 
-    const onChange = (e) => {
+    const handleChange = (e) => {
+        console.log(e);
         setName(e.target.value);
         console.log(name);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        e.stopPropagation();
-        getFood(name);
+        await getFood(name);
     }
 
     console.log(food);
@@ -51,14 +52,14 @@ export default function NutritionInfo(props) {
     if (!food) {
         return (
             <aside>
-                <SearchBar name="Food" onChange={onChange} onSubmit={onSubmit} />
+                <SearchBar name="Food" handleChange={handleChange} onSubmit={onSubmit} />
             </aside>
         )
     }
     else {
         return ( 
             <aside id="nutrition-info">
-                <SearchBar name="Food" onChange={onChange} onSubmit={onSubmit} />
+                <SearchBar name="Food" handleChange={handleChange} onSubmit={onSubmit} />
                 <h4>Nutrition Facts for {food}: </h4>
                 <p>Calories: {calories}</p>
                 <p>Total Fat: {fat}g</p>
