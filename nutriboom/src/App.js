@@ -9,6 +9,7 @@ import {Provider} from 'react-redux';
 import Home from './components/home';
 import EventCalendar from './components/event-calendar';
 import {logOut} from './actions/actions';
+import RegisterForm from './components/register'
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           </Route>
           <Route path="/register">
             <Header title="Please enter your information below." />
-
+            <RegisterForm />
           </Route>
           <Route path="/error">
             <Header title="Oops, something went wrong! Please try again later." />

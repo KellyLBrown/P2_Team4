@@ -51,7 +51,7 @@ export default function Header(props) {
                     <ul id="nav-links">
                         <li class="link" className="link"><Link to="./home">Home</Link></li>
                         <li class="link" className="link"><Link to="./calendar">Calendar</Link></li>
-                        <li class="link" className="link" onClick={signOut}><Link to="./logout">Log Out</Link></li>
+                        <li class="link" className="link" onClick={signOut}><Link to="./login">Log Out</Link></li>
                     </ul>
                 </nav>
             </div>
