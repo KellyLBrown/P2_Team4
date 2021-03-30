@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import { logOut } from '../actions/actions';
+
 
 export default function Header(props) {
     let [title, setTitle] = useState(props.title);
     let navHidden = props.navHidden;
     let currentUser = useSelector(state => state.user);
     //console.log(currentUser.data);
+    const dispatch = useDispatch();
 
     const resetTitle = () => {
         //console.log(currentUser.currentUser);
@@ -18,6 +21,11 @@ export default function Header(props) {
             //console.log("**")
             setTitle(props.title);
         }
+    }
+
+    function signOut(){
+        dispatch(logOut());
+
     }
 
     useEffect(() => {resetTitle();}, [])
@@ -43,7 +51,7 @@ export default function Header(props) {
                     <ul id="nav-links">
                         <li class="link" className="link"><Link to="./home">Home</Link></li>
                         <li class="link" className="link"><Link to="./calendar">Calendar</Link></li>
-                        <li class="link" className="link"><Link to="./logout">Log Out</Link></li>
+                        <li class="link" className="link" onClick={signOut}><Link to="./logout">Log Out</Link></li>
                     </ul>
                 </nav>
             </div>

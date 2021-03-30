@@ -38,7 +38,7 @@ function App() {
             <EventCalendar />
           </Route>
           <Route path="/logout">
-            {/* {store.dispatch(logOut())} */}
+           { /*store.dispatch(logOut)*/} 
             <Header title="Thank you for using this service! Have a wonderful day!" />
           </Route>
           <Route path="/">
