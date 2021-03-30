@@ -6,19 +6,16 @@ export default function Header(props) {
     let [title, setTitle] = useState(props.title);
     let navHidden = props.navHidden;
     let currentUser = useSelector(state => state.user);
-    console.log(currentUser);
-    // if (currentUser != null) {
-    //     title = `Welcome, ${currentUser.firstname}!`;
-    // }
+    //console.log(currentUser.data);
 
     const resetTitle = () => {
-        console.log(currentUser);
-        console.log("In resetTitle func");
+        //console.log(currentUser.currentUser);
+        //console.log("In resetTitle func");
         if (currentUser.currentUser != null) {
-            console.log("*")
-            setTitle(`Welcome, ${currentUser.currentUser.firstname}!`);
+            //console.log("*")
+            setTitle(`Welcome, ${currentUser.currentUser.data.firstName}!`);
         } else {
-            console.log("**")
+            //console.log("**")
             setTitle(props.title);
         }
     }

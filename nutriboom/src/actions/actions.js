@@ -61,26 +61,34 @@ export function getFoodById(id) {
 }
 
 export const fetchUser = async (username, password) => {
-  let user = axios({
-    method: 'post',
-    url: 'http://localhost:8080/user/login',
-    data: {
-      username: username,
-      password: password
-    }
-  })//.then(res => res.data);
-  
-  console.log(user);
-  console.log(user.data);
-
-  let action = {
-    type: AUTH_LOGIN,
-    currentUser: user.then(res => res.data)
-  }
-
   return function(dispatch) {
-    user.then(dispatch(action));
+    let user = axios({
+      method: 'post',
+      url: 'http://localhost:8080/user/login',
+      data: {
+        username: username,
+        password: password
+      }
+    }).then(data => dispatch({
+      type: AUTH_LOGIN,
+      currentUser: data
+    })).catch(console.log("Promise rejected! Panic!"));
+
+    console.log(user);
+    return user.data;
   }
+  
+  // console.log(user);
+  // console.log(user.data);
+
+  // let action = {
+  //   type: AUTH_LOGIN,
+  //   currentUser: user.then(res => res.data)
+  // }
+
+  // return function(dispatch) {
+  //   user.then(dispatch(action));
+  // }
 
 }
 
