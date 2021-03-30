@@ -26,9 +26,13 @@ export default function LoginForm(props) {
         if (currentUser.currentUser == null) {
             setLogged(false);
         } else {
-            setLogged(true);
-            setUser(currentUser.currentUser);
-        }});
+            if (currentUser.currentUser.data == null || currentUser.currentUser.data == "") {
+                setLogged(false);
+            } else {
+                setLogged(true);
+                setUser(currentUser.currentUser);
+            }}
+        });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
