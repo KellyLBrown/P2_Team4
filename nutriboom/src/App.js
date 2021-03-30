@@ -8,6 +8,7 @@ import {store} from './store';
 import {Provider} from 'react-redux';
 import Home from './components/home';
 import EventCalendar from './components/event-calendar';
+import {logOut} from './actions/actions';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <EventCalendar />
           </Route>
           <Route path="/logout">
+            {/* {store.dispatch(logOut())} */}
             <Header title="Thank you for using this service! Have a wonderful day!" />
           </Route>
           <Route path="/">

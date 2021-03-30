@@ -12,7 +12,7 @@ import {store} from '../store';
     const [logged, setLogged] = useState(false);
     const [user, setUser] = useState({username: null, password: null});
     let currentUser = useSelector(state => state.user);
-    //console.log(currentUser);
+    console.log(currentUser);
     
     const handleChange = (e) => {
         // //console.log(e.target.value);
@@ -30,8 +30,9 @@ import {store} from '../store';
     const handleSubmit = async (e) => {
         e.preventDefault();
         //store.dispatch(fetchUser());
-        await fetchUser();
+        await fetchUser(user.username, user.password);
         currentUser = store.getState().user.currentUser;
+        console.log(currentUser);
         //console.log(store.getState().user.currentUser);
         //console.log(currentUser.username == user.username);
         //console.log(currentUser.password == user.password);

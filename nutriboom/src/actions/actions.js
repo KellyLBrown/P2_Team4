@@ -1,5 +1,7 @@
 import {FETCH_RECIPES, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
 import {foodapi, recipeapi} from '../apis/endpoints';
+import axios from 'axios';
+import { store } from '../store';
 
 export const getFoodByName = async (name) => {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
@@ -59,12 +61,27 @@ export function getFoodById(id) {
 }
 
 export const fetchUser = async (username, password) => {
-  let user = await recipeapi.post(`/user/login`);
-  let action = {type: AUTH_LOGIN, currentUser: user.data};
+  let user = axios({
+    method: 'post',
+    url: 'http://localhost:8080/user/login',
+    data: {
+      username: username,
+      password: password
+    }
+  })//.then(res => res.data);
+  
+  console.log(user);
+  console.log(user.data);
+
+  let action = {
+    type: AUTH_LOGIN,
+    currentUser: user.then(res => res.data)
+  }
 
   return function(dispatch) {
-    user.then(data => dispatch(action))
+    user.then(dispatch(action));
   }
+
 }
 
 export const logOut = () => {
