@@ -47,7 +47,7 @@ export default function RegisterForm(props) {
                 <FormInput type="email" name="email" value={user.email} handleChange={handleChange} />
                 <input type="submit" value="register" />
             </form>
-            <li class="link" className="returnLink"><Link to="./login">Return to login page</Link></li>
+            <a class="link" className="returnLink">Already registered? <Link to="./login">Return to login page</Link></a>
         </div>
     )
 }

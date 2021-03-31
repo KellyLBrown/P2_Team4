@@ -36,6 +36,8 @@ export default function LoginForm(props) {
         await getUser(store.dispatch);
     }
 
+    
+
     if (logged) {
         return (
             <Redirect to="/home" />
@@ -43,9 +45,9 @@ export default function LoginForm(props) {
     }
     else {
         return (
-            <div>
-            <div id="login" className="row" class="row">
-                <form class="login" onSubmit={handleSubmit}>
+            <div className="center-content-small">
+            <div id="login" className="row">
+                <form className="login" onSubmit={handleSubmit}>
                     <FormInput type="text" name="Username" value={user.username} handleChange={handleChange} />
                     <FormInput type="password" name="Password" value={user.password} handleChange={handleChange} />
                     <input type="submit" value="Log in" />
@@ -53,7 +55,9 @@ export default function LoginForm(props) {
             </div>
             <br />
             
-            <li class="link" className="regUser"><Link to="./register">Register</Link></li>
+            <p>Don't have an account? Please <Link to="./register">register</Link>.</p>
+            
+            
         </div>
         )
     }
