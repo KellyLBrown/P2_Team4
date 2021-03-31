@@ -17,7 +17,7 @@ export default function NutritionInfo(props) {
         let getCurrentFood = await getFoodByName(name);
         await getCurrentFood(store.dispatch);
         console.log(currentFood.foodItems.data);
-        setFood(currentFood.foodItems.data.text);
+        setFood(currentFood.foodItems.data.parsed[0].food.label);
         setCalories(currentFood.foodItems.data.parsed[0].food.nutrients.ENERC_KCAL);
         setFat(currentFood.foodItems.data.parsed[0].food.nutrients.FAT);
         setCholesterol(currentFood.foodItems.data.parsed[0].food.nutrients.CHOCDF);
@@ -26,7 +26,7 @@ export default function NutritionInfo(props) {
     }
 
     useEffect(()  => {
-        getFood('asparagus');
+        getFood('apple');
     }, []);
     //getCalories();
     console.log(food);

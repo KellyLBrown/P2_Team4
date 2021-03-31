@@ -1,7 +1,7 @@
 html {
   background-image: url("https://nutriboom.s3.us-east-2.amazonaws.com/fork+white.png");
   background-repeat: no-repeat;
-  background-size: 100% 250%;
+  background-size: cover;
 }
 
 body {

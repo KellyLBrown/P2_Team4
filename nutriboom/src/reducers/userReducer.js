@@ -18,6 +18,8 @@ export default function(state=initialState, action) {
             }
         case AUTH_LOGOUT: 
             return initialState;
+        case NEW_USER:
+            return state;
         default:
             return state;
     }

@@ -119,15 +119,16 @@ export const logOut = () => {
   }
 }
 
+
 export function createRecipe(recipeData) {
     return function(dispatch) {
         // TODO create recipe
     }
 } 
 
-export function registerUser(userData) {
+export function registerUser(username, password, firstname, lastname, email) {
     return function(dispatch) {
-        // TODO register new user
+
       let user = axios({
         method: 'post',
         url: 'http://localhost:8080/user/register',
@@ -141,6 +142,7 @@ export function registerUser(userData) {
         
       }).then(data => dispatch({
         type: NEW_USER
+
       })).catch(console.log("Promise rejected! Panic!"));
   
       console.log(user);

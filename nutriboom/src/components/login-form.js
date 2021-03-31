@@ -43,13 +43,18 @@ export default function LoginForm(props) {
     }
     else {
         return (
+            <div>
             <div id="login" className="row" class="row">
-                <form onSubmit={handleSubmit}>
+                <form class="login" onSubmit={handleSubmit}>
                     <FormInput type="text" name="Username" value={user.username} handleChange={handleChange} />
                     <FormInput type="password" name="Password" value={user.password} handleChange={handleChange} />
                     <input type="submit" value="Log in" />
                 </form>
             </div>
+            <br />
+            
+            <li class="link" className="regUser"><Link to="./register">Register</Link></li>
+        </div>
         )
     }
 }
