@@ -3,30 +3,31 @@ import {useDispatch} from 'react-redux';
 import FormInput from './form-input';
 import IngredientList from './ingredient-list';
 
+let ingredients = [];
+let jsxIngredients = [];
 export default function RecipeBuilder(props) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     let [ingredient, setIngredient] = useState({measurement: 0, unit: "", Ingredient: ""});
     let id = 0;
-
-    let ingredients = [];
-    let jsxIngredients = ingredients.map((ingredient) => {
-        return <li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li>
-    });
+ 
+    // let jsxIngredients = ingredients.map((ingredient) => {
+    //     return <li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li>
+    // });
 
     const updateList = () => {
         //console.log(jsxIngredients);
-        jsxIngredients = ingredients.map((ingredient) => {
-            return <div><li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li></div>
-        })
+        // jsxIngredients = ingredients.map((ingredient) => {
+        //     return <div><li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li></div>
+        // })
         //console.log(jsxIngredients);
     }
 
     useEffect(() => {
-        jsxIngredients = ingredients.map((ingredient) => {
-            //<li>{ingredient.measurement} {ingredient.unit} {ingredient.Ingredient}</li>
-            return <li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li>
-        })
+        // jsxIngredients = ingredients.map((ingredient) => {
+        //     //<li>{ingredient.measurement} {ingredient.unit} {ingredient.Ingredient}</li>
+        //     return <li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li>
+        // })
         //console.log(jsxIngredients.length);
     }, []);
 
@@ -35,7 +36,7 @@ export default function RecipeBuilder(props) {
         console.log(e);
     }
 
-    const handleChange = async (e) => {
+    const handleChange = (e) => {
         if (e.target.name == "Name") {
             setName(e.target.value);
             console.log(name);
@@ -52,33 +53,33 @@ export default function RecipeBuilder(props) {
             setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, Ingredient: e.target.value});
             console.log(ingredient);
         }
-        console.log(ingredients);
+        console.log(jsxIngredients);
     }
 
     const addIngredient = (e) => {
         e.preventDefault();
-        console.log(ingredients);
+        //console.log(ingredients);
         ingredients.push(ingredient);
-        //jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.Ingredient}</li>);
-        jsxIngredients.push(<li>{ingredient}</li>)
+        jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.Ingredient}</li>);
+        // jsxIngredients.push(<li>{ingredient}</li>)
         updateList();
-        console.log(ingredients);
+        //console.log(ingredients);
         //console.log(jsxIngredients);
     }
 
-    if (jsxIngredients.length > 0) {
+    if (ingredients.length > 0) {
         return (
             <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
-                    <FormInput type="text" name="Name" handleChange={() => {console.log("*")}} />
-                    <FormInput type="textarea" name="Description" handleChange={() => {console.log("*")}} />
-                    <FormInput type="ingredient" name="Ingredient" handleChange={() => {console.log("*")}} />
+                    <FormInput type="text" name="Name" handleChange={handleChange} />
+                    <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                    <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
                     <button onClick={addIngredient}>Search/Add</button>
                     <h4>Current Ingredients: </h4>
-                    {/* <ul id="ingredient-list">{ingredients.map((ingredient) => {
+                     <ul id="ingredient-list">{/*{ingredients.map((ingredient) => {
                         <li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li>
-                    })}</ul> */}
-                    <IngredientList ingredients={ingredients} />
+                    })}*/}{jsxIngredients}</ul> 
+                    {/* <IngredientList ingredient={ingredient} ingredients={ingredients} /> */}
                     <input type="submit" value="Create Recipe" />
                 </form>
             </div>
