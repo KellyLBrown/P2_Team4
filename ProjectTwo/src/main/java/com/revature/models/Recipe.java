@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,6 +36,7 @@ public class Recipe {
 	private int rId;
 	
 	@Column(name="name", nullable=false)
+	@NotNull(message="It needs a name!")
 	private String name;
 	
 	@Column(name="author")
@@ -43,9 +44,11 @@ public class Recipe {
 	
 	// in minutes
 	@Column(name="time")
+	//@NotNull(message="How long does this take to make?")
 	private int time;
 	
 	@Column(name="description")
+	//@NotNull(message="How do I make this?")
 	private String description;
 	
 	@ManyToMany

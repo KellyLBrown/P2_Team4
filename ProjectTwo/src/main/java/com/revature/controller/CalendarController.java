@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,7 @@ import lombok.NoArgsConstructor;
 @RequestMapping(value="/calendar")
 @NoArgsConstructor
 @AllArgsConstructor(onConstructor=@__(@Autowired))
+@CrossOrigin(origins="*")
 public class CalendarController {
 
 	private RecipeService rServ;
@@ -43,7 +45,7 @@ public class CalendarController {
 	}
 	
 	@PostMapping(value="/getCalendar")
-	public ResponseEntity<Calendar> getIngredient(@RequestBody LinkedHashMap<String,String> uMap) {
+	public ResponseEntity<Calendar> getCalendar(@RequestBody LinkedHashMap<String,String> uMap) {
 		Calendar c = cServ.getCalendarByUser(Integer.parseInt(uMap.get("uId")));
 		return new ResponseEntity<>(c, HttpStatus.FOUND);
 	}
