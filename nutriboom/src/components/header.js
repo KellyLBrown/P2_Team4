@@ -44,11 +44,11 @@ export default function Header(props) {
     else {
         return (
             <div id="header">
-                <header class="header">
+                <header class="header" >
                     <h1 id="title">{title}</h1>
                 </header>
-                <nav>
-                    <ul id="nav-links">
+                <nav >
+                    <ul id="navbar">
                         <li class="link" className="link"><Link to="./home">Home</Link></li>
                         <li class="link" className="link"><Link to="./calendar">Calendar</Link></li>
                         <li class="link" className="link" onClick={signOut}><Link to="./login">Log Out</Link></li>

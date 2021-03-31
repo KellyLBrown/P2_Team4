@@ -106,7 +106,6 @@ export function createRecipe(recipeData) {
 } 
 
 export function registerUser(username, password, firstname, lastname, email) {
-  console.log(username);
     return function(dispatch) {
       let user = axios({
         method: 'post',

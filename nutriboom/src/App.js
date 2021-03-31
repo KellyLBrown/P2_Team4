@@ -26,7 +26,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/register">
-            <Header title="Please enter your information below." />
+            <Header title="Please enter your information below." navHidden={true} />
             <RegisterForm />
           </Route>
           <Route path="/error">

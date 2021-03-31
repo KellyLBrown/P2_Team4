@@ -38,7 +38,7 @@
 }
 
 footer {
-  background-color: chartreuse;
+  
 }
 
 #fine-print {
@@ -56,11 +56,12 @@ footer {
 }
 
 nav {
-  background-color: lightgreen;
+  background-position: center;
   color: black;
 }
 
 #header {
+  align-content: center;
   margin-bottom: 20px;
   background-color: white;
 }
@@ -92,4 +93,14 @@ nav {
 
 .link:clicked {
   color: red;
+}
+
+#login{
+  padding-top: 200px;
+  align-items: center;
+}
+
+#register-form{
+  padding-top: 200px;
+  align-items: center;
 }
