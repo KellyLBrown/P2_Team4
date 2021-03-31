@@ -6,10 +6,8 @@ import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.rsocket.server.RSocketServer.Transport;
+//import org.springframework.boot.rsocket.server.RSocketServer.Transport;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -55,19 +53,35 @@ public class UserController {
 	      String to = u.getEmail();
 
 	      // Sender's email ID needs to be mentioned
-	      String from = "web@gmail.com";
+	      String from = "jouphnton@gmail.com";
+	      final String username = "jouphnton@gmail.com";//change accordingly
+	      final String password = "XvY6BaA!P4nr83ir";//change accordingly
 
 	      // Assuming you are sending email from localhost
-	      String host = "localhost";
+	      String host = "smtp.gmail.com";
+	      
+	      Properties prop = System.getProperties();
+	        prop.put("mail.smtp.auth", true);
+	        prop.put("mail.smtp.starttls.enable", "true");
+	        prop.put("mail.smtp.host", host);
+	        prop.put("mail.smtp.port", "587");
+	        prop.put("mail.smtp.ssl.trust", host);
 
-	      // Get system properties
-	      Properties properties = System.getProperties();
+	        Session session = Session.getInstance(prop,
+	                new javax.mail.Authenticator() {
+	                   protected PasswordAuthentication getPasswordAuthentication() {
+	                      return new PasswordAuthentication(username, password);
+	       	   }
+	                });
 
-	      // Setup mail server
-	      properties.setProperty("mail.smtp.host", host);
-
-	      // Get the default Session object.
-	      Session session = Session.getDefaultInstance(properties);
+//	      // Get system properties
+//	      Properties properties = System.getProperties();
+//
+//	      // Setup mail server
+//	      properties.setProperty("mail.smtp.host", host);
+//
+//	      // Get the default Session object.
+//	      Session session = Session.getDefaultInstance(properties);
 
 	      try {
 	         // Create a default MimeMessage object.
@@ -80,10 +94,11 @@ public class UserController {
 	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
 	         // Set Subject: header field
-	         message.setSubject("Hello New User!");
+	         message.setSubject("Hey " + u.getFirstName() + " " + u.getLastName() + "!");
 
 	         // Now set the actual message
-	         message.setText("This is actual message");
+	         message.setText("Here are your credentials for your own record: \n" + 
+	         "Username:   " + u.getUsername() + "\nPassword:   " + u.getPassword() + "\n Thanks for Joining Nutriboom! \n \n BOOM BOOM!");
 
 	         // Send message
 	         Transport.send(message);
@@ -96,8 +111,6 @@ public class UserController {
 	
 	@PostMapping(value="/login")
 	public ResponseEntity<User> login(@RequestBody LinkedHashMap<String,String> uMap) throws InvalidCredentialsException {
-		Logger log = LogManager.getLogger(UserController.class.getName());
-		log.info("Hello from login");
 		try {
 		User u = uServ.login(uMap.get("username"), uMap.get("password"));
 		return new ResponseEntity<>(u, HttpStatus.ACCEPTED);
