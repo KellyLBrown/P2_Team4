@@ -11,10 +11,19 @@ export default function FormInput(props) {
     const handleChange = props.handleChange;
   //  console.log(handleChange);
     
-    return (
-        <div class="col-sm" className="col-sm">
-            <label>{name}: </label>
-            <input type={type} name={name} onChange={handleChange}/>
-        </div>
-    )
+    if (type == "textarea") {
+        return (
+            <div className="col-sm">
+                <label>{name}: </label>
+                <textarea name={name} onChange={handleChange}></textarea>
+            </div>
+        )
+    } else {
+        return (
+            <div class="col-sm" className="col-sm">
+                <label>{name}: </label>
+                <input type={type} name={name} onChange={handleChange}/>
+            </div>
+        )
+    }
 }

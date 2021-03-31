@@ -16,7 +16,6 @@ export default function NutritionInfo(props) {
 
     const getFood = async (name) => {
         let getCurrentFood = await getFoodByName(name);
-        await getCurrentFood(store.dispatch);
         console.log(name);
         if (currentFood.foodItems.data != undefined) {
             console.log(currentFood.foodItems.data);
@@ -29,6 +28,7 @@ export default function NutritionInfo(props) {
                 setFiber(currentFood.foodItems.data.parsed[0].food.nutrients.FIBTG);
             }
         }
+        await getCurrentFood(store.dispatch);
     }
 
     useEffect(async (name)  => {
@@ -37,7 +37,7 @@ export default function NutritionInfo(props) {
     }, []);
 
     const handleChange = (e) => {
-        console.log(e);
+        console.log(e.target.value);
         setName(e.target.value);
         console.log(name);
     }
