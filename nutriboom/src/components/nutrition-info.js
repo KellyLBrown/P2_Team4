@@ -46,7 +46,6 @@ export default function NutritionInfo(props) {
         e.preventDefault();
         await getFood(name);
     }
-
     console.log(food);
 
     if (!food) {

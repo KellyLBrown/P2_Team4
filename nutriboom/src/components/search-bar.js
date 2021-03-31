@@ -8,6 +8,7 @@ export default function SearchBar(props) {
     }
     const handleChange = props.handleChange;
 
+
     return (
         <div id="search">
             <form onSubmit={onSubmit}>

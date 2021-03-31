@@ -9,6 +9,10 @@ import {Provider} from 'react-redux';
 import Home from './components/home';
 import EventCalendar from './components/event-calendar';
 import {logOut} from './actions/actions';
+<<<<<<< HEAD
+=======
+import RegisterForm from './components/register'
+>>>>>>> origin/jennifer
 
 function App() {
   return (
@@ -26,7 +30,11 @@ function App() {
           </Route>
           <Route path="/register">
             <Header title="Please enter your information below." />
+<<<<<<< HEAD
 
+=======
+            <RegisterForm />
+>>>>>>> origin/jennifer
           </Route>
           <Route path="/error">
             <Header title="Oops, something went wrong! Please try again later." />
@@ -38,7 +46,11 @@ function App() {
             <EventCalendar />
           </Route>
           <Route path="/logout">
+<<<<<<< HEAD
             {/* {store.dispatch(logOut())} */}
+=======
+           { /*store.dispatch(logOut)*/} 
+>>>>>>> origin/jennifer
             <Header title="Thank you for using this service! Have a wonderful day!" />
           </Route>
           <Route path="/">
