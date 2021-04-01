@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {registerUser} from '../actions/actions';
 import {store} from '../store';
 import FormInput from './form-input'
+import {Link} from 'react-router-dom';
 
 export default function RegisterForm(props) {
 
@@ -11,7 +12,6 @@ export default function RegisterForm(props) {
         if (e.target.name == 'Username') {
             setUser({username: e.target.value, password:user.password, firstname:user.firstname, lastname:user.lastname, email:user.email});
         }
-        
         if (e.target.name == 'Password') {
             setUser({username: user.username, password: e.target.value, firstname:user.firstname, lastname:user.lastname, email:user.email});
         }
