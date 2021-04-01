@@ -40,12 +40,12 @@ export default function LoginForm(props) {
 
     if (logged) {
         return (
-            <Redirect to="/home" />
+            <Redirect to="/home"/>
         )
     }
     else {
         return (
-            <div className="center-content-small">
+            <div >
             <div id="login" className="row">
                 <form className="login" onSubmit={handleSubmit}>
                     <FormInput type="text" name="Username" value={user.username} handleChange={handleChange} />
