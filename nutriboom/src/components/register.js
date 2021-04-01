@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {registerUser} from '../actions/actions';
 import {store} from '../store';
 import FormInput from './form-input'
+import {Link} from 'react-router-dom'
 
 export default function RegisterForm(props) {
 
