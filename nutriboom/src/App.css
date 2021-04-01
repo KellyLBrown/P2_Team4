@@ -14,16 +14,62 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
+  margin-bottom: 20px;
 }
 
+#header {
+  background-color: white;
+  width: 100%;
+}
+.column {
+  float: left;
+}
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 50%;
+}
+h1 {
+  width: 100%;
+  display: inline;
+  text-align:left;
+  font-size: 44px;
+  }
+
+.topnav {
+  z-index: 9;
+
+  overflow: hidden;
+  background-color: white;
+}
+
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topnav a:hover {
+  background-color: black;
+  color:white;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
 .App-link {
   color: #61dafb;
 }
@@ -38,7 +84,7 @@
 }
 
 footer {
-  background-color: chartreuse;
+  
 }
 
 #fine-print {
@@ -51,19 +97,7 @@ footer {
   font-weight: bold;
 }
 
-#login {
-  margin-top: 100px;
-}
 
-nav {
-  background-color: lightgreen;
-  color: black;
-}
-
-#header {
-  margin-bottom: 20px;
-  background-color: white;
-}
 
 #home {
   margin-top: 90px;
@@ -92,4 +126,22 @@ nav {
 
 .link:clicked {
   color: red;
+}
+
+.button-right {
+  text-align: right;
+}
+
+#login{
+  text-align: right;
+  margin: 100px auto 0;
+  width: 260px;
+  vertical-align: top;
+}
+
+#register-form{
+  text-align: right;
+  margin: 100px auto 0;
+  width: 300px;
+  vertical-align: top;
 }

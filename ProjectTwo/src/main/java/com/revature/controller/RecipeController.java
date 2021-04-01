@@ -60,7 +60,7 @@ private IngredientService iServ;
 	@PostMapping(value="/get")
 	public ResponseEntity<Recipe> getRecipe(@RequestBody LinkedHashMap<String,String> uMap) {
 		Recipe r = rServ.getRecipeByName(uMap.get("name"));
-		return new ResponseEntity<>(r, HttpStatus.FOUND);
+		return new ResponseEntity<>(r, HttpStatus.OK);
 	}
 
 }

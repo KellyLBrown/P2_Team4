@@ -45,6 +45,27 @@ export function fetchRecipes() {
   return foodList;
 }
 
+export function fetchRecipe(author, description, name, preptime) {
+  // This is the middleware that allows us to call the dispatch function directly and make async requests.
+  return function(dispatch) {
+    console.log(name);
+    let recipe = axios({
+      method: 'post',
+      url: `http://localhost:8080/recipe/get`,
+      data: {
+        name : name
+      }
+    }).then(data => dispatch({
+      type: FETCH_RECIPES,
+      recipe : data,
+    })).catch(console.log("Promise rejected! Panic!"));
+   
+    console.log(recipe);
+    return recipe.data;
+  }
+
+}
+
 export function getFoodById(id) {
 
 }
@@ -93,6 +114,7 @@ export function createRecipe(name, author, time, description, ingredients, dates
 
 export function registerUser(username, password, firstname, lastname, email) {
     return function(dispatch) {
+
       let user = axios({
         method: 'post',
         url: 'http://localhost:8080/user/register',
@@ -106,7 +128,7 @@ export function registerUser(username, password, firstname, lastname, email) {
         
       }).then(data => dispatch({
         type: NEW_USER
-        
+
       })).catch(console.log("Promise rejected! Panic!"));
   
       console.log(user);
