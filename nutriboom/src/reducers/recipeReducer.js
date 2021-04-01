@@ -1,11 +1,17 @@
-import {FETCH_RECIPES, NEW_RECIPE} from '../actions/types';
+import {FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE} from '../actions/types';
 
 const initialState = {
     recipes: [],
-    recipe: {
+    newrecipe: {
         title: '',
         date: undefined,
         steps: []
+    },
+    fetchedrecipe: {
+        author: '',
+        description: '',
+        name: '',
+        time: undefined
     }
 }
 
@@ -16,6 +22,11 @@ export default function(state=initialState, action) {
         return {
             ...state,
             recipes:action.payload
+        }
+        case FETCH_RECIPE: 
+        return {
+            ...state,
+            fetchedrecipe:action.recipe
         }
         case NEW_RECIPE: 
         return {
