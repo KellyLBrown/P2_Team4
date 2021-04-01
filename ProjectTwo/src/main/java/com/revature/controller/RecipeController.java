@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,6 +61,12 @@ private IngredientService iServ;
 	@PostMapping(value="/get")
 	public ResponseEntity<Recipe> getRecipe(@RequestBody LinkedHashMap<String,String> uMap) {
 		Recipe r = rServ.getRecipeByName(uMap.get("name"));
+		return new ResponseEntity<>(r, HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/getrecipes")
+	public ResponseEntity<List<Recipe>> getRecipes(@RequestBody LinkedHashMap<String,String> uMap) {
+		List<Recipe> r = rServ.getRecipesByAuthor(Integer.parseInt(uMap.get("aId")));
 		return new ResponseEntity<>(r, HttpStatus.OK);
 	}
 

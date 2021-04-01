@@ -36,7 +36,7 @@ public class IngredientController {
 	@PostMapping(value="/get")
 	public ResponseEntity<Ingredient> getIngredient(@RequestBody LinkedHashMap<String,String> uMap) {
 		Ingredient i = iServ.getIngredientByName(uMap.get("name"));
-		return new ResponseEntity<>(i, HttpStatus.FOUND);
+		return new ResponseEntity<>(i, HttpStatus.OK);
 	}
 
 }
