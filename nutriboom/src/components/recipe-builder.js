@@ -1,39 +1,49 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import FormInput from './form-input';
-import IngredientList from './ingredient-list';
+import SearchBar from './search-bar';
 
 let ingredients = [];
 let jsxIngredients = [];
 export default function RecipeBuilder(props) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    const [search, setSearch] = useState(false);
+    const [warn, setWarn] = useState(false);
     let [ingredient, setIngredient] = useState({measurement: 0, unit: "", Ingredient: ""});
-    let id = 0;
- 
-    // let jsxIngredients = ingredients.map((ingredient) => {
-    //     return <li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li>
-    // });
-
-    const updateList = () => {
-        //console.log(jsxIngredients);
-        // jsxIngredients = ingredients.map((ingredient) => {
-        //     return <div><li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li></div>
-        // })
-        //console.log(jsxIngredients);
-    }
+    let currentFood = useSelector(state => state.food);
 
     useEffect(() => {
-        // jsxIngredients = ingredients.map((ingredient) => {
-        //     //<li>{ingredient.measurement} {ingredient.unit} {ingredient.Ingredient}</li>
-        //     return <li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li>
-        // })
-        //console.log(jsxIngredients.length);
+
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(e);
+    }
+
+    const getFood = async (name) => {
+        let getCurrentFood = await getFoodByName(name);
+        console.log(name);
+        if (currentFood.foodItems.data != undefined) {
+            console.log(currentFood.foodItems.data);
+            if (currentFood.foodItems.data.hints[0] != undefined) {
+                setFood(currentFood.foodItems.data.hints[0].food.label);
+                setCalories(currentFood.foodItems.data.parsed[0].food.nutrients.ENERC_KCAL);
+                setFat(currentFood.foodItems.data.parsed[0].food.nutrients.FAT);
+                setCholesterol(currentFood.foodItems.data.parsed[0].food.nutrients.CHOCDF);
+                setProtein(currentFood.foodItems.data.parsed[0].food.nutrients.PROCNT);
+                setFiber(currentFood.foodItems.data.parsed[0].food.nutrients.FIBTG);
+            }
+        }
+        await getCurrentFood(store.dispatch);
+    }
+
+    const searchIngredient = (e) => {
+        e.preventDefault();
+        console.log(e);
+        getFood(ingredient.Ingredient);
+
     }
 
     const handleChange = (e) => {
@@ -58,43 +68,69 @@ export default function RecipeBuilder(props) {
 
     const addIngredient = (e) => {
         e.preventDefault();
-        //console.log(ingredients);
         ingredients.push(ingredient);
         jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.Ingredient}</li>);
-        // jsxIngredients.push(<li>{ingredient}</li>)
-        updateList();
-        //console.log(ingredients);
-        //console.log(jsxIngredients);
     }
 
-    if (ingredients.length > 0) {
+    if (search && ingredients.length > 0) {
+        console.log("Search is true and ingredients are populated");
+        return (
+            <div id="recipe-builder">
+               <form onSubmit={handleSubmit}>
+                    <FormInput type="text" name="Name" handleChange={handleChange} />
+                    <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" />
+                    <SearchBar name="Ingredient" onSubmit={}/>
+                    <button onClick={addIngredient}>Search</button>
+                    <h4>Current Ingredients: </h4>
+                    <ul id="ingredient-list">{jsxIngredients}</ul> 
+                    <input type="submit" value="Create Recipe" />
+                </form>
+            </div>
+        )
+    }
+    else if (ingredients.length > 0) {
+        return (
+            <div id="recipe-builder">
+                <form onSubmit={handleSubmit}>
+                    <FormInput type="text" name="Name" handleChange={handleChange} />
+                    <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" />
+                    <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
+                    <button onClick={addIngredient}>Add</button>
+                    <h4>Current Ingredients: </h4>
+                    <ul id="ingredient-list">{jsxIngredients}</ul> 
+                    <input type="submit" value="Create Recipe" />
+                </form>
+            </div>
+        )
+    }
+    else if (search) {
+        console.log("Search is true");
+        return (
+            <div id="recipe-builder">
+               <form onSubmit={handleSubmit}>
+                    <FormInput type="text" name="Name" handleChange={handleChange} />
+                    <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" />
+                    <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
+                    <button onClick={addIngredient}>Search</button>
+                    <input type="submit" value="Create Recipe" />
+                </form>
+            </div>
+        )
+    }
+    else {
         return (
             <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
                     <FormInput type="text" name="Name" handleChange={handleChange} />
                     <FormInput type="textarea" name="Description" handleChange={handleChange} />
                     <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
-                    <button onClick={addIngredient}>Search/Add</button>
-                    <h4>Current Ingredients: </h4>
-                     <ul id="ingredient-list">{/*{ingredients.map((ingredient) => {
-                        <li key={id++}>{`${ingredient.measurement} ${ingredient.unit} ${ingredient.Ingredient}`}</li>
-                    })}*/}{jsxIngredients}</ul> 
-                    {/* <IngredientList ingredient={ingredient} ingredients={ingredients} /> */}
+                    <button onClick={addIngredient}>Add</button>
                     <input type="submit" value="Create Recipe" />
                 </form>
             </div>
         )
     }
-
-    return (
-        <div id="recipe-builder">
-            <form onSubmit={handleSubmit}>
-                <FormInput type="text" name="Name" handleChange={handleChange} />
-                <FormInput type="textarea" name="Description" handleChange={handleChange} />
-                <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
-                <button onClick={addIngredient}>Search/Add</button>
-                <input type="submit" value="Create Recipe" />
-            </form>
-        </div>
-    )
 }
