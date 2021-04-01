@@ -9,7 +9,8 @@ import {Provider} from 'react-redux';
 import Home from './components/home';
 import EventCalendar from './components/event-calendar';
 import {logOut} from './actions/actions';
-import RegisterForm from './components/register'
+import RegisterForm from './components/register';
+import RecipeBuilder from './components/recipe-builder';
 
 function App() {
   return (
@@ -38,8 +39,13 @@ function App() {
             <br />
             <EventCalendar />
           </Route>
+          <Route path="/recipe-builder">
+            <Header title="Recipe Builder" />
+            <br />
+            <br />
+            <RecipeBuilder />
+          </Route>
           <Route path="/logout">
-           { /*store.dispatch(logOut)*/} 
             <Header title="Thank you for using this service! Have a wonderful day!" />
           </Route>
           <Route path="/">

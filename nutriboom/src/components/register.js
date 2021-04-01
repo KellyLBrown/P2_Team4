@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
-import { registerUser } from '../actions/actions';
-import FormInput from './form-input';
-import { fetchUser } from '../actions/actions';
-import {Redirect, Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { AUTH_LOGIN } from '../actions/types';
-import { connect, useSelector } from 'react-redux';
+import {registerUser} from '../actions/actions';
 import {store} from '../store';
+import FormInput from './form-input'
 
 export default function RegisterForm(props) {
 
@@ -47,7 +42,9 @@ export default function RegisterForm(props) {
                 <FormInput type="email" name="email" value={user.email} handleChange={handleChange} />
                 <input type="submit" value="register" />
             </form>
+
             <a class="link" className="returnLink">Already registered? <Link to="./login">Return to login page</Link></a>
+
         </div>
     )
 }

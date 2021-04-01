@@ -26,9 +26,13 @@ export default function LoginForm(props) {
         if (currentUser.currentUser == null) {
             setLogged(false);
         } else {
-            setLogged(true);
-            setUser(currentUser.currentUser);
-        }});
+            if (currentUser.currentUser.data == null || currentUser.currentUser.data == "") {
+                setLogged(false);
+            } else {
+                setLogged(true);
+                setUser(currentUser.currentUser);
+            }}
+        });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,19 +49,17 @@ export default function LoginForm(props) {
     }
     else {
         return (
-            <div className="center-content-small">
+        <div className="container">
             <div id="login" className="row">
                 <form className="login" onSubmit={handleSubmit}>
+
                     <FormInput type="text" name="Username" value={user.username} handleChange={handleChange} />
                     <FormInput type="password" name="Password" value={user.password} handleChange={handleChange} />
                     <input type="submit" value="Log in" />
                 </form>
             </div>
             <br />
-            
             <p>Don't have an account? Please <Link to="./register">register</Link>.</p>
-            
-            
         </div>
         )
     }

@@ -9,12 +9,7 @@ export const getFoodByName = async (name) => {
       console.log(name);
       const APP_ID = "7ad6b381";
       const APP_KEY = "5ae08933f60c2e327d2f0790371bd56e";
-      //let temp = await foodapi.get(`/parser?ingr=${name}&app_id=${APP_ID}&app_key=${APP_KEY}`);
       
-      // return {
-      //   type: FETCH_RECIPES,
-      //   payload: temp.data
-      // }
       return function(dispatch) {
         console.log("In dispatch");
         foodapi.get(`/parser?ingr=${name}&app_id=${APP_ID}&app_key=${APP_KEY}`).then(data => dispatch({
@@ -72,13 +67,7 @@ export function fetchRecipe(author, description, name, preptime) {
 }
 
 export function getFoodById(id) {
-  // for (let food of foodList) {
-  //   console.log(food.id);
-  //   if (food.id == id) {
-  //     return food;
-  //   }
-  // }
-  // return foodList;
+
 }
 
 export const fetchUser = async (username, password) => {
@@ -98,19 +87,6 @@ export const fetchUser = async (username, password) => {
     console.log(user);
     return user.data;
   }
-  
-  // console.log(user);
-  // console.log(user.data);
-
-  // let action = {
-  //   type: AUTH_LOGIN,
-  //   currentUser: user.then(res => res.data)
-  // }
-
-  // return function(dispatch) {
-  //   user.then(dispatch(action));
-  // }
-
 }
 
 export const logOut = () => {
@@ -119,10 +95,20 @@ export const logOut = () => {
   }
 }
 
-
-export function createRecipe(recipeData) {
+export function createRecipe(name, author, time, description, ingredients, dates) {
     return function(dispatch) {
-        // TODO create recipe
+      let recipe = recipeapi.post(
+        "", {
+          name: name,
+          author: author,
+          time: time,
+          description: description,
+          ingredients: ingredients,
+          dates: dates
+        }).then(dispatch({
+          type: NEW_RECIPE
+        })).catch(console.log("No new recipe! Panic!"));
+      return recipe.data;
     }
 } 
 
