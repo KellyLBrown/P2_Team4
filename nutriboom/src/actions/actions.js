@@ -31,7 +31,7 @@ export const getFoodByName = async (name) => {
 export function fetchRecipes() {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
     let foodList = [
-    {
+    `{
       "id" : 0,
       "name" : "apple",
       "calories" : "50"
@@ -45,7 +45,7 @@ export function fetchRecipes() {
       "id": 2,
       "name":"Pizza",
       "calories":"300"
-    }
+    }`
   ]
   return foodList;
 }
