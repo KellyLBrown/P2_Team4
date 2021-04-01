@@ -3,6 +3,13 @@ import React, {useState} from 'react';
 export default function FormInput(props) {
     let type = props.type;
     let name = props.name;
+    let display;                // If you'd like to display something other than props.name, define this value as a prop.
+
+    if (props.display == undefined) {
+        display = name;
+    } else {
+        display = props.display;
+    }
     
     // Only use these if the type property is "radio2".
     let checked;
@@ -20,14 +27,14 @@ export default function FormInput(props) {
     if (type == "textarea") {
         return (
             <div className="col-sm">
-                <label>{name}: </label>
+                <label>{display}: </label>
                 <textarea name={name} onChange={handleChange}></textarea>
             </div>
         )
     } else if (type == "ingredient") {
         return (
             <div className="col-sm">
-                <label>{name}: </label>
+                <label>{display}: </label>
                 <input type="number" name="measurement" placeholder="1" onChange={handleChange} />
                 <input type="text" name="unit" placeholder="Type a measurement" onChange={handleChange} />
                 <input type="text" name={name} placeholder="Type an ingredient name" onChange={handleChange} />
@@ -46,7 +53,7 @@ export default function FormInput(props) {
     else {
         return (
             <div class="col-sm" className="col-sm">
-                <label>{name}: </label>
+                <label>{display}: </label>
                 <input type={type} name={name} onChange={handleChange}/>
             </div>
         )

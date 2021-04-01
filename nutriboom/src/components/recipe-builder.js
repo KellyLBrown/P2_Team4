@@ -10,7 +10,7 @@ export default function RecipeBuilder(props) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [search, setSearch] = useState(false);
-    const [warn, setWarn] = useState(false);
+    const [searched, setSearched] = useState(false);
     let [ingredient, setIngredient] = useState({measurement: 0, unit: "", Ingredient: ""});
     let currentFood = useSelector(state => state.food);
 
@@ -22,6 +22,7 @@ export default function RecipeBuilder(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSearched(false);
         console.log(e);
     }
 
@@ -34,12 +35,13 @@ export default function RecipeBuilder(props) {
                 setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, Ingredient: currentFood.foodItems.data.hints[0].food.label});
             }
         }
-        getCurrentFood(dispatch);
+        await getCurrentFood(dispatch);
     }
 
     const searchIngredient = (e) => {
         e.preventDefault();
         console.log(e);
+        setSearched(true);
         getFood(ingredient.Ingredient);
     }
 
@@ -68,68 +70,123 @@ export default function RecipeBuilder(props) {
 
     const addIngredient = (e) => {
         e.preventDefault();
+        setSearched(false);
+        if (ingredient.unit == "") {
+            setIngredient({measurement: ingredient.measurement, unit: "count(s)", Ingredient: ingredient.Ingredient});
+        }
         ingredients.push(ingredient);
         jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.Ingredient}</li>);
     }
 
-    if (search && ingredients.length > 0) {
-        console.log("Search is true and ingredients are populated");
-        return (
-            <div id="recipe-builder">
-               <form onSubmit={handleSubmit}>
-                    <FormInput type="text" name="Name" handleChange={handleChange} />
-                    <FormInput type="textarea" name="Description" handleChange={handleChange} />
-                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
-                    <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient}/>
-                    <h4>Current Ingredients: </h4>
-                    <ul id="ingredient-list">{jsxIngredients}</ul> 
-                    <input type="submit" value="Create Recipe" />
-                </form>
-            </div>
-        )
-    }
-    else if (ingredients.length > 0) {
-        return (
-            <div id="recipe-builder">
+    if (ingredient.Ingredient != "" && searched) {
+        if (search && ingredients.length > 0) {
+            console.log("Search is true and ingredients are populated");
+            return (
+                <div id="recipe-builder">
+                   <form onSubmit={handleSubmit}>
+                        <FormInput type="text" name="Name" handleChange={handleChange} />
+                        <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                        <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
+                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <FormInput name="measurement" display={`How many ${ingredient.Ingredient}(s)?`} handleChange={handleChange} /> 
+                        <select name="unit" onChange={handleChange}>
+                            <option value="count(s)">count(s)</option>
+                            <option value="tsp">tsp</option>
+                            <option value="Tbsp">Tbsp</option>
+                            <option value="cups">cup(s)</option>
+                            <option value="pints">pint(s)</option>
+                        </select>
+                        <button onClick={addIngredient}>Add Ingredient</button>
+                        <h4>Current Ingredients: </h4>
+                        <ul id="ingredient-list">{jsxIngredients}</ul> 
+                        <input type="submit" value="Create Recipe" />
+                    </form>
+                </div>
+            )
+        }
+        else if (search) {
+            console.log("Search is true");
+            return (
+                <div id="recipe-builder">
+                   <form onSubmit={handleSubmit}>
+                        <FormInput type="text" name="Name" handleChange={handleChange} />
+                        <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                        <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
+                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <FormInput name="measurement" display={`How many ${ingredient.Ingredient}(s)?`} handleChange={handleChange} /> 
+                        <select name="unit" onChange={handleChange}>
+                            <option value="count(s)">count(s)</option>
+                            <option value="tsp">tsp</option>
+                            <option value="Tbsp">Tbsp</option>
+                            <option value="cups">cup(s)</option>
+                            <option value="pints">pint(s)</option>
+                        </select>
+                        <button onClick={addIngredient}>Add Ingredient</button>
+                        <input type="submit" value="Create Recipe" />
+                    </form>
+                </div>
+            )
+        }
+    } else {
+        if (search && ingredients.length > 0) {
+            console.log("Search is true and ingredients are populated");
+            return (
+                <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
-                    <FormInput type="text" name="Name" handleChange={handleChange} />
-                    <FormInput type="textarea" name="Description" handleChange={handleChange} />
-                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
-                    <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
-                    <button onClick={addIngredient}>Add</button>
-                    <h4>Current Ingredients: </h4>
-                    <ul id="ingredient-list">{jsxIngredients}</ul> 
-                    <input type="submit" value="Create Recipe" />
-                </form>
-            </div>
-        )
-    }
-    else if (search) {
-        console.log("Search is true");
-        return (
-            <div id="recipe-builder">
-               <form onSubmit={handleSubmit}>
-                    <FormInput type="text" name="Name" handleChange={handleChange} />
-                    <FormInput type="textarea" name="Description" handleChange={handleChange} />
-                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
-                    <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient}/>
-                    <input type="submit" value="Create Recipe" />
-                </form>
-            </div>
-        )
-    }
-    else {
-        return (
-            <div id="recipe-builder">
+                        <FormInput type="text" name="Name" handleChange={handleChange} />
+                        <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                        <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
+                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <h4>Current Ingredients: </h4>
+                        <ul id="ingredient-list">{jsxIngredients}</ul> 
+                        <input type="submit" value="Create Recipe" />
+                    </form>
+                </div>
+            )
+        }
+        else if (ingredients.length > 0) {
+            return (
+                <div id="recipe-builder">
+                    <form onSubmit={handleSubmit}>
+                        <FormInput type="text" name="Name" handleChange={handleChange} />
+                        <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                        <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
+                        <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
+                        <button onClick={addIngredient}>Add</button>
+                        <h4>Current Ingredients: </h4>
+                        <ul id="ingredient-list">{jsxIngredients}</ul> 
+                        <input type="submit" value="Create Recipe" />
+                    </form>
+                </div>
+            )
+        }
+        else if (search) {
+            console.log("Search is true");
+            return (
+                <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
-                    <FormInput type="text" name="Name" handleChange={handleChange} />
-                    <FormInput type="textarea" name="Description" handleChange={handleChange} />
-                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
-                    <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
-                    <button onClick={addIngredient}>Add</button>
-                    <input type="submit" value="Create Recipe" />
-                </form>
-            </div>
-        )
+                        <FormInput type="text" name="Name" handleChange={handleChange} />
+                        <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                        <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
+                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <input type="submit" value="Create Recipe" />
+                    </form>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div id="recipe-builder">
+                    <form onSubmit={handleSubmit}>
+                        <FormInput type="text" name="Name" handleChange={handleChange} />
+                        <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                        <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
+                        <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
+                        <button onClick={addIngredient}>Add</button>
+                        <input type="submit" value="Create Recipe" />
+                    </form>
+                </div>
+            )
+        }
     }
 }
