@@ -45,7 +45,7 @@ public class CalendarController {
 	}
 	
 	@PostMapping(value="/getCalendar")
-	public ResponseEntity<Calendar> getIngredient(@RequestBody LinkedHashMap<String,String> uMap) {
+	public ResponseEntity<Calendar> getCalendar(@RequestBody LinkedHashMap<String,String> uMap) {
 		Calendar c = cServ.getCalendarByUser(Integer.parseInt(uMap.get("uId")));
 		return new ResponseEntity<>(c, HttpStatus.FOUND);
 	}
