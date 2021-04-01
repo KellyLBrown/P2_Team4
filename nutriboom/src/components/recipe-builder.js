@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import FormInput from './form-input';
 import SearchBar from './search-bar';
+import {getFoodByName} from '../actions/actions'; 
 
 let ingredients = [];
 let jsxIngredients = [];
@@ -17,6 +18,8 @@ export default function RecipeBuilder(props) {
 
     }, []);
 
+    const dispatch = useDispatch();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(e);
@@ -28,22 +31,16 @@ export default function RecipeBuilder(props) {
         if (currentFood.foodItems.data != undefined) {
             console.log(currentFood.foodItems.data);
             if (currentFood.foodItems.data.hints[0] != undefined) {
-                setFood(currentFood.foodItems.data.hints[0].food.label);
-                setCalories(currentFood.foodItems.data.parsed[0].food.nutrients.ENERC_KCAL);
-                setFat(currentFood.foodItems.data.parsed[0].food.nutrients.FAT);
-                setCholesterol(currentFood.foodItems.data.parsed[0].food.nutrients.CHOCDF);
-                setProtein(currentFood.foodItems.data.parsed[0].food.nutrients.PROCNT);
-                setFiber(currentFood.foodItems.data.parsed[0].food.nutrients.FIBTG);
+                setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, Ingredient: currentFood.foodItems.data.hints[0].food.label});
             }
         }
-        await getCurrentFood(store.dispatch);
+        getCurrentFood(dispatch);
     }
 
     const searchIngredient = (e) => {
         e.preventDefault();
         console.log(e);
         getFood(ingredient.Ingredient);
-
     }
 
     const handleChange = (e) => {
@@ -62,6 +59,9 @@ export default function RecipeBuilder(props) {
         } else if (e.target.name == "Ingredient") {
             setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, Ingredient: e.target.value});
             console.log(ingredient);
+        } else if (e.target.name == "search") {
+            setSearch(e.target.value == "Search Ingredients");
+            console.log("Radio Button Value has changed");
         }
         console.log(jsxIngredients);
     }
@@ -79,9 +79,8 @@ export default function RecipeBuilder(props) {
                <form onSubmit={handleSubmit}>
                     <FormInput type="text" name="Name" handleChange={handleChange} />
                     <FormInput type="textarea" name="Description" handleChange={handleChange} />
-                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" />
-                    <SearchBar name="Ingredient" onSubmit={}/>
-                    <button onClick={addIngredient}>Search</button>
+                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
+                    <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient}/>
                     <h4>Current Ingredients: </h4>
                     <ul id="ingredient-list">{jsxIngredients}</ul> 
                     <input type="submit" value="Create Recipe" />
@@ -95,7 +94,7 @@ export default function RecipeBuilder(props) {
                 <form onSubmit={handleSubmit}>
                     <FormInput type="text" name="Name" handleChange={handleChange} />
                     <FormInput type="textarea" name="Description" handleChange={handleChange} />
-                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" />
+                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                     <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
                     <button onClick={addIngredient}>Add</button>
                     <h4>Current Ingredients: </h4>
@@ -112,9 +111,8 @@ export default function RecipeBuilder(props) {
                <form onSubmit={handleSubmit}>
                     <FormInput type="text" name="Name" handleChange={handleChange} />
                     <FormInput type="textarea" name="Description" handleChange={handleChange} />
-                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" />
-                    <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
-                    <button onClick={addIngredient}>Search</button>
+                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
+                    <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient}/>
                     <input type="submit" value="Create Recipe" />
                 </form>
             </div>
@@ -126,6 +124,7 @@ export default function RecipeBuilder(props) {
                 <form onSubmit={handleSubmit}>
                     <FormInput type="text" name="Name" handleChange={handleChange} />
                     <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                    <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                     <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
                     <button onClick={addIngredient}>Add</button>
                     <input type="submit" value="Create Recipe" />
