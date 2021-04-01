@@ -44,17 +44,26 @@ export default function Header(props) {
     else {
         return (
             <div id="header">
-                <header class="header">
-                    <h1 id="title">{title}</h1>
+                <header class="header" >
+                    <div class="topnav">
+                        <div class="row">
+                            <div class="column left">
+                                <a ><Link to="./home">Home</Link></a>
+                                <a ><Link to="./calendar">Calendar</Link></a>
+                                <a ><Link to="./recipe-builder">Recipe Builder</Link></a>
+                                <a onClick={signOut}><Link to="./login">Log Out</Link></a>
+                                
+                            </div>
+                            <div class="column middle">
+                                <h1 id="title">{title}</h1>
+                            </div>
+                            <div class="column right"></div>
+                        </div>
+                    </div>
+                
+                
                 </header>
-                <nav>
-                    <ul id="nav-links">
-                        <li class="link" className="link"><Link to="./home">Home</Link></li>
-                        <li class="link" className="link"><Link to="./calendar">Calendar</Link></li>
-                        <li class="link" className="link"><Link to="./recipe-builder">Recipe Builder</Link></li>
-                        <li class="link" className="link" onClick={signOut}><Link to="./login">Log Out</Link></li>
-                    </ul>
-                </nav>
+
             </div>
         )
     }
