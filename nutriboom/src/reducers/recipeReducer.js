@@ -1,4 +1,4 @@
-import {FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE, GET_RECIPES_FROM_DATE} from '../actions/types';
+import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE, GET_RECIPES_FROM_DATE} from '../actions/types';
 
 const initialState = {
     recipes: [],
@@ -19,7 +19,8 @@ const initialState = {
         description: '',
         name: '',
         time: undefined
-    }
+    },
+    image: {}
 }
 
 export default function(state=initialState, action) {
@@ -44,6 +45,11 @@ export default function(state=initialState, action) {
         return {
             ...state,
             recipe: action.payload
+        }
+        case GET_IMAGE: 
+        return {
+            ...state,
+            image: action.payload
         }
         default:
             return state;

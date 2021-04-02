@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 import MealList from './meal-list';
-import {fetchRecipes, getRecipesFromDate} from '../actions/actions';
+import {fetchRecipes, getImage, getRecipesFromDate} from '../actions/actions';
 import {useSelector, useDispatch } from 'react-redux';
 
 
@@ -10,9 +10,11 @@ export default function EventCalendar(props) {
     let currentUser = useSelector(state => state.user);
     const [date, setDate] = useState(null);
     const [recipeList, setRecipeList] = useState([]);
+    let image = useSelector(state => state.recipes.image);
+    console.log(image);
     let scheduledRecipes = [];
     let jsxRecipes = [];
-    const [mealList, setMealList] = useState(<MealList date={dateString} jsxRecipes={jsxRecipes} />);
+    const [mealList, setMealList] = useState(<MealList date={dateString} jsxRecipes={jsxRecipes} image={image} />);
 
     useEffect(() => {
         //console.log(recipeList);
@@ -30,7 +32,7 @@ export default function EventCalendar(props) {
             }
             console.log(jsxRecipes);
         }
-        setMealList(<MealList date={dateString} jsxRecipes={jsxRecipes} />);
+        setMealList(<MealList date={dateString} jsxRecipes={jsxRecipes} image={image} />);
     }, [recipeList])
 
     const dispatch = useDispatch();
@@ -40,6 +42,12 @@ export default function EventCalendar(props) {
         let recipes = await fetchRecipes(currentUser.currentUser.data.id);
         setRecipeList(await recipes(dispatch));
         //console.log(recipeList);
+    }
+
+    const getRecipeImage = async (name) => {
+        let recipeImage = await getImage(name);
+        recipeImage(dispatch);
+        console.log(image); 
     }
 
     const checkDatesEqual = (otherDate) => {
@@ -117,7 +125,9 @@ export default function EventCalendar(props) {
         
         if (date) {
             getRecipesByDate();
+            getRecipeImage('mountain.png');
         }
+        
     }
 
     return (
