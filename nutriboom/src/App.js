@@ -11,6 +11,7 @@ import EventCalendar from './components/event-calendar';
 import {logOut} from './actions/actions';
 import RegisterForm from './components/register';
 import RecipeBuilder from './components/recipe-builder';
+import ViewMyRecipes from './components/view-my-recipes';
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
             <br />
             <br />
             <RecipeBuilder />
+          </Route>
+          <Route path="/view-my-recipes">
+            <Header title="View Recipes" />
+            <ViewMyRecipes />
           </Route>
           <Route path="/logout">
             <Header title="Thank you for using this service! Have a wonderful day!" />
