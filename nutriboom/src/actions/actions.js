@@ -22,27 +22,24 @@ export const getFoodByName = async (name) => {
     }
 }   
 
-// This and the fetchFood() method have been swapped in order for the code to make more sense.
-export function fetchRecipes() {
-    // This is the middleware that allows us to call the dispatch function directly and make async requests.
-    let foodList = [
-    {
-      "id" : 0,
-      "name" : "apple",
-      "calories" : "50"
-    },
-    {
-      "id": 1,
-      "name":"strawberry",
-      "calories":"30"
-    },
-    {
-      "id": 2,
-      "name":"Pizza",
-      "calories":"300"
-    }
-  ]
-  return foodList;
+export function fetchRecipes(author) {
+  // This is the middleware that allows us to call the dispatch function directly and make async requests.
+  return function(dispatch) {
+    console.log(author);
+    let recipe = axios({
+      method: 'post',
+      url: `http://localhost:8080/recipe/getrecipes`,
+      data: {
+        aId : author
+      }
+    }).then(data => dispatch({
+      type: FETCH_RECIPE,
+      recipe : data,
+    })).catch(console.log("Promise rejected! Panic!"));
+   
+    console.log(recipe);
+    return recipe.data;
+  }
 }
 
 export function fetchRecipe(author, description, name, preptime) {
@@ -95,7 +92,7 @@ export const logOut = () => {
 }
 
 export function createRecipe(name, author, time, description, ingredients, dates) {
-    console.log(author);
+    console.log(ingredients);
     return function(dispatch) {
       let recipe = recipeapi.post(
         "/recipe/log", {
@@ -103,7 +100,7 @@ export function createRecipe(name, author, time, description, ingredients, dates
           author: author,
           time: time.toString(),
           description: description,
-          ingredients: ingredients,
+          ilist: ingredients,
           dates: dates
         }).then(data => dispatch({
           type: NEW_RECIPE,

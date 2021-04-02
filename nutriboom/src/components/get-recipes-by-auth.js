@@ -4,10 +4,14 @@ import FormInput from './form-input';
 import {store} from '../store';
 import { useSelector } from 'react-redux';
 
-export default function GetRecipeForm(props){
+export default function GetRecipesForm(props){
     const [recipe, setRecipe] = useState({author: null, description: null, recipename: null, time:null});
     let currentRecipe = useSelector(state => state.recipe);
-    console.log(currentRecipe);
+    let user = useSelector(state => state.user);
+    // currentUser.currentUser.data.firstName
+    console.log(user.currentUser.data.id);
+    let myauthor = user.currentUser.data.id;
+    //console.log(myauthor);
     const handleChange = (e) => {
         if (e.target.name == 'Recipe Name') {
             setRecipe({recipename:e.target.value});
@@ -16,7 +20,8 @@ export default function GetRecipeForm(props){
 
     const handleRecipe = async (e) => {
         e.preventDefault();
-        let getRecipe = await fetchRecipe(recipe.author, recipe.description, recipe.recipename, recipe.time);
+        
+        let getRecipe = await fetchRecipes(myauthor);
         await getRecipe(store.dispatch);
     }
 
@@ -49,8 +54,7 @@ export default function GetRecipeForm(props){
     return (
         <div id="register-form" className="row" class="row">
             <form onSubmit={handleRecipe}>
-                <FormInput type="text" name="Recipe Name"  value={recipe.recipename} handleChange={handleChange} />
-                <input type="submit" value="Retrieve Recipe" />
+                <input type="submit" value="Get my recipes" />
             </form>
         </div>
     )

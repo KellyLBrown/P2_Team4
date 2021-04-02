@@ -102,10 +102,10 @@ export default function RecipeBuilder(props) {
         e.preventDefault();
         setSearched(false);
         if (ingredient.unit == "") {
-            setIngredient({measurement: ingredient.measurement, unit: "count(s)", Ingredient: ingredient.Ingredient});
+            setIngredient({measurement: ingredient.measurement, unit: "count(s)", name: ingredient.Ingredient});
         }
         ingredients.push(ingredient);
-        jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.Ingredient}</li>);
+        jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.name}</li>);
     }
 
 
