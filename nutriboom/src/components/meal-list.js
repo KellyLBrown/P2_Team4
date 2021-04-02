@@ -20,7 +20,8 @@ export default function MealList(props) {
     let currentUser = useSelector(state => state.user);
     let recipeList = [];
     const [noname, setNoName] = useState(false);    // I don't know what to call this variable yet...
-    //console.log(currentFood.data);
+    let image = props.image;
+    console.log(image.data.bytes);
 
     const dispatch = useDispatch();
 
@@ -29,8 +30,21 @@ export default function MealList(props) {
 
         if (recipeList.payload != undefined) {
             for (let r of recipeList.payload.data) {
-                if (date) {
-                    jsxRecipes.push(<li key={r.rId}>{r.name} <button onClick={() => {}}>+</button></li>)
+                if (date && image) {
+                    jsxRecipes.push(<li key={r.rId}>
+                        <img id="ItemPreview" src={`data:image/png;base64,${image.data.bytes}`} />{r.name} 
+                            <button onClick={() => {}}>+
+                            </button>
+                        </li>)
+                } else if (date) {
+                    jsxRecipes.push(<li key={r.rId}>
+                        {r.name} 
+                            <button onClick={() => {}}>+
+                            </button>
+                        </li>)
+                } else if (image) {
+                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" src={`data:image/png;base64,${image.data.bytes}`} alt="A pic of a mountain" />
+                    {r.name}</li>)
                 } else {
                     jsxRecipes.push(<li key={r.rId}>{r.name}</li>)
                 }

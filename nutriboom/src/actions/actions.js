@@ -1,4 +1,4 @@
-import {GET_RECIPES_FROM_DATE, FETCH_RECIPES, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
 import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
 import { store } from '../store';
@@ -35,6 +35,18 @@ export function fetchRecipes(aId) {
 
     console.log(recipes);
     return recipes;
+  }
+}
+
+export function getImage(name) {
+  console.log(name);
+  return function(dispatch) {
+    let image = recipeapi.get(`/image/get/${name}`).then(data => dispatch({
+      type: GET_IMAGE,
+      payload: data
+    }))
+    console.log(image);
+    return image;
   }
 }
 

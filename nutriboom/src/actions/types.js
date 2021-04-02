@@ -7,4 +7,6 @@ export const AUTH_LOGIN = 'AUTH_LOGIN';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const NEW_USER = 'NEW_USER';
 export const NEW_RECIPE = 'NEW_RECIPE';
+export const GET_IMAGE = 'GET_IMAGE';
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 
