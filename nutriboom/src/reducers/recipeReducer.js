@@ -2,6 +2,7 @@ import {FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE, GET_RECIPES_FROM_DATE} from '..
 
 const initialState = {
     recipes: [],
+    dates: [],
     newrecipe: {
         title: '',
         date: undefined,
@@ -27,7 +28,7 @@ export default function(state=initialState, action) {
         case FETCH_RECIPES: 
         return {
             ...state,
-            fetchedrecipes:action.recipe
+            dates: action.payload
         }
         case GET_RECIPES_FROM_DATE:
         return {

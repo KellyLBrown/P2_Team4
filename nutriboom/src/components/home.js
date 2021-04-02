@@ -7,7 +7,7 @@ import NutritionInfo from './nutrition-info';
 export default function Home() {
     return (
         <div id="home">
-            <NutritionInfo />
+            {/* <NutritionInfo /> */}
             <MealPlanner />
             <GetRecipe />
         </div>
