@@ -62,6 +62,9 @@ public class Recipe {
 	@ManyToMany(mappedBy="scheduledRecipes")
 	@JsonIgnore
 	private List<Calendar> scheduledDates;
+	
+	@Column
+	private String imageName;
 
 	public Recipe(String name,int a_id, int time, String description, List<Ingredient> iList) {
 		super();
