@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import {fetchRecipes, getFoodByName} from '../actions/actions';
-import Meal from './meal';
 
-let jsxRecipes = [];
+
 export default function MealList(props) {
     let date;
 
@@ -14,26 +13,31 @@ export default function MealList(props) {
         date = null;
     }
 
+    let jsxRecipes = props.jsxRecipes;
+    console.log(jsxRecipes);
+
     let currentFood = useSelector(state => state.recipes);
     let currentUser = useSelector(state => state.user);
     let recipeList = [];
     const [noname, setNoName] = useState(false);    // I don't know what to call this variable yet...
-    console.log(currentFood.data);
+    //console.log(currentFood.data);
 
     const dispatch = useDispatch();
 
-    const getRecipesByDate = async () => {
-        let recipes = await fetchRecipes();
-        recipeList = await recipes(dispatch);
+    useEffect(() => {
         console.log(recipeList);
 
-        for (let r of recipeList.payload.data) {
-            if (r.date == date) {
-                jsxRecipes.push(<li>{r.name}</li>);
+        if (recipeList.payload != undefined) {
+            for (let r of recipeList.payload.data) {
+                if (date) {
+                    jsxRecipes.push(<li key={r.rId}>{r.name} <button onClick={() => {}}>+</button></li>)
+                } else {
+                    jsxRecipes.push(<li key={r.rId}>{r.name}</li>)
+                }
             }
+            console.log(jsxRecipes);
         }
-        console.log(jsxRecipes);
-    }
+    }, [jsxRecipes])
 
     const scheduleRecipe = () => {
         
@@ -43,30 +47,30 @@ export default function MealList(props) {
         console.log(currentUser.currentUser.data.id);
         let getAllRecipes = await fetchRecipes(currentUser.currentUser.data.id);
         recipeList = await getAllRecipes(dispatch);
-        console.log(recipeList);
+        // console.log(recipeList);
 
-        for (let r of recipeList.payload.data) {
-            jsxRecipes.push(<li key={r.rId}>{r.name} <button onClick={() => {}}>+</button></li>)
-        }
-        console.log(jsxRecipes);
-        // return (
-        //     <Redirect to="./calendar" />
-        // )
+        // for (let r of recipeList.payload.data) {
+        //     if (date) {
+        //         jsxRecipes.push(<li key={r.rId}>{r.name} <button onClick={() => {}}>+</button></li>)
+        //     } else {
+        //         jsxRecipes.push(<li key={r.rId}>{r.name}</li>)
+        //     }
+        // }
+        // console.log(jsxRecipes);
     }
 
-    if (noname) {
+    if (!date) {
         return (
             <div id="meal-list">
                 <ul>{jsxRecipes}</ul>
-                <button onClick={renderAddRecipe}>Add Recipe</button>
-            </div>
-        )
-    } else {
-        return (
-            <div id="meal-list">
-                <ul>{jsxRecipes}</ul>
-                <button onClick={renderAddRecipe}>Add Recipe</button>
             </div>
         )
     }
+    return (
+        <div id="meal-list">
+            <ul>{jsxRecipes}</ul>
+            <button onClick={renderAddRecipe}>Add Recipe</button>
+        </div>
+    )
+    
 }

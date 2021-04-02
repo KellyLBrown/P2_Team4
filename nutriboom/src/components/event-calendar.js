@@ -1,14 +1,69 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 import MealList from './meal-list';
+import {fetchRecipes, getRecipesFromDate} from '../actions/actions';
+import {useSelector, useDispatch } from 'react-redux';
+
 
 export default function EventCalendar(props) {
     let [dateString, setDateString] = useState('');
+    let currentUser = useSelector(state => state.user);
+    const [date, setDate] = useState(null);
+    const [recipeList, setRecipeList] = useState([]);
+    let scheduledRecipes = [];
+    let jsxRecipes = [];
+    const [mealList, setMealList] = useState(<MealList date={dateString} jsxRecipes={jsxRecipes} />);
+
+    useEffect(() => {
+        //console.log(recipeList);
+        if (recipeList.payload != undefined) {
+            for (let r of recipeList.payload.data) {
+                console.log(r)
+                console.log(date);
+                if (checkDatesEqual(r.date)) {
+                    scheduledRecipes = r.scheduledRecipes;
+                }
+            }
+            console.log(scheduledRecipes);
+            for (let r of scheduledRecipes) {
+                jsxRecipes.push(<li>{r.name}</li>)
+            }
+            console.log(jsxRecipes);
+        }
+        setMealList(<MealList date={dateString} jsxRecipes={jsxRecipes} />);
+    }, [recipeList])
+
+    const dispatch = useDispatch();
+
+    const getRecipesByDate = async () => {
+        jsxRecipes = [];    // Empty jsxRecipes to prevent static or duplicate elements
+        let recipes = await fetchRecipes(currentUser.currentUser.data.id);
+        setRecipeList(await recipes(dispatch));
+        //console.log(recipeList);
+    }
+
+    const checkDatesEqual = (otherDate) => {
+        let dateAsString = otherDate.slice(0, 10);
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        if (date.getDate() < 10) {
+            day = `0${date.getDate()}`;
+        }
+        if (date.getMonth() < 10) {
+            month = `0${date.getMonth() + 1}`;
+        }
+        let currentDateAsString = `${date.getFullYear()}-${month}-${day}`;
+        console.log(dateAsString);
+        console.log(currentDateAsString);
+
+        return dateAsString === currentDateAsString;
+    }
 
     const handleDayClicked = (d) => {
         // In this case, e represents the date value as opposed
         // to the event object.
-        console.log(d);
+        //console.log(d);
+        setDate(d);
         let dayOfWeek = d.getDay();
         let monthOfYear = d.getMonth();
 
@@ -59,7 +114,10 @@ export default function EventCalendar(props) {
         }
 
         setDateString(`${dayOfWeek}, ${monthOfYear} ${d.getDate()}, ${d.getFullYear()}`);
-        // TODO change event list
+        
+        if (date) {
+            getRecipesByDate();
+        }
     }
 
     return (
@@ -67,7 +125,7 @@ export default function EventCalendar(props) {
             <Calendar onClickDay={handleDayClicked} />
             <div id="events">
                 <h6>Events for {dateString}: </h6>
-                <MealList date={dateString} />
+                {mealList}
             </div>    
         </div>
     )
