@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Calendar from 'react-calendar';
+import MealList from './meal-list';
 
 export default function EventCalendar(props) {
     let [dateString, setDateString] = useState('');
@@ -66,7 +67,7 @@ export default function EventCalendar(props) {
             <Calendar onClickDay={handleDayClicked} />
             <div id="events">
                 <h6>Events for {dateString}: </h6>
-                {/* TODO add event list here*/}
+                <MealList date={dateString} />
             </div>    
         </div>
     )

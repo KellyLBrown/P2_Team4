@@ -1,4 +1,4 @@
-import {FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE} from '../actions/types';
+import {FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE, GET_RECIPES_FROM_DATE} from '../actions/types';
 
 const initialState = {
     recipes: [],
@@ -19,6 +19,11 @@ export default function(state=initialState, action) {
     console.log(action.payload);
     switch (action.type) {
         case FETCH_RECIPES: 
+        return {
+            ...state,
+            recipes:action.payload
+        }
+        case GET_RECIPES_FROM_DATE:
         return {
             ...state,
             recipes:action.payload
