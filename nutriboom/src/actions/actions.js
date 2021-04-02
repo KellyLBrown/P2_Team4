@@ -3,15 +3,15 @@ import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
 import { store } from '../store';
 
-export const getFoodByName = async (name) => {
+export const getFoodByName = (name) => {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
     try {
-      console.log(name);
+      // console.log(name);
       const APP_ID = "7ad6b381";
       const APP_KEY = "5ae08933f60c2e327d2f0790371bd56e";
       
       return function(dispatch) {
-        console.log("In dispatch");
+        console.log(name);
         foodapi.get(`/parser?ingr=${name}&app_id=${APP_ID}&app_key=${APP_KEY}`).then(data => dispatch({
           type: FETCH_FOOD,
           payload: data
@@ -25,27 +25,9 @@ export const getFoodByName = async (name) => {
 // This and the fetchFood() method have been swapped in order for the code to make more sense.
 export function fetchRecipes(aId) {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
-  //   let foodList = [
-  //   {
-  //     "id" : 0,
-  //     "name" : "apple",
-  //     "calories" : "50"
-  //   },
-  //   {
-  //     "id": 1,
-  //     "name":"strawberry",
-  //     "calories":"30"
-  //   },
-  //   {
-  //     "id": 2,
-  //     "name":"Pizza",
-  //     "calories":"300"
-  //   }
-  // ]
-  // return foodList;
   return function(dispatch) {
     console.log(aId);
-    let recipes = recipeapi.post("/recipe/getrecipes", {aId: aId}).then(data => dispatch({
+    let recipes = recipeapi.post("/calendar/getCalendar", {uId: aId}).then(data => dispatch({
       type: FETCH_RECIPES,
       payload: data
     }));
@@ -117,24 +99,21 @@ export const logOut = () => {
   }
 }
 
-export function createRecipe(name, author, time, description, ingredients, dates) {
-    console.log(ingredients);
+export function createRecipe(name, author, time, description, ingredients) {
+    //console.log(ingredients);
     return function(dispatch) {
       let recipe = recipeapi.post(
         "/recipe/log", {
           name: name,
           author: author,
-          time: time.toString(),
+          time: time,
           description: description,
           ilist: ingredients,
-          dates: dates
         }).then(data => dispatch({
           type: NEW_RECIPE,
           payload: data
         })).catch(console.log("No new recipe! Panic!"));
-
-        
-
+        console.log(time);
       return recipe.data;
     }
 } 

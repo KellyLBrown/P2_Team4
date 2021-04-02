@@ -7,23 +7,34 @@ import {getFoodByName, createRecipe} from '../actions/actions';
 
 let ingredients = [];
 let dates = [];
-let jsxIngredients = [];
+//let jsxIngredients = [];
 export default function RecipeBuilder(props) {
     const [name, setName] = useState("");
     let author = useSelector(state => state.user.currentUser);
 
     const [description, setDescription] = useState("");
     const [time, setTime] = useState(0);   // Signifies the date and time the recipe was created.
-    const [date, setDate] = useState(null);         // Signifies the date a user may schedule this recipe. Once selected, it will be added to a list of dates.
     const [search, setSearch] = useState(true);
+    const [jsxIngredients, setJsxIngredients] = useState([]);
 
     const [searched, setSearched] = useState(false);
-    let [ingredient, setIngredient] = useState({measurement: 0, unit: "", Ingredient: ""});
+    let [ingredient, setIngredient] = useState({amount: 0, unit: "", name: "", calories: 0});
     let currentFood = useSelector(state => state.food);
 
     useEffect(() => {
+        console.log(currentFood.foodItems);
+        if (currentFood.foodItems.data != undefined) {
+            console.log(currentFood.foodItems.data.hints[0].food.nutrients.ENERC_KCAL);
+            if (currentFood.foodItems.data.hints[0] != undefined) {
+                setIngredient({amount: ingredient.amount, unit: ingredient.unit, name: currentFood.foodItems.data.hints[0].food.label, calories: currentFood.foodItems.data.hints[0].food.nutrients.ENERC_KCAL});
 
-    }, []);
+            } else {
+                setIngredient({amount: ingredient.amount, unit: ingredient.unit, name: "unknown", calories: currentFood.foodItems.data.hints[0].food.nutrients.ENERC_KCAL});
+            }
+            //setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, name: currentFood.foodItems.data.hints[0].food.label});
+
+        }
+    }, [currentFood]);
 
     const dispatch = useDispatch();
 
@@ -35,36 +46,37 @@ export default function RecipeBuilder(props) {
         let create = await createRecipe(name, author.data.id, time, description, ingredients, dates);
         await create(dispatch);
         ingredients = [];
-        jsxIngredients = [];
+        setJsxIngredients([]);
 
     }
 
-    const getFood = async (name) => {
-        let getCurrentFood = await getFoodByName(name);
+    const getFood = (name) => {
+        let getCurrentFood = getFoodByName(name);
 
-        await getCurrentFood(dispatch);
+        getCurrentFood(dispatch);
 
-        console.log(name);
-        if (currentFood.foodItems.data != undefined) {
-            console.log(currentFood.foodItems.data);
-            if (currentFood.foodItems.data.hints[0] != undefined) {
-                setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, Ingredient: currentFood.foodItems.data.hints[0].food.label});
+        // console.log(currentFood.foodItems);
+        // if (currentFood.foodItems.data != undefined) {
+        //     console.log(currentFood.foodItems.data.hints[0]);
+        //     if (currentFood.foodItems.data.hints[0] != undefined) {
+        //         setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, name: currentFood.foodItems.data.hints[0].food.label});
 
-            } else {
-                setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, Ingredient: "unknown"});
-            }
-        }
+        //     } else {
+        //         setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, name: "unknown"});
+        //     }
+        //     //setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, name: currentFood.foodItems.data.hints[0].food.label});
+
+        // }
 
     }
 
     const searchIngredient = (e) => {
         e.preventDefault();
 
-        //console.log(e);
-        console.log(ingredients);
-
+        //console.log(ingredient.name);
+        //console.log(ingredients);
         setSearched(true);
-        getFood(ingredient.Ingredient);
+        getFood(ingredient.name);
     }
 
     const handleChange = (e) => {
@@ -75,26 +87,31 @@ export default function RecipeBuilder(props) {
         } else if (e.target.name == "Description") {
             setDescription(e.target.value);
             //console.log(description);
-        } else if (e.target.name == "measurement") {
-            setIngredient({measurement: e.target.value, unit: ingredient.unit, Ingredient: ingredient.Ingredient});
+        } else if (e.target.name == "time") {
+            setTime(e.target.value);
+        } else if (e.target.name == "amount") {
+            setIngredient({amount: e.target.value, unit: ingredient.unit, name: ingredient.name, calories: ingredient.calories});
             //console.log(ingredient);
         } else if (e.target.name == "unit") {
-            setIngredient({measurement: ingredient.measurement, unit: e.target.value, Ingredient: ingredient.Ingredient});
+            setIngredient({amount: ingredient.amount, unit: e.target.value, name: ingredient.name, calories: ingredient.calories});
             //console.log(ingredient);
-        } else if (e.target.name == "Ingredient") {
+        } else if (e.target.name == "Ingredient" || e.target.name == "name") {
             setSearched(false);
-            setIngredient({measurement: ingredient.measurement, unit: ingredient.unit, Ingredient: e.target.value});
-            //console.log(ingredient);
-        } else if (e.target.name == "search") {
+            setIngredient({amount: ingredient.amount, unit: ingredient.unit, name: e.target.value, calories: ingredient.calories});
+            console.log(ingredient.name);
+        } else if (e.target.name == "calories") {
+            setIngredient({amount: ingredient.amount, unit: ingredient.unit, name: ingredient.name, calories: e.target.value});
+        }
+         else if (e.target.name == "search") {
             setSearch(e.target.value == "Search Ingredients");
             //console.log("Radio Button Value has changed");
         } else {
-            //console.log(e.target.name);
+            console.log(e.target.name);
         }
 
-        if (author != null) {
-            console.log(author.data.id);
-        }
+        // if (author != null) {
+        //     console.log(author.data.id);
+        // }
 
     }
 
@@ -102,46 +119,34 @@ export default function RecipeBuilder(props) {
         e.preventDefault();
         setSearched(false);
         if (ingredient.unit == "") {
-            setIngredient({measurement: ingredient.measurement, unit: "count(s)", name: ingredient.Ingredient});
+            setIngredient({amount: ingredient.amount, unit: "count(s)", name: ingredient.name});
         }
         ingredients.push(ingredient);
-        jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.name}</li>);
+        //jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.name}</li>);
+        let listItem = <li>{ingredient.amount} {ingredient.unit} {ingredient.name} ({ingredient.calories} kCal)</li>;
+        setJsxIngredients(ingList => [...ingList, listItem]);
     }
 
-
-    const selectDate = (e) => {
-        e.preventDefault();
-        if (date != null) {
-            dates.push(date);
-        }
-    }
-
-
-    if (ingredient.Ingredient != "" && searched) {
+    if (ingredient.name != "" && searched) {
         if (search && ingredients.length > 0) {
             console.log("Search is true and ingredients are populated");
             return (
                 <div id="recipe-builder">
                    <form onSubmit={handleSubmit}>
                         <FormInput type="text" name="Name" handleChange={handleChange} />
-
                         <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
-                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput type="number" name="measurement" display={`How many ${ingredient.Ingredient}(s)?`} handleChange={handleChange} />
+                        <SearchBar name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <FormInput type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} />
                         <select name="unit" onChange={handleChange}>
                             <option value="count(s)" defaultValue={true}>count(s)</option>
-
                             <option value="tsp">tsp</option>
                             <option value="Tbsp">Tbsp</option>
                             <option value="cups">cup(s)</option>
                             <option value="pints">pint(s)</option>
                         </select>
                         <button onClick={addIngredient}>Add Ingredient</button>
-
-                        <FormInput type="date" name="date" display="When would you like to prepare this recipe (You may select multiple dates)?" handleChange={handleChange} /> 
-
                         <h4>Current Ingredients: </h4>
                         <ul id="ingredient-list">{jsxIngredients}</ul> 
                         <input type="submit" value="Create Recipe" />
@@ -155,24 +160,19 @@ export default function RecipeBuilder(props) {
                 <div id="recipe-builder">
                    <form onSubmit={handleSubmit}>
                         <FormInput type="text" name="Name" handleChange={handleChange} />
-
                         <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
-                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput type="number" name="measurement" display={`How many ${ingredient.Ingredient}(s)?`} handleChange={handleChange} /> 
+                        <SearchBar name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <FormInput type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} /> 
                         <select name="unit" onChange={handleChange}>
                             <option value="count(s)" defaultValue={true}>count(s)</option>
-
                             <option value="tsp">tsp</option>
                             <option value="Tbsp">Tbsp</option>
                             <option value="cups">cup(s)</option>
                             <option value="pints">pint(s)</option>
                         </select>
                         <button onClick={addIngredient}>Add Ingredient</button>
-
-                        <FormInput type="date" name="date" display="When would you like to prepare this recipe (You may select multiple dates)?" handleChange={handleChange} /> 
-
                         <input type="submit" value="Create Recipe" />
                     </form>
                 </div>
@@ -185,12 +185,10 @@ export default function RecipeBuilder(props) {
                 <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
                         <FormInput type="text" name="Name" handleChange={handleChange} />
-
                         <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput type="date" name="date" display="When would you like to prepare this recipe (You may select multiple dates)?" handleChange={handleChange} /> 
 
                         <h4>Current Ingredients: </h4>
                         <ul id="ingredient-list">{jsxIngredients}</ul> 
@@ -204,16 +202,11 @@ export default function RecipeBuilder(props) {
                 <div id="recipe-builder">
                     <form onSubmit={handleSubmit}>
                         <FormInput type="text" name="Name" handleChange={handleChange} />
-
                         <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
-
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
                         <button onClick={addIngredient}>Add</button>
-
-                        <FormInput type="date" name="date" display="When would you like to prepare this recipe (You may select multiple dates)?" handleChange={handleChange} /> 
-
                         <h4>Current Ingredients: </h4>
                         <ul id="ingredient-list">{jsxIngredients}</ul> 
                         <input type="submit" value="Create Recipe" />
@@ -227,13 +220,10 @@ export default function RecipeBuilder(props) {
                 <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
                         <FormInput type="text" name="Name" handleChange={handleChange} />
-
                         <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
                         <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput type="date" name="date" display="When would you like to prepare this recipe (You may select multiple dates)?" handleChange={handleChange} /> 
-
                         <input type="submit" value="Create Recipe" />
                     </form>
                 </div>
@@ -244,15 +234,11 @@ export default function RecipeBuilder(props) {
                 <div id="recipe-builder">
                     <form onSubmit={handleSubmit}>
                         <FormInput type="text" name="Name" handleChange={handleChange} />
-
                         <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
-
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
                         <button onClick={addIngredient}>Add</button>
-
-                        <FormInput type="date" name="date" display="When would you like to prepare this recipe (You may select multiple dates)?" handleChange={handleChange} /> 
 
                         <input type="submit" value="Create Recipe" />
                     </form>
