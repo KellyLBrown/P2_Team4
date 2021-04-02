@@ -209,3 +209,45 @@
 2021-04-01 20:14:58 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy132getCalendarByuId Succeeded!
 2021-04-01 20:14:58 INFO  LoggerComponent:56 - class com.revature.service.CalendarServicegetCalendarByUser Succeeded!
 2021-04-01 20:14:58 INFO  LoggerComponent:36 - class com.revature.controller.CalendarControllergetCalendar Succeeded!
+2021-04-02 09:58:37 INFO  LoggerComponent:30 - class com.revature.controller.ImageControlleruplaodImage was called
+2021-04-02 09:58:37 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy105save was called
+2021-04-02 09:58:37 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy105save Succeeded!
+2021-04-02 09:58:37 INFO  LoggerComponent:36 - class com.revature.controller.ImageControlleruplaodImage Succeeded!
+2021-04-02 10:00:23 INFO  LoggerComponent:30 - class com.revature.controller.ImageControlleruplaodImage was called
+2021-04-02 10:00:23 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy128save was called
+2021-04-02 10:00:23 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy128save Succeeded!
+2021-04-02 10:00:23 INFO  LoggerComponent:36 - class com.revature.controller.ImageControlleruplaodImage Succeeded!
+2021-04-02 10:03:42 INFO  LoggerComponent:30 - class com.revature.controller.ImageControlleruplaodImage was called
+2021-04-02 10:03:42 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy136save was called
+2021-04-02 10:03:43 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy136save Succeeded!
+2021-04-02 10:03:43 INFO  LoggerComponent:36 - class com.revature.controller.ImageControlleruplaodImage Succeeded!
+2021-04-02 11:00:54 INFO  LoggerComponent:30 - class com.revature.controller.ImageControlleruplaodImage was called
+2021-04-02 11:00:54 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy144save was called
+2021-04-02 11:00:55 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy144save Succeeded!
+2021-04-02 11:00:55 INFO  LoggerComponent:36 - class com.revature.controller.ImageControlleruplaodImage Succeeded!
+2021-04-02 11:14:13 INFO  LoggerComponent:30 - class com.revature.controller.ImageControlleruplaodImage was called
+2021-04-02 11:14:13 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy152save was called
+2021-04-02 11:14:13 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy152save Succeeded!
+2021-04-02 11:14:13 INFO  LoggerComponent:36 - class com.revature.controller.ImageControlleruplaodImage Succeeded!
+2021-04-02 11:20:25 INFO  LoggerComponent:30 - class com.revature.controller.ImageControlleruplaodImage was called
+2021-04-02 11:20:25 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy168save was called
+2021-04-02 11:20:25 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy168save Succeeded!
+2021-04-02 11:20:25 INFO  LoggerComponent:36 - class com.revature.controller.ImageControlleruplaodImage Succeeded!
+2021-04-02 11:27:44 INFO  LoggerComponent:30 - class com.revature.controller.ImageControlleruploadImage was called
+2021-04-02 11:27:44 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy192save was called
+2021-04-02 11:27:45 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy192save Succeeded!
+2021-04-02 11:27:45 INFO  LoggerComponent:36 - class com.revature.controller.ImageControlleruploadImage Succeeded!
+2021-04-02 11:31:24 INFO  LoggerComponent:30 - class com.revature.controller.ImageControllergetImage was called
+2021-04-02 11:31:24 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy192getImageByName was called
+2021-04-02 11:31:24 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy192getImageByName Succeeded!
+2021-04-02 11:31:24 WARN  LoggerComponent:42 - class com.revature.controller.ImageControllergetImage Failed!
+2021-04-02 11:32:28 INFO  LoggerComponent:30 - class com.revature.controller.ImageControllergetImage was called
+2021-04-02 11:32:28 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy192getImageByName was called
+2021-04-02 11:32:29 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy192getImageByName Succeeded!
+2021-04-02 11:32:29 INFO  LoggerComponent:36 - class com.revature.controller.ImageControllergetImage Succeeded!
+2021-04-02 11:45:52 INFO  LoggerComponent:30 - class com.revature.controller.ImageControlleruploadImage was called
+2021-04-02 11:45:52 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy233save was called
+2021-04-02 11:45:52 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy233save Succeeded!
+2021-04-02 11:45:52 INFO  LoggerComponent:36 - class com.revature.controller.ImageControlleruploadImage Succeeded!
+2021-04-02 11:46:16 INFO  LoggerComponent:30 - class com.revature.controller.ImageControllergetImages was called
+2021-04-02 11:46:17 INFO  LoggerComponent:36 - class com.revature.controller.ImageControllergetImages Succeeded!
