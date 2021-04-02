@@ -20,7 +20,6 @@ export default function GetRecipeForm(props){
         await getRecipe(store.dispatch);
     }
 
-    console.log(currentRecipe.fetchedrecipe);
     if(currentRecipe.fetchedrecipe.data != undefined){
         return (
             <div id="register-form" className="row" class="row">
@@ -29,20 +28,17 @@ export default function GetRecipeForm(props){
                 <input type="submit" value="Retrieve Recipe" />
             </form><ul>
              Recipe: {currentRecipe.fetchedrecipe.data.name} 
-             {/* <li>  {currentRecipe.fetchedrecipe.data.author}</li> */}
              <br></br><br></br>
              Steps: {currentRecipe.fetchedrecipe.data.description}
              <br></br><br></br>
              Ingredients for this recipe: 
-               {/* {currentRecipe.fetchedrecipe.data.ilist.map((ingredient) => <li key = {ingredient.iid}>{ingredient.amount} of {ingredient.name}
-               (s) which have {ingredient.calories} calories each.</li>)}  */}
+               {currentRecipe.fetchedrecipe.data.ilist.map((ingredient) => <li key = {ingredient.iid}>{ingredient.amount} of {ingredient.name}
+               (s) which have {ingredient.calories} calories each.</li>)} 
              <br></br>
              <li> Prep time</li>
              <ol>  {currentRecipe.fetchedrecipe.data.time} minutes.</ol>
             </ul>
         </div>
-       
-        
         )
     }
 

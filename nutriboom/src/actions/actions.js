@@ -33,7 +33,7 @@ export function fetchRecipes(author) {
         aId : author
       }
     }).then(data => dispatch({
-      type: FETCH_RECIPE,
+      type: FETCH_RECIPES,
       recipe : data,
     })).catch(console.log("Promise rejected! Panic!"));
    

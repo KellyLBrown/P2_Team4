@@ -51,6 +51,7 @@ export default function Header(props) {
                                 <a ><Link to="./home">Home</Link></a>
                                 <a ><Link to="./calendar">Calendar</Link></a>
                                 <a ><Link to="./recipe-builder">Recipe Builder</Link></a>
+                                <a ><Link to="./view-my-recipes">Recipe Viewer</Link></a>
                                 <a onClick={signOut}><Link to="./login">Log Out</Link></a>
                                 
                             </div>
@@ -60,10 +61,7 @@ export default function Header(props) {
                             <div class="column right"></div>
                         </div>
                     </div>
-                
-                
                 </header>
-
             </div>
         )
     }
