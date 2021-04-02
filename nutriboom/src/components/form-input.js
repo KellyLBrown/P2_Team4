@@ -35,15 +35,25 @@ export default function FormInput(props) {
         return (
             <div className="col-sm">
                 <label>{display}: </label>
-                <input type="number" name="measurement" placeholder="1" onChange={handleChange} />
-                <input type="text" name="unit" placeholder="Type a measurement" onChange={handleChange} />
+
+                <input type="number" name="measurement" placeholder="How many?" onChange={handleChange} />
+                <select name="unit" onChange={handleChange}>
+                    <option value="count(s)" defaultValue={true}>count(s)</option>
+                    <option value="tsp">tsp</option>
+                    <option value="Tbsp">Tbsp</option>
+                    <option value="cups">cup(s)</option>
+                    <option value="pints">pint(s)</option>
+                </select>
+
                 <input type="text" name={name} placeholder="Type an ingredient name" onChange={handleChange} />
             </div>
         )
     } else if (type == "radio2") {
         return (
             <div className="col-sm">
-                <input type="radio" name={name} value={val1} checked={checked} onChange={handleChange}/>
+
+                <input type="radio" name={name} value={val1} checked={checked} onChange={handleChange} defaultChecked={true}/>
+
                 <label htmlFor={name}>{val1}: </label>                
                 <input type="radio" name={name} value={val2} checked={checked} onChange={handleChange}/>
                 <label htmlFor={name}>{val2}: </label>

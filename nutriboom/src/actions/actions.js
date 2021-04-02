@@ -95,18 +95,23 @@ export const logOut = () => {
 }
 
 export function createRecipe(name, author, time, description, ingredients, dates) {
+    console.log(author);
     return function(dispatch) {
       let recipe = recipeapi.post(
-        "", {
+        "/recipe/log", {
           name: name,
           author: author,
-          time: time,
+          time: time.toString(),
           description: description,
           ingredients: ingredients,
           dates: dates
-        }).then(dispatch({
-          type: NEW_RECIPE
+        }).then(data => dispatch({
+          type: NEW_RECIPE,
+          payload: data
         })).catch(console.log("No new recipe! Panic!"));
+
+        
+
       return recipe.data;
     }
 } 

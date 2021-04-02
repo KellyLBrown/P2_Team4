@@ -8,7 +8,7 @@ export default function SearchBar(props) {
     if (isForm == null || isForm == undefined) {
         isForm = false;
     }
-    
+
     let onSubmit = (e) => {
         props.onSubmit(e);
     }
@@ -18,7 +18,9 @@ export default function SearchBar(props) {
         return (
             <div id="search">
                 <form onSubmit={onSubmit}>
-                    <FormInput type="text" name={`Search ${name}`} handleChange={handleChange} />
+
+                    <FormInput type="text" name={name} display={`Search ${name}`} handleChange={handleChange} />
+
                     <input type="submit" value="Search" />
                 </form>
             </div>
@@ -26,7 +28,9 @@ export default function SearchBar(props) {
     } else {
         return (
             <div id="search">
-                <FormInput type="text" name={`Search ${name}`} handleChange={handleChange} />
+
+                <FormInput type="text" name={name} display={`Search ${name}`} handleChange={handleChange} />
+
                 <button onClick={onSubmit}>Search</button>
             </div>
         )
