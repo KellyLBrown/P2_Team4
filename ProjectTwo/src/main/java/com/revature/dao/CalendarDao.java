@@ -1,6 +1,6 @@
 package com.revature.dao;
 
-import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,5 +10,5 @@ public interface CalendarDao extends JpaRepository<Calendar, Integer> {
 	
 	//public Calendar createCalendar(Calendar c);
 	
-	public Calendar getCalendarByuId(int id);
+	public List<Calendar> getCalendarByuId(int id);
 }

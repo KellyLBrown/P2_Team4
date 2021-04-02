@@ -32,7 +32,7 @@ private IngredientService iServ;
 	
 	@PostMapping(value="/log")
 	public ResponseEntity<Recipe> logRecipe(@RequestBody Recipe r) {
-		System.out.println(r.toString());
+		System.out.println(r.getIList());
 //		Ingredient i = new Ingredient("Yellow Onion", 22, 1);
 //		Ingredient i2 = new Ingredient("Coconut Milk", 120, 1);
 //		List<Ingredient> iList = new ArrayList<>();
