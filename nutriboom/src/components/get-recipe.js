@@ -20,7 +20,6 @@ export default function GetRecipeForm(props){
         await getRecipe(store.dispatch);
     }
 
-    
     if(currentRecipe.fetchedrecipe.data != undefined){
         return (
             <div id="register-form" className="row" class="row">
@@ -29,7 +28,6 @@ export default function GetRecipeForm(props){
                 <input type="submit" value="Retrieve Recipe" />
             </form><ul>
              Recipe: {currentRecipe.fetchedrecipe.data.name} 
-             {/* <li>  {currentRecipe.fetchedrecipe.data.author}</li> */}
              <br></br><br></br>
              Steps: {currentRecipe.fetchedrecipe.data.description}
              <br></br><br></br>
@@ -41,8 +39,6 @@ export default function GetRecipeForm(props){
              <ol>  {currentRecipe.fetchedrecipe.data.time} minutes.</ol>
             </ul>
         </div>
-       
-        
         )
     }
 

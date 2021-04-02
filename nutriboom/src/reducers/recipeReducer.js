@@ -12,6 +12,12 @@ const initialState = {
         description: '',
         name: '',
         time: undefined
+    },
+    fetchedrecipes: {
+        author: '',
+        description: '',
+        name: '',
+        time: undefined
     }
 }
 
@@ -21,7 +27,7 @@ export default function(state=initialState, action) {
         case FETCH_RECIPES: 
         return {
             ...state,
-            recipes:action.payload
+            fetchedrecipes:action.recipe
         }
         case GET_RECIPES_FROM_DATE:
         return {

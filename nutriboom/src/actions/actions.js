@@ -22,6 +22,7 @@ export const getFoodByName = async (name) => {
     }
 }   
 
+
 // This and the fetchFood() method have been swapped in order for the code to make more sense.
 export function fetchRecipes(aId) {
     // This is the middleware that allows us to call the dispatch function directly and make async requests.
@@ -65,6 +66,7 @@ export function getRecipesFromDate(date) {
 
     console.log(recipes);
     return recipes;
+
   }
 }
 
@@ -118,7 +120,7 @@ export const logOut = () => {
 }
 
 export function createRecipe(name, author, time, description, ingredients, dates) {
-    console.log(author);
+    console.log(ingredients);
     return function(dispatch) {
       let recipe = recipeapi.post(
         "/recipe/log", {
@@ -126,7 +128,7 @@ export function createRecipe(name, author, time, description, ingredients, dates
           author: author,
           time: time.toString(),
           description: description,
-          ingredients: ingredients,
+          ilist: ingredients,
           dates: dates
         }).then(data => dispatch({
           type: NEW_RECIPE,
