@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class CalendarService{
 		return c;
 	}
 	
-	public Calendar getCalendarByUser(int id) {
+	public List<Calendar> getCalendarByUser(int id) {
 		return cdao.getCalendarByuId(id);
 	}
 }

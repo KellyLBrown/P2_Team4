@@ -5,49 +5,36 @@ import {store} from '../store';
 import { useSelector } from 'react-redux';
 
 export default function GetRecipesForm(props){
-    const [recipe, setRecipe] = useState({author: null, description: null, recipename: null, time:null});
-    let currentRecipe = useSelector(state => state.recipe);
+    const [recipes, setRecipes] = useState({author: null, description: null, recipename: null, time:null});
+    let currentRecipes = useSelector(state => state.recipes);
     let user = useSelector(state => state.user);
-    // currentUser.currentUser.data.firstName
     console.log(user.currentUser.data.id);
     let myauthor = user.currentUser.data.id;
-    //console.log(myauthor);
-    const handleChange = (e) => {
-        if (e.target.name == 'Recipe Name') {
-            setRecipe({recipename:e.target.value});
-        }
-    }
-
+   
     const handleRecipe = async (e) => {
         e.preventDefault();
-        
-        let getRecipe = await fetchRecipes(myauthor);
-        await getRecipe(store.dispatch);
+        setRecipes({recipename:e.target.value});
+        let getRecipes = await fetchRecipes(myauthor);
+        await getRecipes(store.dispatch);
     }
 
-    console.log(currentRecipe.fetchedrecipe);
-    if(currentRecipe.fetchedrecipe.data != undefined){
+    console.log(currentRecipes);
+    if(currentRecipes.fetchedrecipes.data != undefined){
         return (
             <div id="register-form" className="row" class="row">
             <form onSubmit={handleRecipe}>
-                <FormInput type="text" name="Recipe Name"  value={recipe.recipename} handleChange={handleChange} />
-                <input type="submit" value="Retrieve Recipe" />
+                <input type="submit" value="Get my recipes" />
             </form><ul>
-             Recipe: {currentRecipe.fetchedrecipe.data.name} 
-             {/* <li>  {currentRecipe.fetchedrecipe.data.author}</li> */}
+             Recipes: <br></br>{currentRecipes.fetchedrecipes.data.map((recipe) => 
+             <li key= {recipe.name}>{recipe.name} <br></br><br></br> Steps:  {recipe.description}
+             <br></br><br></br>{recipe.ilist.map((ilist) => 
+             <li key={ilist.iid}>Ingredients for this recipe: {ilist.amount} of {ilist.name}
+             (s) which contains {ilist.calories} calories each.</li>)}
              <br></br><br></br>
-             Steps: {currentRecipe.fetchedrecipe.data.description}
+             </li>)} 
              <br></br><br></br>
-             Ingredients for this recipe: 
-               {/* {currentRecipe.fetchedrecipe.data.ilist.map((ingredient) => <li key = {ingredient.iid}>{ingredient.amount} of {ingredient.name}
-               (s) which have {ingredient.calories} calories each.</li>)}  */}
-             <br></br>
-             <li> Prep time</li>
-             <ol>  {currentRecipe.fetchedrecipe.data.time} minutes.</ol>
             </ul>
         </div>
-       
-        
         )
     }
 
