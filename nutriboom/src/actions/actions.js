@@ -1,4 +1,4 @@
-import {FETCH_RECIPES, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+import {FETCH_RECIPES, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
 import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
 import { store } from '../store';
@@ -56,14 +56,13 @@ export function fetchRecipe(author, description, name, preptime) {
         name : name
       }
     }).then(data => dispatch({
-      type: FETCH_RECIPES,
+      type: FETCH_RECIPE,
       recipe : data,
     })).catch(console.log("Promise rejected! Panic!"));
    
     console.log(recipe);
     return recipe.data;
   }
-
 }
 
 export function getFoodById(id) {
@@ -112,6 +111,7 @@ export function createRecipe(name, author, time, description, ingredients, dates
         })).catch(console.log("No new recipe! Panic!"));
 
         
+
       return recipe.data;
     }
 } 

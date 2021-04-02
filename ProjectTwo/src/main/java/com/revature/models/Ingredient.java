@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,13 +35,16 @@ public class Ingredient {
 	private int iId;
 	
 	@Column(name="name", nullable=false)
+	@NotNull(message="It needs a name!")
 	private String name;
 	
 	@Column(name="calories")
+	@NotNull(message="It has some amount of calories")
 	private int calories;
 	
 	// tbd
 	@Column(name="amount")
+	@NotNull(message="How much of this ingredient?")
 	private int amount;
 	
 	@ManyToMany(mappedBy="iList")
