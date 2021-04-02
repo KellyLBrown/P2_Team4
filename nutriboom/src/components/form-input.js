@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 
 export default function FormInput(props) {
     let type = props.type;
@@ -23,6 +24,11 @@ export default function FormInput(props) {
     }
 
     const handleChange = props.handleChange;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+    }, [type])
     
     if (type == "textarea") {
         return (
@@ -36,7 +42,7 @@ export default function FormInput(props) {
             <div className="col-sm">
                 <label>{display}: </label>
 
-                <input type="number" name="measurement" placeholder="How many?" onChange={handleChange} />
+                <input type="number" name="amount" placeholder="How many?" onChange={handleChange} />
                 <select name="unit" onChange={handleChange}>
                     <option value="count(s)" defaultValue={true}>count(s)</option>
                     <option value="tsp">tsp</option>
@@ -46,6 +52,7 @@ export default function FormInput(props) {
                 </select>
 
                 <input type="text" name={name} placeholder="Type an ingredient name" onChange={handleChange} />
+                <input type="text" name="calories" placeholder="How many calories?" onChange={handleChange} />
             </div>
         )
     } else if (type == "radio2") {
@@ -59,7 +66,13 @@ export default function FormInput(props) {
                 <label htmlFor={name}>{val2}: </label>
             </div>
         )
-    } 
+    } else if (type == "photo") {
+        return (
+            <div className="col-sm">
+                
+            </div>
+        )
+    }
     else {
         return (
             <div class="col-sm" className="col-sm">
