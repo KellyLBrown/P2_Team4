@@ -34,7 +34,7 @@ public class Ingredient {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int iId;
 	
-	@Column(name="name", nullable=false)
+	@Column(name="name", nullable=false, unique=false)
 	@NotNull(message="It needs a name!")
 	private String name;
 	

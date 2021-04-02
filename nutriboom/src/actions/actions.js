@@ -87,24 +87,21 @@ export const logOut = () => {
   }
 }
 
-export function createRecipe(name, author, time, description, ingredients, dates) {
-    console.log(ingredients);
+export function createRecipe(name, author, time, description, ingredients) {
+    //console.log(ingredients);
     return function(dispatch) {
       let recipe = recipeapi.post(
         "/recipe/log", {
           name: name,
           author: author,
-          time: time.toString(),
+          time: time,
           description: description,
           ilist: ingredients,
-          dates: dates
         }).then(data => dispatch({
           type: NEW_RECIPE,
           payload: data
         })).catch(console.log("No new recipe! Panic!"));
-
-        
-
+        console.log(time);
       return recipe.data;
     }
 } 
