@@ -1,4 +1,4 @@
-import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+import {GET_IMAGE, FETCH_RECIPES, GET_RECIPES_BY_AUTH, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
 import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
 import { store } from '../store';
@@ -21,6 +21,20 @@ export const getFoodByName = (name) => {
       console.log(error);
     }
 }   
+
+export function fetchRecipesByAuthor(aId) {
+  // This is the middleware that allows us to call the dispatch function directly and make async requests.
+return function(dispatch) {
+  console.log(aId);
+  let recipes = recipeapi.post("/recipe/getrecipes", {aId: aId}).then(data => dispatch({
+    type: GET_RECIPES_BY_AUTH,
+    payload: data
+  }));
+
+  console.log(recipes);
+  return recipes;
+}
+}
 
 
 // This and the fetchFood() method have been swapped in order for the code to make more sense.
@@ -50,7 +64,7 @@ export function getImage(name) {
   }
 }
 
-export function fetchRecipe(author, description, name, preptime) {
+export function fetchRecipe(name) {
   // This is the middleware that allows us to call the dispatch function directly and make async requests.
   return function(dispatch) {
     console.log(name);
@@ -65,7 +79,7 @@ export function fetchRecipe(author, description, name, preptime) {
       recipe : data,
     })).catch(console.log("Promise rejected! Panic!"));
    
-    console.log(recipe);
+    //console.log(recipe);
     return recipe.data;
   }
 }

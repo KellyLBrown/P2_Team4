@@ -15,6 +15,7 @@ export default function EventCalendar(props) {
     let scheduledRecipes = [];
     let jsxRecipes = [];
     const [mealList, setMealList] = useState(<MealList date={dateString} jsxRecipes={jsxRecipes} image={image} />);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         //console.log(recipeList);
@@ -35,7 +36,7 @@ export default function EventCalendar(props) {
         setMealList(<MealList date={dateString} jsxRecipes={jsxRecipes} image={image} />);
     }, [recipeList])
 
-    const dispatch = useDispatch();
+    
 
     const getRecipesByDate = async () => {
         jsxRecipes = [];    // Empty jsxRecipes to prevent static or duplicate elements
