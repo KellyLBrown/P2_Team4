@@ -152,11 +152,11 @@ footer {
 #recipe-builder{
   text-align: right;
   margin: 100px 780px auto auto;
-  width: 395px;
+  width: 425px;
   vertical-align: top;
 }
 
 textarea {
-  width: 251px;
+  width: 252px;
   height: 50px;
 }

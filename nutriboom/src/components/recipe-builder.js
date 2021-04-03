@@ -137,15 +137,8 @@ export default function RecipeBuilder(props) {
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput  type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
-                        <SearchBar name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput style={{width: '177px'}} type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} />
-                        <select name="unit" onChange={handleChange}>
-                            <option value="count(s)" defaultValue={true}>count(s)</option>
-                            <option value="tsp">tsp</option>
-                            <option value="Tbsp">Tbsp</option>
-                            <option value="cups">cup(s)</option>
-                            <option value="pints">pint(s)</option>
-                        </select>
+                        <SearchBar style={{width: '250px'}} name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <FormInput type="ingredientAmountInSearch" display={`Amount of  ${ingredient.name}(s)`} handleChange={handleChange} />
                         <button onClick={addIngredient}>Add Ingredient</button>
                         <h4>Current Ingredients: </h4>
                         <ul id="ingredient-list">{jsxIngredients}</ul> 
@@ -163,15 +156,8 @@ export default function RecipeBuilder(props) {
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput  type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
-                        <SearchBar name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput style={{width: '177px'}} type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} /> 
-                        <select name="unit" onChange={handleChange}>
-                            <option value="count(s)" defaultValue={true}>count(s)</option>
-                            <option value="tsp">tsp</option>
-                            <option value="Tbsp">Tbsp</option>
-                            <option value="cups">cup(s)</option>
-                            <option value="pints">pint(s)</option>
-                        </select>
+                        <SearchBar style={{width: '250px'}} name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <FormInput type="ingredientAmountInSearch" display={`Amount of  ${ingredient.name}(s)`} handleChange={handleChange} />
                         <button onClick={addIngredient}>Add Ingredient</button>
                         <input type="submit" value="Create Recipe" />
                     </form>
@@ -185,10 +171,10 @@ export default function RecipeBuilder(props) {
                 <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
-                        <FormInput style={{width: '250px'}} id="inputStyle" type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
-                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <SearchBar style={{width: '250px'}} name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
 
                         <h4>Current Ingredients: </h4>
                         <ul id="ingredient-list">{jsxIngredients}</ul> 
@@ -223,7 +209,7 @@ export default function RecipeBuilder(props) {
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
-                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <SearchBar style={{width: '250px'}} name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
                         <input type="submit" value="Create Recipe" />
                     </form>
                 </div>

@@ -4,6 +4,7 @@ import FormInput from './form-input';
 export default function SearchBar(props) {
     let name = props.name;      // The type of 'thing' we are searching for
     let isForm = props.isForm;
+    let style = props.style;
 
     if (isForm == null || isForm == undefined) {
         isForm = false;
@@ -19,7 +20,7 @@ export default function SearchBar(props) {
             <div id="search">
                 <form onSubmit={onSubmit}>
 
-                    <FormInput type="text" name={name} display={`Search ${name}`} handleChange={handleChange} />
+                    <FormInput style={style} type="text" name={name} display={`Search ${name}`} handleChange={handleChange} />
 
                     <input type="submit" value="Search" />
                 </form>
@@ -29,7 +30,7 @@ export default function SearchBar(props) {
         return (
             <div id="search">
 
-                <FormInput type="text" name={name} display={`Search ${name}`} handleChange={handleChange} />
+                <FormInput style={style} type="text" name={name} display={`Search ${name}`} handleChange={handleChange} />
 
                 <button onClick={onSubmit}>Search</button>
             </div>
