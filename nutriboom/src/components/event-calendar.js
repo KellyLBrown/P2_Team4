@@ -29,7 +29,11 @@ export default function EventCalendar(props) {
             }
             console.log(scheduledRecipes);
             for (let r of scheduledRecipes) {
-                jsxRecipes.push(<li>{r.name}</li>)
+                if (image) {
+                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" src={`data:image/png;base64,${image.data.bytes}`} alt="A pic of a mountain" />{r.name}</li>);
+                } else {
+                    jsxRecipes.push(<li>{r.name}</li>)
+                }
             }
             console.log(jsxRecipes);
         }
