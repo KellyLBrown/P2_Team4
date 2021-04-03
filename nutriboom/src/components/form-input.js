@@ -4,7 +4,10 @@ import {useDispatch} from 'react-redux';
 export default function FormInput(props) {
     let type = props.type;
     let name = props.name;
-    let display;                // If you'd like to display something other than props.name, define this value as a prop.
+    let display; 
+    let style = props.style;
+    
+    // If you'd like to display something other than props.name, define this value as a prop.
 
     if (props.display == undefined) {
         display = name;
@@ -75,9 +78,9 @@ export default function FormInput(props) {
     }
     else {
         return (
-            <div class="col-sm" className="col-sm">
+            <div className="col-sm">
                 <label>{display}: </label>
-                <input type={type} name={name} onChange={handleChange}/>
+                <input type={type} name={name} onChange={handleChange} style={style}/>
             </div>
         )
     }

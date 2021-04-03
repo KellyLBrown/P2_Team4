@@ -133,12 +133,12 @@ export default function RecipeBuilder(props) {
             return (
                 <div id="recipe-builder">
                    <form onSubmit={handleSubmit}>
-                        <FormInput style={{width: "250px"}} className="inputStyle" type="text" name="Name" handleChange={handleChange} />
-                        <FormInput style={{width: "250px"}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput  type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <SearchBar name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput style={{width: "177px"}} type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} />
+                        <FormInput style={{width: '177px'}} type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} />
                         <select name="unit" onChange={handleChange}>
                             <option value="count(s)" defaultValue={true}>count(s)</option>
                             <option value="tsp">tsp</option>
@@ -159,12 +159,12 @@ export default function RecipeBuilder(props) {
             return (
                 <div id="recipe-builder">
                    <form onSubmit={handleSubmit}>
-                        <FormInput style={{width: "250px"}} className="inputStyle" type="text" name="Name" handleChange={handleChange} />
-                        <FormInput style={{width: "250px"}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput  type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
                         <SearchBar name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput style={{width: "177px"}} type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} /> 
+                        <FormInput style={{width: '177px'}} type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} /> 
                         <select name="unit" onChange={handleChange}>
                             <option value="count(s)" defaultValue={true}>count(s)</option>
                             <option value="tsp">tsp</option>
@@ -184,8 +184,8 @@ export default function RecipeBuilder(props) {
             return (
                 <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
-                        <FormInput style={{width: "250px"}} className="inputStyle" type="text" name="Name" handleChange={handleChange} />
-                        <FormInput style={{width: "250px"}} id="inputStyle" type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} id="inputStyle" type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
@@ -201,8 +201,8 @@ export default function RecipeBuilder(props) {
             return (
                 <div id="recipe-builder">
                     <form onSubmit={handleSubmit}>
-                        <FormInput style={{width: "250px"}} className="inputStyle" type="text" name="Name" handleChange={handleChange} />
-                        <FormInput style={{width: "250px"}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
@@ -219,8 +219,8 @@ export default function RecipeBuilder(props) {
             return (
                 <div id="recipe-builder">
                 <form onSubmit={handleSubmit}>
-                        <FormInput style={{width: "250px"}} className="inputStyle" type="text" name="Name" handleChange={handleChange} />
-                        <FormInput style={{width: "250px"}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
                         <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
@@ -233,8 +233,8 @@ export default function RecipeBuilder(props) {
             return (
                 <div id="recipe-builder">
                     <form onSubmit={handleSubmit}>
-                        <FormInput style={{width: "250px"}} className="inputStyle" type="text" name="Name" handleChange={handleChange} />
-                        <FormInput style={{width: "250px"}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
