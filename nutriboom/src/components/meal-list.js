@@ -21,7 +21,7 @@ export default function MealList(props) {
     let recipeList = [];
     const [noname, setNoName] = useState(false);    // I don't know what to call this variable yet...
     let image = props.image;
-    console.log(image.data.bytes);
+    //console.log(image.data.bytes);
 
     const dispatch = useDispatch();
 
