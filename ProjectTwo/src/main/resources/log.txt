@@ -317,3 +317,33 @@
 2021-04-03 14:25:19 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
 2021-04-03 14:25:19 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
 2021-04-03 14:25:19 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 14:49:42 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 14:49:42 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 14:49:42 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 14:49:42 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 14:49:42 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 14:49:42 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 14:55:17 INFO  LoggerComponent:30 - class com.revature.controller.RecipeControllerlogRecipe was called
+2021-04-03 14:55:17 INFO  LoggerComponent:50 - class com.revature.service.IngredientServicecreateIngredient was called
+2021-04-03 14:55:17 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy111save was called
+2021-04-03 14:55:17 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy111save Succeeded!
+2021-04-03 14:55:17 INFO  LoggerComponent:56 - class com.revature.service.IngredientServicecreateIngredient Succeeded!
+2021-04-03 14:55:17 INFO  LoggerComponent:50 - class com.revature.service.IngredientServicecreateIngredient was called
+2021-04-03 14:55:17 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy111save was called
+2021-04-03 14:55:18 WARN  LoggerComponent:84 - class com.sun.proxy.$Proxy111save Failed!
+2021-04-03 14:55:18 WARN  LoggerComponent:62 - class com.revature.service.IngredientServicecreateIngredient Failed!
+2021-04-03 14:55:18 WARN  LoggerComponent:42 - class com.revature.controller.RecipeControllerlogRecipe Failed!
+2021-04-03 14:57:34 INFO  LoggerComponent:30 - class com.revature.controller.RecipeControllerlogRecipe was called
+2021-04-03 14:57:34 INFO  LoggerComponent:50 - class com.revature.service.IngredientServicecreateIngredient was called
+2021-04-03 14:57:34 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy111save was called
+2021-04-03 14:57:35 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy111save Succeeded!
+2021-04-03 14:57:35 INFO  LoggerComponent:56 - class com.revature.service.IngredientServicecreateIngredient Succeeded!
+2021-04-03 14:57:35 INFO  LoggerComponent:50 - class com.revature.service.IngredientServicecreateIngredient was called
+2021-04-03 14:57:35 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy111save was called
+2021-04-03 14:57:35 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy111save Succeeded!
+2021-04-03 14:57:35 INFO  LoggerComponent:56 - class com.revature.service.IngredientServicecreateIngredient Succeeded!
+2021-04-03 14:57:35 INFO  LoggerComponent:50 - class com.revature.service.RecipeServicecreateRecipe was called
+2021-04-03 14:57:35 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy106save was called
+2021-04-03 14:57:35 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy106save Succeeded!
+2021-04-03 14:57:36 INFO  LoggerComponent:56 - class com.revature.service.RecipeServicecreateRecipe Succeeded!
+2021-04-03 14:57:36 INFO  LoggerComponent:36 - class com.revature.controller.RecipeControllerlogRecipe Succeeded!
