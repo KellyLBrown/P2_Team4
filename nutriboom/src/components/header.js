@@ -55,10 +55,10 @@ export default function Header(props) {
                                 <a onClick={signOut}><Link to="./login">Log Out</Link></a>
                                 
                             </div>
-                            <div class="column middle">
+                            <div class="column right">
                                 <h1 id="title">{title}</h1>
                             </div>
-                            <div class="column right"></div>
+                            <div class="column padding"></div>
                         </div>
                     </div>
                 </header>

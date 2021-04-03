@@ -32,12 +32,15 @@
   float: left;
 }
 .left, .right {
-  width: 25%;
+  width: 49%;
+}
+.right {
+  text-align: right;
+}
+.padding {
+  width: 2%
 }
 
-.middle {
-  width: 50%;
-}
 h1 {
   width: 100%;
   display: inline;
@@ -144,4 +147,16 @@ footer {
   margin: 100px auto 0;
   width: 300px;
   vertical-align: top;
+}
+
+#recipe-builder{
+  text-align: right;
+  margin: 100px 780px auto auto;
+  width: 395px;
+  vertical-align: top;
+}
+
+#recipe-builder>textarea {
+  width: 251px;
+  height: 50px;
 }
