@@ -2,28 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  align-content: center;
-  margin-bottom: 20px;
-}
 
 #header {
   background-color: white;
@@ -50,7 +28,6 @@ h1 {
 
 .topnav {
   z-index: 9;
-
   overflow: hidden;
   background-color: white;
 }
@@ -77,18 +54,7 @@ h1 {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-footer {
-  
-}
 
 #fine-print {
   font-size: 8pt;
@@ -100,14 +66,6 @@ footer {
   font-weight: bold;
 }
 
-
-
-#home {
-  margin-top: 90px;
-  background-color: white;
-  width: 30%;
-  margin-left: 35%;
-}
 
 .link {
   float: left;
@@ -137,21 +95,24 @@ footer {
 
 #login{
   text-align: right;
-  margin: 100px auto 0;
+  margin: 0 auto 0;
+  padding: 100px;
   width: 260px;
   vertical-align: top;
 }
 
 #register-form{
   text-align: right;
-  margin: 100px auto 0;
+  margin: 0 auto 0;
+  padding: 100px;
   width: 300px;
   vertical-align: top;
 }
 
-#recipe-builder{
+.recipe-builder-form{
   text-align: right;
-  margin: 100px 780px auto auto;
+  margin: 0 780px auto auto;
+  padding: 100px;
   width: 425px;
   vertical-align: top;
 }

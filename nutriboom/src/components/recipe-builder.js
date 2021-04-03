@@ -122,6 +122,7 @@ export default function RecipeBuilder(props) {
             setIngredient({amount: ingredient.amount, unit: "count(s)", name: ingredient.name});
         }
         ingredients.push(ingredient);
+        setIngredient({amount: "", unit: "", name: ""});
         //jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.name}</li>);
         let listItem = <li>{ingredient.amount} {ingredient.unit} {ingredient.name} ({ingredient.calories} kCal)</li>;
         setJsxIngredients(ingList => [...ingList, listItem]);
@@ -131,8 +132,15 @@ export default function RecipeBuilder(props) {
         if (search && ingredients.length > 0) {
             console.log("Search is true and ingredients are populated");
             return (
-                <div id="recipe-builder">
-                   <form onSubmit={handleSubmit}>
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                   <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput  type="textarea" name="Description" handleChange={handleChange} />
@@ -150,8 +158,15 @@ export default function RecipeBuilder(props) {
         else if (search) {
             console.log("Search is true");
             return (
-                <div id="recipe-builder">
-                   <form onSubmit={handleSubmit}>
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                   <form className="recipe-builder-form" className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput  type="textarea" name="Description" handleChange={handleChange} />
@@ -168,8 +183,15 @@ export default function RecipeBuilder(props) {
         if (search && ingredients.length > 0) {
             console.log("Search is true and ingredients are populated");
             return (
-                <div id="recipe-builder">
-                <form onSubmit={handleSubmit}>
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
@@ -185,8 +207,15 @@ export default function RecipeBuilder(props) {
         }
         else if (ingredients.length > 0) {
             return (
-                <div id="recipe-builder">
-                    <form onSubmit={handleSubmit}>
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                    <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
@@ -203,8 +232,15 @@ export default function RecipeBuilder(props) {
         else if (search) {
             console.log("Search is true");
             return (
-                <div id="recipe-builder">
-                <form onSubmit={handleSubmit}>
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
@@ -217,8 +253,15 @@ export default function RecipeBuilder(props) {
         }
         else {
             return (
-                <div id="recipe-builder">
-                    <form onSubmit={handleSubmit}>
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                    <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />

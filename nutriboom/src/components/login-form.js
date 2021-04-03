@@ -49,7 +49,14 @@ export default function LoginForm(props) {
     }
     else {
         return (
-        <div className="container">
+        <div className="container" style={{
+            width: "100%",
+            height: "100%",
+            backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/spices+in+spoons.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "bottom"
+          }}>
             <div id="login" className="row">
                 <form className="login" onSubmit={handleSubmit}>
 

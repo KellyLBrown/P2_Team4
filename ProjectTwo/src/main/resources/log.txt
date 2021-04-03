@@ -347,3 +347,57 @@
 2021-04-03 14:57:35 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy106save Succeeded!
 2021-04-03 14:57:36 INFO  LoggerComponent:56 - class com.revature.service.RecipeServicecreateRecipe Succeeded!
 2021-04-03 14:57:36 INFO  LoggerComponent:36 - class com.revature.controller.RecipeControllerlogRecipe Succeeded!
+2021-04-03 16:30:53 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 16:30:53 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 16:30:53 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 16:30:54 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 16:30:54 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 16:30:54 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 16:31:29 INFO  LoggerComponent:30 - class com.revature.controller.CalendarControllergetCalendar was called
+2021-04-03 16:31:29 INFO  LoggerComponent:50 - class com.revature.service.CalendarServicegetCalendarByUser was called
+2021-04-03 16:31:29 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy108getCalendarByuId was called
+2021-04-03 16:31:29 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy108getCalendarByuId Succeeded!
+2021-04-03 16:31:29 INFO  LoggerComponent:56 - class com.revature.service.CalendarServicegetCalendarByUser Succeeded!
+2021-04-03 16:31:29 INFO  LoggerComponent:36 - class com.revature.controller.CalendarControllergetCalendar Succeeded!
+2021-04-03 16:59:09 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 16:59:09 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 16:59:09 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 16:59:10 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 16:59:10 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 16:59:10 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 17:04:37 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 17:04:37 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 17:04:37 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 17:04:38 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 17:04:38 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 17:04:38 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 17:08:47 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 17:08:47 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 17:08:47 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 17:08:48 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 17:08:48 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 17:08:48 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 17:09:54 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 17:09:54 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 17:09:54 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 17:09:55 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 17:09:55 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 17:09:55 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 17:14:45 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 17:14:45 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 17:14:45 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 17:14:45 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 17:14:45 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 17:14:45 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 17:18:04 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 17:18:04 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 17:18:04 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 17:18:04 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 17:18:04 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 17:18:04 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!
+2021-04-03 17:25:10 INFO  LoggerComponent:30 - class com.revature.controller.UserControllerlogin was called
+2021-04-03 17:25:10 INFO  LoggerComponent:50 - class com.revature.service.UserServicelogin was called
+2021-04-03 17:25:10 INFO  LoggerComponent:72 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword was called
+2021-04-03 17:25:10 INFO  LoggerComponent:78 - class com.sun.proxy.$Proxy112getUserByUsernameAndPassword Succeeded!
+2021-04-03 17:25:10 INFO  LoggerComponent:56 - class com.revature.service.UserServicelogin Succeeded!
+2021-04-03 17:25:10 INFO  LoggerComponent:36 - class com.revature.controller.UserControllerlogin Succeeded!

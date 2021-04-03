@@ -6,7 +6,14 @@ import NutritionInfo from './nutrition-info';
 
 export default function Home() {
     return (
-        <div id="home">
+        <div id="home" style={{
+            width: "100%",
+            height: "100%",
+            backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "bottom"
+          }} >
             {/* <NutritionInfo /> */}
             <MealPlanner />
             <GetRecipe />
