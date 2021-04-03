@@ -17,6 +17,7 @@ export default function Home() {
     if(currentUser == null) {
         <Link to="./login">Log Out</Link>
     }
+    let image = useSelector(state => state.recipes);
     const [recipeList, setRecipeList] = useState([]);
     const [rs, setrs] = useState([]);
     const dispatch = useDispatch();
@@ -31,12 +32,19 @@ export default function Home() {
 
         const getRecipesByDate = async () => {
             jsxRecipes = [];    // Empty jsxRecipes to prevent static or duplicate elements
-            let recipes = await fetchRecipes(currentUser.currentUser.data.id);
-            let someList = await recipes(dispatch);
-            setRecipeList(someList);
-            console.log(recipeList);
+            if (currentUser.currentUser) {
+                let recipes = await fetchRecipes(currentUser.currentUser.data.id);
+                let someList = await recipes(dispatch);
+                setRecipeList(someList);
+                console.log(recipeList);
             }
+        }
 
+        const getARecipeImage = async () => {
+            let getRecipeImage = getImage('mountain.png');
+            getRecipeImage(dispatch);
+            console.log(image);
+        }
             
         if (recipeList.payload != undefined) {
             for (let r of recipeList.payload.data) {
@@ -54,13 +62,22 @@ export default function Home() {
                 for (let c of r.ilist) {
                     totalCalories += c.calories;
                 }
-                jsxRecipes.push(<li>{r.name}</li>)
+                if (image.image) {
+                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" src={`data:image/png;base64,${image.image.data.bytes}`} alt="A pic of a mountain" />{r.name}</li>);
+                } else {
+                    jsxRecipes.push(<li>{r.name}</li>);
+                }
             }
             jsxRecipes.push(<li>Total Daily Calories: {totalCalories}</li>)
             console.log(jsxRecipes);
-            setMealList(<MealList date={date} jsxRecipes={jsxRecipes} />);
+            if (image.image.data) {
+                setMealList(<MealList date={date} jsxRecipes={jsxRecipes} image={image.image.data} />);
+            } else {
+                setMealList(<MealList date={date} jsxRecipes={jsxRecipes} />);
+            }
         } else {
             getRecipesByDate();
+            getARecipeImage();
         }
 
         console.log(recipeList);

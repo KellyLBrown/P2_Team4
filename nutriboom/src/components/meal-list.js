@@ -21,36 +21,12 @@ export default function MealList(props) {
     let recipeList = [];
     const [noname, setNoName] = useState(false);    // I don't know what to call this variable yet...
     let image = props.image;
-    //console.log(image.data.bytes);
+    console.log(image);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         console.log(recipeList);
-
-        if (recipeList.payload != undefined) {
-            for (let r of recipeList.payload.data) {
-                if (date && image) {
-                    jsxRecipes.push(<li key={r.rId}>
-                        <img id="ItemPreview" src={`data:image/png;base64,${image.data.bytes}`} />{r.name} 
-                            <button onClick={() => {}}>+
-                            </button>
-                        </li>)
-                } else if (date) {
-                    jsxRecipes.push(<li key={r.rId}>
-                        {r.name} 
-                            <button onClick={() => {}}>+
-                            </button>
-                        </li>)
-                } else if (image) {
-                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" src={`data:image/png;base64,${image.data.bytes}`} alt="A pic of a mountain" />
-                    {r.name}</li>)
-                } else {
-                    jsxRecipes.push(<li key={r.rId}>{r.name}</li>)
-                }
-            }
-            console.log(jsxRecipes);
-        }
     }, [jsxRecipes])
 
     const scheduleRecipe = () => {
@@ -61,16 +37,6 @@ export default function MealList(props) {
         console.log(currentUser.currentUser.data.id);
         let getAllRecipes = await fetchRecipes(currentUser.currentUser.data.id);
         recipeList = await getAllRecipes(dispatch);
-        // console.log(recipeList);
-
-        // for (let r of recipeList.payload.data) {
-        //     if (date) {
-        //         jsxRecipes.push(<li key={r.rId}>{r.name} <button onClick={() => {}}>+</button></li>)
-        //     } else {
-        //         jsxRecipes.push(<li key={r.rId}>{r.name}</li>)
-        //     }
-        // }
-        // console.log(jsxRecipes);
     }
 
     if (!date) {
