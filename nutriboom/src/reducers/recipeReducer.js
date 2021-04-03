@@ -1,4 +1,4 @@
-import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE, GET_RECIPES_FROM_DATE} from '../actions/types';
+import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE, GET_RECIPES_BY_AUTH} from '../actions/types';
 
 const initialState = {
     recipes: [],
@@ -31,7 +31,7 @@ export default function(state=initialState, action) {
             ...state,
             dates: action.payload
         }
-        case GET_RECIPES_FROM_DATE:
+        case GET_RECIPES_BY_AUTH:
         return {
             ...state,
             recipes:action.payload
