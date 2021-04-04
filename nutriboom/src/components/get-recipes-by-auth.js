@@ -38,19 +38,19 @@ export default function GetRecipesForm(props){
         //console.log(currentRecipes.dates);
         let recipeList = [];
         //console.log(recipeList);
-        console.log(e.target.value);
+        //console.log(e.target.value);
         let uId = user.currentUser.data.id;
-        for (let date of currentRecipes.dates.data) {
-            let simpleDate = date.date.toString().slice(0, 10);
-            //console.log(simpleDate);
-            if (simpleDate == currentDate) {
-                for (let r of date.scheduledRecipes) {
-                    recipeList.push(r);
-                    break;
-                }
-            }
-            console.log(recipeList);
-        }
+        // for (let date of currentRecipes.dates.data) {
+        //     let simpleDate = date.date.toString().slice(0, 10);
+        //     //console.log(simpleDate);
+        //     if (simpleDate == currentDate) {
+        //         for (let r of date.scheduledRecipes) {
+        //             recipeList.push(r);
+        //             break;
+        //         }
+        //     }
+        //     console.log(recipeList);
+        // }
         console.log(e.target.value);
         let targetRecipe = await fetchRecipe(e.target.value);
         await targetRecipe(store.dispatch);
