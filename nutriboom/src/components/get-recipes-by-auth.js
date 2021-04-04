@@ -33,6 +33,15 @@ export default function GetRecipesForm(props){
         let getRecipesWithDates = await fetchRecipes(myauthor);
         await getRecipesWithDates(dispatch);
     }
+
+    const containsRecipe = (rList, name) => {
+        for (let r of rList) {
+            if (r.name == name) {
+                return true;
+            }
+        }
+        return false;
+    }
     
     const localScheduleRecipe = async (e) => {
         //console.log(currentRecipes.dates);
@@ -40,26 +49,28 @@ export default function GetRecipesForm(props){
         //console.log(recipeList);
         //console.log(e.target.value);
         let uId = user.currentUser.data.id;
-        // for (let date of currentRecipes.dates.data) {
-        //     let simpleDate = date.date.toString().slice(0, 10);
-        //     //console.log(simpleDate);
-        //     if (simpleDate == currentDate) {
-        //         for (let r of date.scheduledRecipes) {
-        //             recipeList.push(r);
-        //             break;
-        //         }
-        //     }
-        //     console.log(recipeList);
-        // }
+        for (let date of currentRecipes.dates.data) {
+            let simpleDate = date.date.toString().slice(0, 10);
+            //console.log(simpleDate);
+            if (simpleDate == currentDate) {
+                for (let r of date.scheduledRecipes) {
+                    if (!containsRecipe(recipeList, r.name)) {
+                        recipeList.push(r);
+                    }
+                    //break;
+                }
+            }
+            //console.log(recipeList);
+        }
         console.log(e.target.value);
-        let targetRecipe = await fetchRecipe(e.target.value);
+        let targetRecipe = fetchRecipe(e.target.value);
         await targetRecipe(store.dispatch);
-            console.log(currentRecipe.fetchedrecipe.data);
-            recipeList.push(currentRecipe.fetchedrecipe.data); 
+        console.log(currentRecipe.fetchedrecipe.data);
+        recipeList.push(currentRecipe.fetchedrecipe.data); 
         
         console.log(recipeList);
-        console.log(uId);
-        console.log(date);
+        // console.log(uId);
+        // console.log(date);
         let schedule = await scheduleRecipe(uId, date, recipeList);
         await schedule(store.dispatch);
     }
