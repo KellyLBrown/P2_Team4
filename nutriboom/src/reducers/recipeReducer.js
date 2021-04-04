@@ -1,4 +1,4 @@
-import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE, GET_RECIPES_BY_AUTH} from '../actions/types';
+import {SCHEDULE_RECIPE, GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, NEW_RECIPE, GET_RECIPES_BY_AUTH} from '../actions/types';
 
 const initialState = {
     recipes: [],
@@ -50,6 +50,11 @@ export default function(state=initialState, action) {
         return {
             ...state,
             image: action.payload
+        }
+        case SCHEDULE_RECIPE: 
+        return {
+            ...state,
+            dates: action.payload
         }
         default:
             return state;
