@@ -85,18 +85,12 @@ export default function Home() {
 
     }, [recipeList])
 
-    
-
-
     const checkDatesEqual = (otherDate) => {
         let dateAsString = otherDate.slice(0, 10);
         console.log(date + "   " + dateAsString);
         return date === dateAsString;
     }
-  
-
     
-
     return (
         <div id="home">
             {/* <NutritionInfo /> */}

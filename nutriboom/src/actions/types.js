@@ -1,5 +1,6 @@
 export const FETCH_RECIPES = 'FETCH_RECIPES';
 export const GET_RECIPES_BY_AUTH = 'GET_RECIPES_BY_AUTH';
+export const SCHEDULE_RECIPE = 'SCHEDULE_RECIPE';
 export const FETCH_RECIPE = 'FETCH_RECIPE';
 export const FETCH_FOOD = 'FETCH_FOOD';
 export const GET_FOOD_BY_ID = 'GET_FOOD_BY_ID';

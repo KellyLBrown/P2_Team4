@@ -5,33 +5,23 @@ import {fetchRecipes, getFoodByName} from '../actions/actions';
 
 
 export default function MealList(props) {
-    let date;
-
-    if (props.date != undefined) {
-        date = props.date;
-    } else {
-        date = null;
-    }
+    let date = props.date;
 
     let jsxRecipes = props.jsxRecipes;
-    console.log(jsxRecipes);
+    //console.log(jsxRecipes);
 
     let currentFood = useSelector(state => state.recipes);
     let currentUser = useSelector(state => state.user);
     let recipeList = [];
     const [noname, setNoName] = useState(false);    // I don't know what to call this variable yet...
     let image = props.image;
-    console.log(image);
+    console.log(date);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         console.log(recipeList);
-    }, [jsxRecipes])
-
-    const scheduleRecipe = () => {
-        
-    }
+    }, [recipeList])
 
     const renderAddRecipe = async (e) => {
         console.log(currentUser.currentUser.data.id);

@@ -3,18 +3,24 @@ import Calendar from 'react-calendar';
 import MealList from './meal-list';
 import {fetchRecipes, getImage, getRecipesFromDate} from '../actions/actions';
 import {useSelector, useDispatch } from 'react-redux';
+import ViewMyRecipes from './view-my-recipes';
 
 
 export default function EventCalendar(props) {
     let [dateString, setDateString] = useState('');
     let currentUser = useSelector(state => state.user);
     const [date, setDate] = useState(null);
+    let simpleDate;
+    if (date) {
+        simpleDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    }
     const [recipeList, setRecipeList] = useState([]);
     let image = useSelector(state => state.recipes.image);
     console.log(image);
     let scheduledRecipes = [];
     let jsxRecipes = [];
     const [mealList, setMealList] = useState(<MealList date={dateString} jsxRecipes={jsxRecipes} image={image} />);
+    const [viewRecipes, setViewRecipes] = useState(<ViewMyRecipes />)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -38,9 +44,10 @@ export default function EventCalendar(props) {
             console.log(jsxRecipes);
         }
         setMealList(<MealList date={dateString} jsxRecipes={jsxRecipes} image={image} />);
+        setViewRecipes(<ViewMyRecipes date={simpleDate} />)
     }, [recipeList])
 
-    
+
 
     const getRecipesByDate = async () => {
         jsxRecipes = [];    // Empty jsxRecipes to prevent static or duplicate elements
@@ -141,7 +148,8 @@ export default function EventCalendar(props) {
             <div id="events">
                 <h6>Events for {dateString}: </h6>
                 {mealList}
-            </div>    
+            </div>  
+            {viewRecipes} 
         </div>
     )
     
