@@ -264,6 +264,7 @@ export default function RecipeBuilder(props) {
                     backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
+                    backgroundAttachment: "fixed",
                     backgroundPosition: "bottom"
                   }}>
                       <Header title="Recipe Builder" />

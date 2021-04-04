@@ -153,7 +153,8 @@ export default function EventCalendar(props) {
             backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            backgroundPosition: "bottom"
+            backgroundPosition: "bottom",
+            backgroundAttachment: "fixed"
           }}>
             <Header title="Recipe Calendar" />
             <Calendar onClickDay={handleDayClicked} />
