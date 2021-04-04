@@ -11,6 +11,22 @@ export default function LoginForm(props) {
     const [logged, setLogged] = useState(false);
     const [user, setUser] = useState({username: null, password: null});
     let currentUser = useSelector(state => state.user);
+
+    const [errors, setErrors] = useState([]);
+
+    const validate = (user) => {
+        //username errors
+       const errors = {};
+       if (!user.username) {
+           errors.username = 'Username is required.';
+       } 
+       //Password Errors
+       if(!user.password ){
+           errors.password = 'Password is required'
+       }
+       return errors;
+     }
+
     
     const handleChange = (e) => {
         if (e.target.name == 'Username') {
@@ -28,6 +44,7 @@ export default function LoginForm(props) {
         } else {
             if (currentUser.currentUser.data == null || currentUser.currentUser.data == "") {
                 setLogged(false);
+                <Redirect to="/error" />
             } else {
                 setLogged(true);
                 setUser(currentUser.currentUser);
@@ -36,9 +53,19 @@ export default function LoginForm(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let getUser = await fetchUser(user.username, user.password);
-        await getUser(store.dispatch);
+        const validationErrors = validate(user);
+        const noErrors = Object.keys(validationErrors).length === 0;
+        
+        if(noErrors){
+            let getUser = await fetchUser(user.username, user.password);
+            await getUser(store.dispatch);
+        }else{
+            setErrors(validationErrors);
+        }
+
+        
     }
+    
 
     
 
@@ -46,9 +73,13 @@ export default function LoginForm(props) {
         return (
             <Redirect to="/home" />
         )
-    }
-    else {
+    } else {
+        
         return (
+
+            
+
+
         <div className="container" style={{
             width: "100%",
             height: "100%",
@@ -61,12 +92,15 @@ export default function LoginForm(props) {
                 <form className="login" onSubmit={handleSubmit}>
 
                     <FormInput type="text" name="Username" value={user.username} handleChange={handleChange} />
+                    {errors.username && <p>errors.username</p>}
                     <FormInput type="password" name="Password" value={user.password} handleChange={handleChange} />
+                    {errors.password && <p>errors.password</p>}
                     <input type="submit" value="Log in" />
                 </form>
             </div>
             <br />
             <p>Don't have an account? Please <Link to="./register">register</Link>.</p>
+            <p>Forgot your password? Please reset it <Link to="./register">here</Link>.</p>
         </div>
         )
     }

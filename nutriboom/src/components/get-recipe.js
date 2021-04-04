@@ -22,7 +22,7 @@ export default function GetRecipeForm(props){
 
     if(currentRecipe.fetchedrecipe.data != undefined){
         return (
-            <div id="register-form" className="row" class="row">
+            <div id="register-form" className="row">
             <form onSubmit={handleRecipe}>
                 <FormInput type="text" name="Recipe Name"  value={recipe.recipename} handleChange={handleChange} />
                 <input type="submit" value="Retrieve Recipe" />
@@ -43,7 +43,7 @@ export default function GetRecipeForm(props){
     }
 
     return (
-        <div id="register-form" className="row" class="row">
+        <div id="register-form" className="row">
             <form onSubmit={handleRecipe}>
                 <FormInput type="text" name="Recipe Name"  value={recipe.recipename} handleChange={handleChange} />
                 <input type="submit" value="Retrieve Recipe" />

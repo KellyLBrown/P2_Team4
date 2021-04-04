@@ -1,4 +1,4 @@
-import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER, LOGIN_FAILED} from './types';
 import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
 import { store } from '../store';
@@ -22,6 +22,24 @@ export const getFoodByName = (name) => {
     }
 }   
 
+export const fetchUser = async (username, password) => {
+  return function(dispatch) {
+    let user = axios({
+      method: 'post',
+      url: 'http://localhost:8080/user/login',
+      data: {
+        username: username,
+        password: password
+      }
+    }).then(data => dispatch({
+      type: AUTH_LOGIN,
+      currentUser: data
+    })).catch(() => dispatch({ type: LOGIN_FAILED })        
+    );
+    
+    
+  }
+}
 
 // This and the fetchFood() method have been swapped in order for the code to make more sense.
 export function fetchRecipes(aId) {
@@ -72,25 +90,6 @@ export function fetchRecipe(author, description, name, preptime) {
 
 export function getFoodById(id) {
 
-}
-
-export const fetchUser = async (username, password) => {
-  return function(dispatch) {
-    let user = axios({
-      method: 'post',
-      url: 'http://localhost:8080/user/login',
-      data: {
-        username: username,
-        password: password
-      }
-    }).then(data => dispatch({
-      type: AUTH_LOGIN,
-      currentUser: data
-    })).catch(console.log("Promise rejected! Panic!"));
-
-    console.log(user);
-    return user.data;
-  }
 }
 
 export const logOut = () => {

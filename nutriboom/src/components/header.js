@@ -35,7 +35,7 @@ export default function Header(props) {
     if (navHidden) {
         return (
             <div id="header">
-                <header class="header">
+                <header className="header">
                     <h1 id="title">{title}</h1>
                 </header>
             </div>
@@ -44,10 +44,10 @@ export default function Header(props) {
     else {
         return (
             <div id="header">
-                <header class="header" >
-                    <div class="topnav">
-                        <div class="row">
-                            <div class="column left">
+                <header className="header" >
+                    <div className="topnav">
+                        <div className="row">
+                            <div className="column left">
                                 <a ><Link to="./home">Home</Link></a>
                                 <a ><Link to="./calendar">Calendar</Link></a>
                                 <a ><Link to="./recipe-builder">Recipe Builder</Link></a>
@@ -55,10 +55,10 @@ export default function Header(props) {
                                 <a onClick={signOut}><Link to="./login">Log Out</Link></a>
                                 
                             </div>
-                            <div class="column right">
+                            <div className="column right">
                                 <h1 id="title">{title}</h1>
                             </div>
-                            <div class="column padding"></div>
+                            <div className="column padding"></div>
                         </div>
                     </div>
                 </header>
