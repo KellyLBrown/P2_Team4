@@ -103,7 +103,7 @@ export default function LoginForm(props) {
             </div>
             <br />
             <p>Don't have an account? Please <Link to="./register">register</Link>.</p>
-            <p>Forgot your password? Please reset it <Link to="./register">here</Link>.</p>
+            {/*<p>Forgot your password? Please reset it <Link to="./resetPassword">here</Link>.</p>*/}
         </div>
         )
     }

@@ -58,7 +58,7 @@ export default function Error(props) {
             backgroundPosition: "bottom"
           }}>
             <h1>Error</h1>
-            <h6>Someone made a mistake.</h6>
+            <h6>You have to be logged in for that.</h6>
             
             <p>Return to <Link to="./login">login</Link>.</p>
         </div>
