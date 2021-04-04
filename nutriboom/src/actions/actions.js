@@ -67,7 +67,7 @@ export function getImage(name) {
 export function fetchRecipe(name) {
   // This is the middleware that allows us to call the dispatch function directly and make async requests.
   return function(dispatch) {
-    console.log(name);
+    //console.log(name);
     let recipe = axios({
       method: 'post',
       url: `http://localhost:8080/recipe/get`,
@@ -79,7 +79,7 @@ export function fetchRecipe(name) {
       recipe : data,
     })).catch(console.log("Promise rejected! Panic!"));
    
-    //console.log(recipe);
+    console.log(recipe);
     return recipe.data;
   }
 }

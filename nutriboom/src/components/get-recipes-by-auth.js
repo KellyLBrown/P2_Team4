@@ -8,7 +8,8 @@ export default function GetRecipesForm(props){
     const [recipes, setRecipes] = useState({author: null, description: null, recipename: null, time:null});
     const dispatch = useDispatch();
     let currentDate = props.date;
-    console.log(currentDate);
+    let javaDate = currentDate ? `${currentDate}T00:00:00.000+00:00` : undefined;
+    console.log(javaDate);
     let currentRecipes = useSelector(state => state.recipes);
     let image = currentRecipes.image.data;
     let user = useSelector(state => state.user);
@@ -31,20 +32,32 @@ export default function GetRecipesForm(props){
     }
     
     const localScheduleRecipe = (e) => {
-        console.log(currentRecipes.dates);
+        //console.log(currentRecipes.dates);
         let recipeList = [];
         let uId = user.currentUser.data.id;
         for (let date of currentRecipes.dates.data) {
-            let simpleDate = date.toString().slice(0, 10);
+            let simpleDate = date.date.toString().slice(0, 10);
+            //console.log(simpleDate);
             if (simpleDate == currentDate) {
-                recipeList.add(e.target.value);
-            } 
+                for (let r of date.scheduledRecipes) {
+                    recipeList.push(r);
+                    break;
+                }
+            }
         }
-        let schedule = scheduleRecipe(uId, currentDate, recipeList);
+        console.log(e.target.value);
+        let targetRecipe = fetchRecipe(e.target.value);
+        let recipe = targetRecipe(dispatch);
+        if (recipe) {
+            recipeList.push(recipe.data); 
+        } else {
+            alert("The target recipe is null! Panic!!!");
+        }
+        let schedule = scheduleRecipe(uId, javaDate, recipeList);
         schedule(dispatch);
     }
 
-    console.log(currentRecipes);
+    //console.log(currentRecipes);
     if(currentRecipes.recipes.data != undefined){
         if (image) {
             return (

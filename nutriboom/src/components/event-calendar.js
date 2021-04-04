@@ -12,7 +12,9 @@ export default function EventCalendar(props) {
     const [date, setDate] = useState(null);
     let simpleDate;
     if (date) {
-        simpleDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+        let month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+        let day = date.getDay() < 10 ? `0${date.getDate()}` : date.getDate();
+        simpleDate = `${date.getFullYear()}-${month}-${day}`;
     }
     const [recipeList, setRecipeList] = useState([]);
     let image = useSelector(state => state.recipes.image);
