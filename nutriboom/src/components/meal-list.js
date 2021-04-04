@@ -42,7 +42,7 @@ export default function MealList(props) {
             
             <ul>{jsxRecipes}</ul>
 
-            <button style={{width: "105%"}} onClick={renderAddRecipe}>Add Recipe</button>
+            {/*<button style={{width: "105%"}} onClick={renderAddRecipe}>Add Recipe</button>*/}
 
                
         </div>

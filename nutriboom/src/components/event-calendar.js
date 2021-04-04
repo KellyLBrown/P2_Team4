@@ -40,7 +40,7 @@ export default function EventCalendar(props) {
             console.log(scheduledRecipes);
             for (let r of scheduledRecipes) {
                 if (image) {
-                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" src={`data:image/png;base64,${image.data.bytes}`} alt="A pic of a mountain" />{r.name}</li>);
+                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" style={{textAlign: "left"}} src={`data:image/png;base64,${image.data.bytes}`} alt="A pic of a mountain" />{r.name}</li>);
                 } else {
                     jsxRecipes.push(<li>{r.name}</li>)
                 }
@@ -155,15 +155,22 @@ export default function EventCalendar(props) {
             backgroundSize: "cover",
             backgroundPosition: "bottom",
             backgroundAttachment: "fixed",
-            overflow: "auto"
+            overflow: "auto",
+            textAlign: "center"
           }}>
             <Header title="Recipe Calendar" />
             <Calendar onClickDay={handleDayClicked} />
-            <div id="events">
-                <h6>Events for {dateString}: </h6>
+            <div id="events" style={{
+
+                width: "20%",
+                margin: "auto",
+                textAlign: "left"
+
+            }}>
+                <h6>Meals for {dateString}: </h6>
                 {mealList}
-            </div>  
-            {viewRecipes} 
+                {viewRecipes}
+            </div>   
         </div>
     )
     

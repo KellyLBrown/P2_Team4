@@ -61,20 +61,34 @@ export default function GetRecipesForm(props){
     if(currentRecipes.recipes.data != undefined){
         if (image) {
             return (
-                <div id="register-form" className="row" class="row">
-                <form onSubmit={handleRecipe}>
-                    <input type="submit" value="Get my recipes" />
-                </form><ul>
-                Recipes: <br></br>{currentRecipes.recipes.data.map((recipe) => 
+                <div id="register-form" className="row" style = {{width: "100%"}}>
+                    <form onSubmit={handleRecipe}>
+                        <input type="submit" value="Get my recipes" />
+                    </form>
+                    <ul style={{width: "100%", textAlign: "left"}}>
+                Recipes:
+                
+                <br></br>
+                
+                {currentRecipes.recipes.data.map((recipe) => 
                 <li key= {recipe.name}><img id="ItemPreview" src={`data:image/png;base64,${image.bytes}`} alt="A pic of a mountain" />
                  {recipe.name} <br></br><br></br> Steps:  {recipe.description}
-                <br></br><br></br>{recipe.ilist.map((ilist) => 
-                <li key={ilist.iid}>Ingredients for this recipe: {ilist.amount} of {ilist.name}
+                <br></br><br></br>
+
+                
+                {recipe.ilist.map((ilist) => 
+                
+                <li key={ilist.iid}>Ingredients for this recipe:  {ilist.amount} of {ilist.name}
                 (s) which contains {ilist.calories} calories each.</li>)}
+                
                 <br></br><br></br>
                 <button onClick={localScheduleRecipe} value={recipe.name}>Schedule Recipe</button></li>)} 
                 <br></br><br></br>
                 </ul>
+
+
+
+
             </div>
             )
         } else {
