@@ -5,58 +5,28 @@ import {fetchRecipes, getFoodByName} from '../actions/actions';
 
 
 export default function MealList(props) {
-    let date;
-
-    if (props.date != undefined) {
-        date = props.date;
-    } else {
-        date = null;
-    }
+    let date = props.date;
 
     let jsxRecipes = props.jsxRecipes;
-    console.log(jsxRecipes);
+    //console.log(jsxRecipes);
 
     let currentFood = useSelector(state => state.recipes);
     let currentUser = useSelector(state => state.user);
     let recipeList = [];
     const [noname, setNoName] = useState(false);    // I don't know what to call this variable yet...
-    //console.log(currentFood.data);
+    let image = props.image;
+    console.log(date);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         console.log(recipeList);
-
-        if (recipeList.payload != undefined) {
-            for (let r of recipeList.payload.data) {
-                if (date) {
-                    jsxRecipes.push(<li key={r.rId}>{r.name} <button onClick={() => {}}>+</button></li>)
-                } else {
-                    jsxRecipes.push(<li key={r.rId}>{r.name}</li>)
-                }
-            }
-            console.log(jsxRecipes);
-        }
-    }, [jsxRecipes])
-
-    const scheduleRecipe = () => {
-        
-    }
+    }, [recipeList])
 
     const renderAddRecipe = async (e) => {
         console.log(currentUser.currentUser.data.id);
         let getAllRecipes = await fetchRecipes(currentUser.currentUser.data.id);
         recipeList = await getAllRecipes(dispatch);
-        // console.log(recipeList);
-
-        // for (let r of recipeList.payload.data) {
-        //     if (date) {
-        //         jsxRecipes.push(<li key={r.rId}>{r.name} <button onClick={() => {}}>+</button></li>)
-        //     } else {
-        //         jsxRecipes.push(<li key={r.rId}>{r.name}</li>)
-        //     }
-        // }
-        // console.log(jsxRecipes);
     }
 
     if (!date) {

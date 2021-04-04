@@ -46,10 +46,10 @@ function App() {
             <br />
             <RecipeBuilder />
           </Route>
-          <Route path="/view-my-recipes">
+          {/* <Route path="/view-my-recipes">
             <Header title="View Recipes" />
             <ViewMyRecipes />
-          </Route>
+          </Route> */}
           <Route path="/logout">
             <Header title="Thank you for using this service! Have a wonderful day!" />
           </Route>
