@@ -30,15 +30,21 @@ export default function MealList(props) {
 
     if (!date) {
         return (
-            <div id="meal-list">
+            <div id="meal-list" >
+            
                 <ul>{jsxRecipes}</ul>
+                
             </div>
         )
     }
     return (
-        <div id="meal-list">
+        <div id="meal-list" >
+            
             <ul>{jsxRecipes}</ul>
-            <button onClick={renderAddRecipe}>Add Recipe</button>
+
+            <button style={{width: "105%"}} onClick={renderAddRecipe}>Add Recipe</button>
+
+               
         </div>
     )
     

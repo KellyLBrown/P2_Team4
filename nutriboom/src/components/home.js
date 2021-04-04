@@ -103,12 +103,26 @@ export default function Home() {
             backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            backgroundPosition: "bottom"
+            backgroundPosition: "bottom",
+            backgroundAttachment: "fixed",
+            textAlign: "center"
           }} >
               <Header /> {/*title={store.getState().user.currentUser != null ? `Welcome, ${store.getState().user.currentUser.firstname}!` : "Welcome, user!"}*/}
-            {/* <NutritionInfo /> */}
-            {mealList}
-            <GetRecipe />
+              <div style={{
+
+                  width: "20%",
+                  margin: "auto",
+                  textAlign: "left"
+
+              }}>
+                    
+                        {/* <NutritionInfo /> */}
+                        {mealList}
+                        <GetRecipe />
+                    
+                </div>
+            
+            
         </div>
     )
 }

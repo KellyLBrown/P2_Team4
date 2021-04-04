@@ -11,7 +11,6 @@ import EventCalendar from './components/event-calendar';
 import {logOut} from './actions/actions';
 import RegisterForm from './components/register';
 import RecipeBuilder from './components/recipe-builder';
-import ViewMyRecipes from './components/view-my-recipes';
 import Error from './components/error'
 import ProtectedRoute from './components/protected-route';
 
@@ -28,9 +27,6 @@ let recipeBuilderProtect = 'recipeBuilderProtect';
           <Route exact path='/login' render={
           props => <LoginForm  />} />
 
-
-
-
           <Route path="/register">
             <Header title="Please enter your information below." navHidden={true} />
             <RegisterForm />
@@ -41,23 +37,23 @@ let recipeBuilderProtect = 'recipeBuilderProtect';
           </Route>
 
           
-{/* 
-        //  <Route path="/calendar">
-         //   <Header title="Recipe Calendar" />
-      //      <br />
-      //      <br />
-      //      <EventCalendar />
-      //    </Route>
-      //    <Route path="/recipe-builder">
-      //      <Header title="Recipe Builder" />
-      //      <br />
-      //      <br />
-      //      <RecipeBuilder />
-      //    </Route>
-       //   {/* <Route path="/view-my-recipes">
-      //      <Header title="View Recipes" />
-       //     <ViewMyRecipes />
-       //   </Route> */}
+{/*
+      <Route path="/calendar">
+      <Header title="Recipe Calendar" />
+      
+      <EventCalendar />
+      </Route>
+
+      <Route path="/recipe-builder">
+      <Header title="Recipe Builder" />
+      
+      <RecipeBuilder />
+      </Route>
+
+      <Route path="/view-my-recipes">
+        <Header title="View Recipes" />
+        <ViewMyRecipes />
+     </Route> */}
 
           <Route path="/logout">
             <Header title="Thank you for using this service! Have a wonderful day!" />
@@ -69,8 +65,7 @@ let recipeBuilderProtect = 'recipeBuilderProtect';
 
 
 
-          <ProtectedRoute exact path='/home' component={
-              homeProtect} />
+          <ProtectedRoute exact path='/home' component={homeProtect} />
 
           <ProtectedRoute exact path="/calendar" component={calendarProtect} />
 
