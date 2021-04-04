@@ -154,7 +154,8 @@ export default function EventCalendar(props) {
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "bottom",
-            backgroundAttachment: "fixed"
+            backgroundAttachment: "fixed",
+            overflow: "auto"
           }}>
             <Header title="Recipe Calendar" />
             <Calendar onClickDay={handleDayClicked} />
