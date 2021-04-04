@@ -37,7 +37,7 @@ export default function Error(props) {
                 height: "100%",
                 backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/spilled.jpg')",
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
+                backgroundSize: "contain",
                 backgroundPosition: "bottom"
               }}>
                 <h1>Error</h1>
@@ -54,7 +54,7 @@ export default function Error(props) {
             height: "100%",
             backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/spilled.jpg')",
             backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
+            backgroundSize: "contain",
             backgroundPosition: "bottom"
           }}>
             <h1>Error</h1>

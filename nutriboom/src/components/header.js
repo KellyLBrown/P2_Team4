@@ -51,14 +51,13 @@ export default function Header(props) {
                                 <a ><Link to="./home">Home</Link></a>
                                 <a ><Link to="./calendar">Calendar</Link></a>
                                 <a ><Link to="./recipe-builder">Recipe Builder</Link></a>
-                                <a ><Link to="./view-my-recipes">Recipe Viewer</Link></a>
                                 <a onClick={signOut}><Link to="./login">Log Out</Link></a>
                                 
                             </div>
-                            <div className="column right">
+                            <div className="column center">
                                 <h1 id="title">{title}</h1>
                             </div>
-                            <div className="column padding"></div>
+                            <div className="column right"></div>
                         </div>
                     </div>
                 </header>

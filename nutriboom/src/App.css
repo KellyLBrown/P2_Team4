@@ -10,14 +10,14 @@
 .column {
   float: left;
 }
-.left, .right {
-  width: 49%;
+.left, .right, .center {
+  width: 33%;
 }
-.right {
-  text-align: right;
+.center {
+  text-align: center;
 }
 .padding {
-  width: 2%
+  width: 33%
 }
 
 h1 {
