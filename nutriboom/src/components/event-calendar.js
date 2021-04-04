@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import MealList from './meal-list';
 import {fetchRecipes, getImage, getRecipesFromDate} from '../actions/actions';
 import {useSelector, useDispatch } from 'react-redux';
+import Header from './header';
 
 
 export default function EventCalendar(props) {
@@ -139,6 +140,7 @@ export default function EventCalendar(props) {
             backgroundSize: "cover",
             backgroundPosition: "bottom"
           }}>
+            <Header title="Recipe Calendar" />
             <Calendar onClickDay={handleDayClicked} />
             <div id="events">
                 <h6>Events for {dateString}: </h6>

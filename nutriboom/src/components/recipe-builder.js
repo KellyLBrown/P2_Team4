@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import FormInput from './form-input';
 import SearchBar from './search-bar';
-
+import Header from './header';
 import {getFoodByName, createRecipe} from '../actions/actions'; 
 
 let ingredients = [];
@@ -140,6 +140,7 @@ export default function RecipeBuilder(props) {
                     backgroundSize: "cover",
                     backgroundPosition: "bottom"
                   }}>
+                      <Header title="Recipe Builder" />
                    <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
@@ -166,6 +167,7 @@ export default function RecipeBuilder(props) {
                     backgroundSize: "cover",
                     backgroundPosition: "bottom"
                   }}>
+                      <Header title="Recipe Builder" />
                    <form className="recipe-builder-form" className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
@@ -191,6 +193,7 @@ export default function RecipeBuilder(props) {
                     backgroundSize: "cover",
                     backgroundPosition: "bottom"
                   }}>
+                      <Header title="Recipe Builder" />
                 <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
@@ -215,6 +218,7 @@ export default function RecipeBuilder(props) {
                     backgroundSize: "cover",
                     backgroundPosition: "bottom"
                   }}>
+                      <Header title="Recipe Builder" />
                     <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
@@ -240,6 +244,7 @@ export default function RecipeBuilder(props) {
                     backgroundSize: "cover",
                     backgroundPosition: "bottom"
                   }}>
+                      <Header title="Recipe Builder" />
                 <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
@@ -261,6 +266,7 @@ export default function RecipeBuilder(props) {
                     backgroundSize: "cover",
                     backgroundPosition: "bottom"
                   }}>
+                      <Header title="Recipe Builder" />
                     <form className="recipe-builder-form" onSubmit={handleSubmit}>
                         <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
                         <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { AUTH_LOGIN } from '../actions/types';
 import { connect, useSelector } from 'react-redux';
 import {store} from '../store';
+import Header from "./header";
 
 export default function LoginForm(props) {
     const [logged, setLogged] = useState(false);
@@ -48,6 +49,7 @@ export default function LoginForm(props) {
             } else {
                 setLogged(true);
                 setUser(currentUser.currentUser);
+                
             }}
         });
 
@@ -88,6 +90,7 @@ export default function LoginForm(props) {
             backgroundSize: "cover",
             backgroundPosition: "bottom"
           }}>
+            <Header title="Please log in or click 'Register' to sign up!" navHidden={true} />
             <div id="login" className="row">
                 <form className="login" onSubmit={handleSubmit}>
 

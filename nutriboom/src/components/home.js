@@ -3,6 +3,8 @@ import GetRecipe from './get-recipe';
 import GetRecipesForm from './get-recipes-by-auth';
 import MealPlanner from './meal-planner';
 import NutritionInfo from './nutrition-info';
+import Header from "./header";
+import {store} from '../store';
 
 export default function Home() {
     return (
@@ -14,6 +16,7 @@ export default function Home() {
             backgroundSize: "cover",
             backgroundPosition: "bottom"
           }} >
+              <Header /> {/*title={store.getState().user.currentUser != null ? `Welcome, ${store.getState().user.currentUser.firstname}!` : "Welcome, user!"}*/}
             {/* <NutritionInfo /> */}
             <MealPlanner />
             <GetRecipe />

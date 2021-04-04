@@ -7,7 +7,7 @@ import { AUTH_LOGIN } from '../actions/types';
 import { connect, useSelector } from 'react-redux';
 import {store} from '../store';
 
-export default function LoginForm(props) {
+export default function Error(props) {
     const [logged, setLogged] = useState(false);
     const [user, setUser] = useState({username: null, password: null});
     let currentUser = useSelector(state => state.user);
