@@ -67,7 +67,7 @@ export function getImage(name) {
   }
 }
 
-export function fetchRecipe(name) {
+export function fetchRecipe(rname) {
   // This is the middleware that allows us to call the dispatch function directly and make async requests.
   return function(dispatch) {
     //console.log(name);
@@ -75,7 +75,7 @@ export function fetchRecipe(name) {
       method: 'post',
       url: `http://localhost:8080/recipe/get`,
       data: {
-        name : name
+        name : rname
       }
     }).then(data => dispatch({
       type: FETCH_RECIPE,
@@ -134,9 +134,12 @@ export function createRecipe(name, author, time, description, ingredients) {
 
 export function scheduleRecipe(id, date, recipeList) {
   return function(dispatch) {
+    console.log(id);
+    console.log(date);
+    console.log(recipeList);
     let recipe = recipeapi.post(
       "/calendar/setCalendar", {
-        uId: id, 
+        uid: id, 
         date: date, 
         scheduledRecipes: recipeList
       }

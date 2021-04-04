@@ -15,7 +15,7 @@ export default function EventCalendar(props) {
     let simpleDate;
     if (date) {
         let month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
-        let day = date.getDay() < 10 ? `0${date.getDate()}` : date.getDate();
+        let day = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate();
         simpleDate = `${date.getFullYear()}-${month}-${day}`;
     }
     const [recipeList, setRecipeList] = useState([]);
@@ -24,7 +24,7 @@ export default function EventCalendar(props) {
     let scheduledRecipes = [];
     let jsxRecipes = [];
     const [mealList, setMealList] = useState(<MealList date={dateString} jsxRecipes={jsxRecipes} image={image} />);
-    const [viewRecipes, setViewRecipes] = useState(<ViewMyRecipes />)
+    const [viewRecipes, setViewRecipes] = useState(<ViewMyRecipes date={simpleDate} />)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -39,8 +39,12 @@ export default function EventCalendar(props) {
             }
             console.log(scheduledRecipes);
             for (let r of scheduledRecipes) {
+                //getRecipeImage(`${r.name}.png`);
+                //let ri = image.data.bytes;
+                //console.log(ri);
+                //console.log(image);
                 if (image) {
-                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" src={`data:image/png;base64,${image.data.bytes}`} alt="A pic of a mountain" />{r.name}</li>);
+                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" src={`data:image/png;base64,${image.data.bytes}`} alt="A picture of your recipe" />{r.name}</li>);
                 } else {
                     jsxRecipes.push(<li>{r.name}</li>)
                 }
@@ -61,8 +65,9 @@ export default function EventCalendar(props) {
     }
 
     const getRecipeImage = async (name) => {
+        console.log(name);
         let recipeImage = await getImage(name);
-        recipeImage(dispatch);
+        await recipeImage(dispatch);
         console.log(image); 
     }
 
@@ -141,7 +146,8 @@ export default function EventCalendar(props) {
         
         if (date) {
             getRecipesByDate();
-            getRecipeImage('mountain.png');
+           
+            getRecipeImage(`chillies.png`);
         }
         
     }

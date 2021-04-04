@@ -46,7 +46,7 @@ export default function Home() {
         }
 
         const getARecipeImage = async () => {
-            let getRecipeImage = getImage('mountain.png');
+            let getRecipeImage = getImage('chillies.png');
             getRecipeImage(dispatch);
             console.log(image);
         }

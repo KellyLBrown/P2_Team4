@@ -67,14 +67,14 @@ h1 {
 }
 
 
-========
-#home {
+
+/* #home {
   margin-top: 90px;
   background-color: white;
   width: 30%;
   margin-left: 35%;
-}
-=======
+} */
+
 
 
 .link {
@@ -131,6 +131,7 @@ h1 {
 textarea {
   width: 252px;
   height: 50px;
+}
 
 li > img {
   width: 100px;
