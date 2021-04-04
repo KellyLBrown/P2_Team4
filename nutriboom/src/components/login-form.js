@@ -92,9 +92,9 @@ export default function LoginForm(props) {
                 <form className="login" onSubmit={handleSubmit}>
 
                     <FormInput type="text" name="Username" value={user.username} handleChange={handleChange} />
-                    {errors.username && <p>errors.username</p>}
+                    {errors.username && <p>{errors.username}</p>}
                     <FormInput type="password" name="Password" value={user.password} handleChange={handleChange} />
-                    {errors.password && <p>errors.password</p>}
+                    {errors.password && <p>{errors.password}</p>}
                     <input type="submit" value="Log in" />
                 </form>
             </div>
