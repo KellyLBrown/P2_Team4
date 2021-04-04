@@ -34,7 +34,7 @@ With a fully hosted backend, only a web-browser is need to use this program.
 * Mathew
 
 # License
-Free to use, copy, and reproduce.
+Free to use, copy, and reproduce.(Minus the use of Edaman unless user generates a new API key)
 
 # Acknowledgements
 Edimama API as the online food sourced API outside of user created ingredients.
