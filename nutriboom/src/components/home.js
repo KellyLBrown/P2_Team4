@@ -109,8 +109,9 @@ export default function Home() {
           }} >
               <Header /> {/*title={store.getState().user.currentUser != null ? `Welcome, ${store.getState().user.currentUser.firstname}!` : "Welcome, user!"}*/}
               <div style={{
-                  width: "30%",
-                  margin: "auto"
+                  width: "20%",
+                  margin: "auto auto auto 40%",
+                  textAlign: "left"
               }}>
                     
                         {/* <NutritionInfo /> */}
