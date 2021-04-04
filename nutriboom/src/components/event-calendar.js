@@ -3,7 +3,9 @@ import Calendar from 'react-calendar';
 import MealList from './meal-list';
 import {fetchRecipes, getImage, getRecipesFromDate} from '../actions/actions';
 import {useSelector, useDispatch } from 'react-redux';
+import Header from './header';
 import ViewMyRecipes from './view-my-recipes';
+
 
 
 export default function EventCalendar(props) {
@@ -145,7 +147,15 @@ export default function EventCalendar(props) {
     }
 
     return (
-        <div id="event-calendar">
+        <div id="event-calendar" style={{
+            width: "100%",
+            height: "100%",
+            backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "bottom"
+          }}>
+            <Header title="Recipe Calendar" />
             <Calendar onClickDay={handleDayClicked} />
             <div id="events">
                 <h6>Events for {dateString}: </h6>

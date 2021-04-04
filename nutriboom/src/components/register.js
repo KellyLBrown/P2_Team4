@@ -35,8 +35,15 @@ export default function RegisterForm(props) {
     }
 
     return (
-        <div id="register-form" className="row" class="row">
-            <form onSubmit={handleRegister}>
+        <div  className="row" style={{
+            width: "100%",
+            height: "100%",
+            backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/spices+in+spoons.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "bottom"
+          }}>
+            <form id="register-form" onSubmit={handleRegister}>
                 <FormInput type="text" name="Username" value={user.username} handleChange={handleChange} />
                 <FormInput type="password" name="Password" value={user.password} handleChange={handleChange} />
                 <FormInput type="text" name="firstName" value={user.firstname} handleChange={handleChange} />

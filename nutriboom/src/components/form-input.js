@@ -4,7 +4,10 @@ import {useDispatch} from 'react-redux';
 export default function FormInput(props) {
     let type = props.type;
     let name = props.name;
-    let display;                // If you'd like to display something other than props.name, define this value as a prop.
+    let display; 
+    let style = props.style;
+    
+    // If you'd like to display something other than props.name, define this value as a prop.
 
     if (props.display == undefined) {
         display = name;
@@ -39,22 +42,47 @@ export default function FormInput(props) {
         )
     } else if (type == "ingredient") {
         return (
+            <div>
             <div className="col-sm">
                 <label>{display}: </label>
 
-                <input type="number" name="amount" placeholder="How many?" onChange={handleChange} />
+                <input style={{width: '180px'}} type="number" name="amount" placeholder="How many/much?" onChange={handleChange} />
                 <select name="unit" onChange={handleChange}>
-                    <option value="count(s)" defaultValue={true}>count(s)</option>
-                    <option value="tsp">tsp</option>
-                    <option value="Tbsp">Tbsp</option>
-                    <option value="cups">cup(s)</option>
-                    <option value="pints">pint(s)</option>
-                </select>
-
-                <input type="text" name={name} placeholder="Type an ingredient name" onChange={handleChange} />
-                <input type="text" name="calories" placeholder="How many calories?" onChange={handleChange} />
+                        <option value="unit" defaultValue={true}>unit</option>
+                            <option value="count">count</option>
+                            <option value="tsp">tsp(s)</option>
+                            <option value="Tbsp">Tbsp(s)</option>
+                            <option value="cups">cup(s)</option>
+                            <option value="pints">pint(s)</option>
+                        </select>
+                </div>
+                <div className="col-sm">
+                <input style={{width: '250px'}} type="text" name={name} placeholder="Type an ingredient name" onChange={handleChange} />
+                </div>
+                <div className="col-sm">
+                <input style={{width: '250px'}} type="text" name="calories" placeholder="How many calories?" onChange={handleChange} />
+                </div>
             </div>
         )
+    } else if (type == "ingredientAmountInSearch") {
+            return (
+                <div>
+                <div className="col-sm">
+                    <label>{display}: </label>
+    
+                    <input style={{width: '180px'}} type="number" name="amount" onChange={handleChange} />
+                    <select name="unit" onChange={handleChange}>
+                            <option value="unit" defaultValue={true}>unit</option>
+                                <option value="count">count</option>
+                                <option value="tsp">tsp(s)</option>
+                                <option value="Tbsp">Tbsp(s)</option>
+                                <option value="cups">cup(s)</option>
+                                <option value="pints">pint(s)</option>
+                            </select>
+                    
+                    </div>
+                </div>
+            )
     } else if (type == "radio2") {
         return (
             <div className="col-sm">
@@ -75,9 +103,9 @@ export default function FormInput(props) {
     }
     else {
         return (
-            <div class="col-sm" className="col-sm">
+            <div className="col-sm">
                 <label>{display}: </label>
-                <input type={type} name={name} onChange={handleChange}/>
+                <input type={type} name={name} onChange={handleChange} style={style}/>
             </div>
         )
     }

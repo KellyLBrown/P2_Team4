@@ -1,4 +1,6 @@
+
 import {GET_IMAGE, FETCH_RECIPES, SCHEDULE_RECIPE, GET_RECIPES_BY_AUTH, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+
 import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
 import { store } from '../store';
@@ -21,6 +23,7 @@ export const getFoodByName = (name) => {
       console.log(error);
     }
 }   
+
 
 export function fetchRecipesByAuthor(aId) {
   // This is the middleware that allows us to call the dispatch function directly and make async requests.
@@ -84,6 +87,7 @@ export function fetchRecipe(name) {
   }
 }
 
+
 export const fetchUser = async (username, password) => {
   return function(dispatch) {
     let user = axios({
@@ -101,6 +105,7 @@ export const fetchUser = async (username, password) => {
     console.log(user);
     return user.data;
   }
+
 }
 
 export const logOut = () => {

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import FormInput from './form-input';
 import SearchBar from './search-bar';
-
+import Header from './header';
 import {getFoodByName, createRecipe} from '../actions/actions'; 
 
 let ingredients = [];
@@ -122,6 +122,7 @@ export default function RecipeBuilder(props) {
             setIngredient({amount: ingredient.amount, unit: "count(s)", name: ingredient.name});
         }
         ingredients.push(ingredient);
+        setIngredient({amount: "", unit: "", name: ""});
         //jsxIngredients.push(<li>{ingredient.measurement} {ingredient.unit} {ingredient.name}</li>);
         let listItem = <li>{ingredient.amount} {ingredient.unit} {ingredient.name} ({ingredient.calories} kCal)</li>;
         setJsxIngredients(ingList => [...ingList, listItem]);
@@ -131,21 +132,22 @@ export default function RecipeBuilder(props) {
         if (search && ingredients.length > 0) {
             console.log("Search is true and ingredients are populated");
             return (
-                <div id="recipe-builder">
-                   <form onSubmit={handleSubmit}>
-                        <FormInput type="text" name="Name" handleChange={handleChange} />
-                        <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
-                        <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                      <Header title="Recipe Builder" />
+                   <form className="recipe-builder-form" onSubmit={handleSubmit}>
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput  type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
-                        <SearchBar name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} />
-                        <select name="unit" onChange={handleChange}>
-                            <option value="count(s)" defaultValue={true}>count(s)</option>
-                            <option value="tsp">tsp</option>
-                            <option value="Tbsp">Tbsp</option>
-                            <option value="cups">cup(s)</option>
-                            <option value="pints">pint(s)</option>
-                        </select>
+                        <SearchBar style={{width: '250px'}} name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <FormInput type="ingredientAmountInSearch" display={`Amount of  ${ingredient.name}(s)`} handleChange={handleChange} />
                         <button onClick={addIngredient}>Add Ingredient</button>
                         <h4>Current Ingredients: </h4>
                         <ul id="ingredient-list">{jsxIngredients}</ul> 
@@ -157,21 +159,22 @@ export default function RecipeBuilder(props) {
         else if (search) {
             console.log("Search is true");
             return (
-                <div id="recipe-builder">
-                   <form onSubmit={handleSubmit}>
-                        <FormInput type="text" name="Name" handleChange={handleChange} />
-                        <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
-                        <FormInput type="textarea" name="Description" handleChange={handleChange} />
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                      <Header title="Recipe Builder" />
+                   <form className="recipe-builder-form" className="recipe-builder-form" onSubmit={handleSubmit}>
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                        <FormInput  type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
-                        <SearchBar name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
-                        <FormInput type="number" name="amount" display={`How many ${ingredient.name}(s)?`} handleChange={handleChange} /> 
-                        <select name="unit" onChange={handleChange}>
-                            <option value="count(s)" defaultValue={true}>count(s)</option>
-                            <option value="tsp">tsp</option>
-                            <option value="Tbsp">Tbsp</option>
-                            <option value="cups">cup(s)</option>
-                            <option value="pints">pint(s)</option>
-                        </select>
+                        <SearchBar style={{width: '250px'}} name="name" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <FormInput type="ingredientAmountInSearch" display={`Amount of  ${ingredient.name}(s)`} handleChange={handleChange} />
                         <button onClick={addIngredient}>Add Ingredient</button>
                         <input type="submit" value="Create Recipe" />
                     </form>
@@ -182,13 +185,21 @@ export default function RecipeBuilder(props) {
         if (search && ingredients.length > 0) {
             console.log("Search is true and ingredients are populated");
             return (
-                <div id="recipe-builder">
-                <form onSubmit={handleSubmit}>
-                        <FormInput type="text" name="Name" handleChange={handleChange} />
-                        <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                      <Header title="Recipe Builder" />
+                <form className="recipe-builder-form" onSubmit={handleSubmit}>
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
-                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <SearchBar style={{width: '250px'}} name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
 
                         <h4>Current Ingredients: </h4>
                         <ul id="ingredient-list">{jsxIngredients}</ul> 
@@ -199,14 +210,22 @@ export default function RecipeBuilder(props) {
         }
         else if (ingredients.length > 0) {
             return (
-                <div id="recipe-builder">
-                    <form onSubmit={handleSubmit}>
-                        <FormInput type="text" name="Name" handleChange={handleChange} />
-                        <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                      <Header title="Recipe Builder" />
+                    <form className="recipe-builder-form" onSubmit={handleSubmit}>
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
-                        <button onClick={addIngredient}>Add</button>
+                        <button onClick={addIngredient}>Add Ingredient</button>
                         <h4>Current Ingredients: </h4>
                         <ul id="ingredient-list">{jsxIngredients}</ul> 
                         <input type="submit" value="Create Recipe" />
@@ -217,13 +236,21 @@ export default function RecipeBuilder(props) {
         else if (search) {
             console.log("Search is true");
             return (
-                <div id="recipe-builder">
-                <form onSubmit={handleSubmit}>
-                        <FormInput type="text" name="Name" handleChange={handleChange} />
-                        <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                      <Header title="Recipe Builder" />
+                <form className="recipe-builder-form" onSubmit={handleSubmit}>
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange}/>
-                        <SearchBar name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
+                        <SearchBar style={{width: '250px'}} name="Ingredient" isForm={false} onSubmit={searchIngredient} handleChange={handleChange} />
                         <input type="submit" value="Create Recipe" />
                     </form>
                 </div>
@@ -231,14 +258,22 @@ export default function RecipeBuilder(props) {
         }
         else {
             return (
-                <div id="recipe-builder">
-                    <form onSubmit={handleSubmit}>
-                        <FormInput type="text" name="Name" handleChange={handleChange} />
-                        <FormInput type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
+                <div className="recipe-builder" style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: "url('https://nutriboom.s3.us-east-2.amazonaws.com/garlic.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom"
+                  }}>
+                      <Header title="Recipe Builder" />
+                    <form className="recipe-builder-form" onSubmit={handleSubmit}>
+                        <FormInput style={{width: '250px'}} type="text" name="Name" handleChange={handleChange} />
+                        <FormInput style={{width: '250px'}} type="number" name="time" display="Prep Time (in minutes)" handleChange={handleChange} />
                         <FormInput type="textarea" name="Description" handleChange={handleChange} />
                         <FormInput type="radio2" name="search" val1="Search Ingredients" val2="Add Custom Ingredient" handleChange={handleChange} />
                         <FormInput type="ingredient" name="Ingredient" handleChange={handleChange} />
-                        <button onClick={addIngredient}>Add</button>
+                        <button onClick={addIngredient}>Add Ingredient</button>
 
                         <input type="submit" value="Create Recipe" />
                     </form>

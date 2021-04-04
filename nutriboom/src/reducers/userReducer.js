@@ -1,8 +1,9 @@
-import {AUTH_LOGIN, AUTH_LOGOUT, NEW_USER} from "../actions/types";
+import {AUTH_LOGIN, AUTH_LOGOUT, NEW_USER, LOGIN_FAILED} from "../actions/types";
 
 const initialState = {
     currentUser: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    invalidCredentials: false
 }
 
 export default function(state=initialState, action) {
@@ -20,6 +21,10 @@ export default function(state=initialState, action) {
             return initialState;
         case NEW_USER:
             return state;
+        case LOGIN_FAILED:
+            return {
+                invalidCredentials: true
+            }
         default:
             return state;
     }
