@@ -39,7 +39,26 @@ let recipeBuilderProtect = 'recipeBuilderProtect';
           <Route path="/error">
             <Header title="Oops, something went wrong! Please try again later." />
           </Route>
+
           
+
+        //  <Route path="/calendar">
+         //   <Header title="Recipe Calendar" />
+      //      <br />
+      //      <br />
+      //      <EventCalendar />
+      //    </Route>
+      //    <Route path="/recipe-builder">
+      //      <Header title="Recipe Builder" />
+      //      <br />
+      //      <br />
+      //      <RecipeBuilder />
+      //    </Route>
+       //   {/* <Route path="/view-my-recipes">
+      //      <Header title="View Recipes" />
+       //     <ViewMyRecipes />
+       //   </Route> */}
+
           <Route path="/logout">
             <Header title="Thank you for using this service! Have a wonderful day!" />
           </Route>

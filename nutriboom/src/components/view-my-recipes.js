@@ -1,7 +1,9 @@
 import React from 'react';
 import GetRecipesForm from './get-recipes-by-auth';
 
-export default function ViewMyRecipes() {
+export default function ViewMyRecipes(props) {
+    const date = props.date;
+
     return (
         <div id="viewMyRecipes" style={{
             width: "100%",
@@ -12,7 +14,7 @@ export default function ViewMyRecipes() {
             backgroundPosition: "bottom"
           }}>
             
-            <GetRecipesForm />
+            <GetRecipesForm date={date} />
         </div>
     )
 }

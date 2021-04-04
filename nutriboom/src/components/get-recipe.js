@@ -5,7 +5,9 @@ import {store} from '../store';
 import { useSelector } from 'react-redux';
 
 export default function GetRecipeForm(props){
+    
     const [recipe, setRecipe] = useState({author: null, description: null, recipename: null, time:null});
+    
     let currentRecipe = useSelector(state => state.recipe);
     console.log(currentRecipe);
     const handleChange = (e) => {
@@ -16,8 +18,10 @@ export default function GetRecipeForm(props){
 
     const handleRecipe = async (e) => {
         e.preventDefault();
-        let getRecipe = await fetchRecipe(recipe.author, recipe.description, recipe.recipename, recipe.time);
+        console.log(recipe.recipename)
+        let getRecipe = await fetchRecipe(recipe.recipename);
         await getRecipe(store.dispatch);
+        console.log(getRecipe);
     }
 
     if(currentRecipe.fetchedrecipe.data != undefined){
@@ -33,7 +37,7 @@ export default function GetRecipeForm(props){
              <br></br><br></br>
              Ingredients for this recipe: 
                {currentRecipe.fetchedrecipe.data.ilist.map((ingredient) => <li key = {ingredient.iid}>{ingredient.amount} of {ingredient.name}
-               (s) which have {ingredient.calories} calories each.</li>)} 
+               (s) which have {ingredient.amount * ingredient.calories} calories.</li>)} 
              <br></br>
              <li> Prep time</li>
              <ol>  {currentRecipe.fetchedrecipe.data.time} minutes.</ol>

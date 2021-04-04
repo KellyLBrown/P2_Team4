@@ -1,4 +1,6 @@
-import {GET_IMAGE, FETCH_RECIPES, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER, LOGIN_FAILED} from './types';
+
+import {GET_IMAGE, FETCH_RECIPES, SCHEDULE_RECIPE, GET_RECIPES_BY_AUTH, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+
 import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
 import { store } from '../store';
@@ -22,24 +24,21 @@ export const getFoodByName = (name) => {
     }
 }   
 
-export const fetchUser = async (username, password) => {
-  return function(dispatch) {
-    let user = axios({
-      method: 'post',
-      url: 'http://localhost:8080/user/login',
-      data: {
-        username: username,
-        password: password
-      }
-    }).then(data => dispatch({
-      type: AUTH_LOGIN,
-      currentUser: data
-    })).catch(() => dispatch({ type: LOGIN_FAILED })        
-    );
-    
-    
-  }
+
+export function fetchRecipesByAuthor(aId) {
+  // This is the middleware that allows us to call the dispatch function directly and make async requests.
+return function(dispatch) {
+  console.log(aId);
+  let recipes = recipeapi.post("/recipe/getrecipes", {aId: aId}).then(data => dispatch({
+    type: GET_RECIPES_BY_AUTH,
+    payload: data
+  }));
+
+  console.log(recipes);
+  return recipes;
 }
+}
+
 
 // This and the fetchFood() method have been swapped in order for the code to make more sense.
 export function fetchRecipes(aId) {
@@ -68,10 +67,10 @@ export function getImage(name) {
   }
 }
 
-export function fetchRecipe(author, description, name, preptime) {
+export function fetchRecipe(name) {
   // This is the middleware that allows us to call the dispatch function directly and make async requests.
   return function(dispatch) {
-    console.log(name);
+    //console.log(name);
     let recipe = axios({
       method: 'post',
       url: `http://localhost:8080/recipe/get`,
@@ -88,7 +87,24 @@ export function fetchRecipe(author, description, name, preptime) {
   }
 }
 
-export function getFoodById(id) {
+
+export const fetchUser = async (username, password) => {
+  return function(dispatch) {
+    let user = axios({
+      method: 'post',
+      url: 'http://localhost:8080/user/login',
+      data: {
+        username: username,
+        password: password
+      }
+    }).then(data => dispatch({
+      type: AUTH_LOGIN,
+      currentUser: data
+    })).catch(console.log("Promise rejected! Panic!"));
+
+    console.log(user);
+    return user.data;
+  }
 
 }
 
@@ -99,7 +115,6 @@ export const logOut = () => {
 }
 
 export function createRecipe(name, author, time, description, ingredients) {
-    //console.log(ingredients);
     return function(dispatch) {
       let recipe = recipeapi.post(
         "/recipe/log", {
@@ -116,6 +131,23 @@ export function createRecipe(name, author, time, description, ingredients) {
       return recipe.data;
     }
 } 
+
+export function scheduleRecipe(id, date, recipeList) {
+  return function(dispatch) {
+    let recipe = recipeapi.post(
+      "/calendar/setCalendar", {
+        uId: id, 
+        date: date, 
+        scheduledRecipes: recipeList
+      }
+    ).then(data => dispatch({
+      type: SCHEDULE_RECIPE,
+      payload: data
+    })).catch(console.log("Recipe not scheduled! Panic!"));
+    console.log(recipe);
+    return recipe.data;
+  }
+}
 
 export function registerUser(username, password, firstname, lastname, email) {
     return function(dispatch) {

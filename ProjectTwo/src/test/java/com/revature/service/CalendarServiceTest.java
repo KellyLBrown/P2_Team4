@@ -54,14 +54,15 @@ class CalendarServiceTest {
 		});
 		
 		when(cDao.getCalendarByuId(ArgumentMatchers.anyInt())).then(invocation -> {
-			int uId = invocation.getArgument(0);
-			
-			if (uId == 0) {
-				return c;
-			} else {
-				return null;
-			}
-		});
+            int uId = invocation.getArgument(0);
+            List<Calendar> cr = new ArrayList<Calendar>();
+            cr.add(c);
+            if (uId == 0) {
+                return cr;
+            } else {
+                return null;
+            }
+        });
 	}
 
 	@After
@@ -86,8 +87,8 @@ class CalendarServiceTest {
 
 	@Test
 	void testGetCalendarByUser() {
-		Calendar cr = cServ.getCalendarByUser(0);
-		assertEquals(0, cr.getCId());
+		List<Calendar> cr = cServ.getCalendarByUser(0);
+		assertEquals(1, cr.size());
 	}
 
 }
