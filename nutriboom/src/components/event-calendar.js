@@ -164,7 +164,7 @@ export default function EventCalendar(props) {
 
                 width: "20%",
                 margin: "auto",
-                textAlign: "left"
+                textAlign: "center"
 
             }}>
                 <h6>Meals for {dateString}: </h6>
