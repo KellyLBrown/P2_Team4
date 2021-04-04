@@ -145,3 +145,8 @@ footer {
   width: 300px;
   vertical-align: top;
 }
+
+li > img {
+  width: 100px;
+  height: 75px;
+}
