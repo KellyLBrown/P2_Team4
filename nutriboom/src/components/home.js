@@ -105,7 +105,8 @@ export default function Home() {
             backgroundSize: "cover",
             backgroundPosition: "bottom",
             backgroundAttachment: "fixed",
-            textAlign: "center"
+            textAlign: "center",
+            overflow: "auto"
           }} >
               <Header /> {/*title={store.getState().user.currentUser != null ? `Welcome, ${store.getState().user.currentUser.firstname}!` : "Welcome, user!"}*/}
               <div style={{
