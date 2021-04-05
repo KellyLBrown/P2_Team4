@@ -1,5 +1,5 @@
 
-import {GET_IMAGE, FETCH_RECIPES, SCHEDULE_RECIPE, GET_RECIPES_BY_AUTH, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+import {GET_IMAGE,UPDATE_USER, FETCH_RECIPES, SCHEDULE_RECIPE, GET_RECIPES_BY_AUTH, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
 
 import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
@@ -67,7 +67,7 @@ export function getImage(name) {
   }
 }
 
-export function fetchRecipe(name) {
+export function fetchRecipe(rname) {
   // This is the middleware that allows us to call the dispatch function directly and make async requests.
   return function(dispatch) {
     //console.log(name);
@@ -75,7 +75,7 @@ export function fetchRecipe(name) {
       method: 'post',
       url: `http://localhost:8080/recipe/get`,
       data: {
-        name : name
+        name : rname
       }
     }).then(data => dispatch({
       type: FETCH_RECIPE,
@@ -134,9 +134,12 @@ export function createRecipe(name, author, time, description, ingredients) {
 
 export function scheduleRecipe(id, date, recipeList) {
   return function(dispatch) {
+    console.log(id);
+    console.log(date);
+    console.log(recipeList);
     let recipe = recipeapi.post(
       "/calendar/setCalendar", {
-        uId: id, 
+        uid: id, 
         date: date, 
         scheduledRecipes: recipeList
       }
@@ -171,6 +174,28 @@ export function registerUser(username, password, firstname, lastname, email) {
       console.log(user);
       return user.data;
     }
+}
+
+export function updateUser(uid, password, email) {
+  return function(dispatch) {
+    console.log(uid);
+    let user = axios({
+      method: 'post',
+      url: 'http://localhost:8080/user/update',
+      data:  {
+        id: uid,
+        password: password,
+        email: email
+      }
+      
+    }).then(data => dispatch({
+      type: UPDATE_USER
+
+    })).catch(console.log("Promise rejected! Panic!"));
+
+    console.log(user);
+    return user.data;
+  }
 }
 
 const handleError = (e) => {

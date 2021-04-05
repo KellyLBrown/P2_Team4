@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 export default function GetRecipeForm(props){
     
     const [recipe, setRecipe] = useState({author: null, description: null, recipename: null, time:null});
-    
+    let date = props.date;
     let currentRecipe = useSelector(state => state.recipe);
     console.log(currentRecipe);
     const handleChange = (e) => {

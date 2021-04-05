@@ -11,4 +11,5 @@ export const NEW_RECIPE = 'NEW_RECIPE';
 export const GET_IMAGE = 'GET_IMAGE';
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const UPDATE_USER = 'UPDATE_USER';
 

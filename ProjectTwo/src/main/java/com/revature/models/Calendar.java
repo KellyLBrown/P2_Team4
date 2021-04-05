@@ -24,7 +24,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter  
+@Setter
 @ToString
 @Table(name="Calendar")
 public class Calendar {
