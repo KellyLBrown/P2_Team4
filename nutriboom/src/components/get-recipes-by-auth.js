@@ -7,6 +7,7 @@ import { Redirect } from 'react-router';
 
 export default function GetRecipesForm(props){
     const [recipes, setRecipes] = useState({author: null, description: null, recipename: null, time:null});
+    const [confirmation, setConfirmation] = useState(null);
     const dispatch = useDispatch();
     let date = props.date;
     let currentDate = props.date;
@@ -33,33 +34,50 @@ export default function GetRecipesForm(props){
         let getRecipesWithDates = await fetchRecipes(myauthor);
         await getRecipesWithDates(dispatch);
     }
+
+    const containsRecipe = (rList, name) => {
+        for (let r of rList) {
+            if (r.name == name) {
+                return true;
+            }
+        }
+        return false;
+    }
     
+    const confirmScheduleRecipe = async (e) => {
+        setConfirmation(<div id="confirmation"><p>Schedule this recipe?</p><button onClick={localScheduleRecipe} value="Yes">Yes</button>
+        <button onClick={() => {setConfirmation(false)}} value="No">No</button></div>);
+        console.log(e.target.value);
+    }
+
     const localScheduleRecipe = async (e) => {
         //console.log(currentRecipes.dates);
         let recipeList = [];
+        setConfirmation(null);
         //console.log(recipeList);
-        console.log(e.target.value);
+        //console.log(e.target.value);
         let uId = user.currentUser.data.id;
         for (let date of currentRecipes.dates.data) {
             let simpleDate = date.date.toString().slice(0, 10);
             //console.log(simpleDate);
             if (simpleDate == currentDate) {
                 for (let r of date.scheduledRecipes) {
-                    recipeList.push(r);
-                    break;
+                    if (!containsRecipe(recipeList, r.name)) {
+                        recipeList.push(r);
+                    }
                 }
             }
-            console.log(recipeList);
+            //console.log(recipeList);
         }
         console.log(e.target.value);
-        let targetRecipe = await fetchRecipe(e.target.value);
+        let targetRecipe = fetchRecipe(e.target.value);
         await targetRecipe(store.dispatch);
-            console.log(currentRecipe.fetchedrecipe.data);
-            recipeList.push(currentRecipe.fetchedrecipe.data); 
+        console.log(currentRecipe.fetchedrecipe.data);
+        recipeList.push(currentRecipe.fetchedrecipe.data); 
         
         console.log(recipeList);
-        console.log(uId);
-        console.log(date);
+        // console.log(uId);
+        // console.log(date);
         let schedule = await scheduleRecipe(uId, date, recipeList);
         await schedule(store.dispatch);
     }
@@ -69,6 +87,7 @@ export default function GetRecipesForm(props){
         
         if (image) {
             return (
+
 
                 <div style={{textAlign: "center"}}>
                     <form onSubmit={handleRecipe}>

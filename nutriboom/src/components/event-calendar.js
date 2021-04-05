@@ -67,13 +67,16 @@ export default function EventCalendar(props) {
     }
 
     const getRecipeImage = async (name) => {
-        console.log(name);
+        //console.log(name);
         let recipeImage = await getImage(name);
         await recipeImage(dispatch);
-        console.log(image); 
+        //console.log(image); 
     }
 
     const checkDatesEqual = (otherDate) => {
+        if (!otherDate) {
+            return false;
+        }
         let dateAsString = otherDate.slice(0, 10);
         let day = date.getDate();
         let month = date.getMonth() + 1;
@@ -84,8 +87,8 @@ export default function EventCalendar(props) {
             month = `0${date.getMonth() + 1}`;
         }
         let currentDateAsString = `${date.getFullYear()}-${month}-${day}`;
-        console.log(dateAsString);
-        console.log(currentDateAsString);
+        //console.log(dateAsString);
+        //console.log(currentDateAsString);
 
         return dateAsString === currentDateAsString;
     }
