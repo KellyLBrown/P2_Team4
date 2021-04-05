@@ -35,7 +35,7 @@ public class Recipe {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int rId;
 	
-	@Column(name="name", nullable=false)
+	@Column(name="name", unique=false, nullable=false)
 	@NotNull(message="It needs a name!")
 	private String name;
 	

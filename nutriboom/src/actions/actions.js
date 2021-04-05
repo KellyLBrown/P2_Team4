@@ -1,5 +1,5 @@
 
-import {GET_IMAGE, FETCH_RECIPES, SCHEDULE_RECIPE, GET_RECIPES_BY_AUTH, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
+import {GET_IMAGE,UPDATE_USER, FETCH_RECIPES, SCHEDULE_RECIPE, GET_RECIPES_BY_AUTH, FETCH_RECIPE, AUTH_LOGIN, AUTH_LOGOUT, FETCH_FOOD, NEW_RECIPE, NEW_USER} from './types';
 
 import {foodapi, recipeapi} from '../apis/endpoints';
 import axios from 'axios';
@@ -174,6 +174,28 @@ export function registerUser(username, password, firstname, lastname, email) {
       console.log(user);
       return user.data;
     }
+}
+
+export function updateUser(uid, password, email) {
+  return function(dispatch) {
+    console.log(uid);
+    let user = axios({
+      method: 'post',
+      url: 'http://localhost:8080/user/update',
+      data:  {
+        id: uid,
+        password: password,
+        email: email
+      }
+      
+    }).then(data => dispatch({
+      type: UPDATE_USER
+
+    })).catch(console.log("Promise rejected! Panic!"));
+
+    console.log(user);
+    return user.data;
+  }
 }
 
 const handleError = (e) => {

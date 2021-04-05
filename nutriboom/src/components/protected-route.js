@@ -5,6 +5,7 @@ import Home from './home';
 import EventCalendar from './event-calendar';
 import RecipeBuilder from './recipe-builder';
 import Error from './error';
+import Settings from './settings';
 
 const ProtectedRoute = ({ component: path, ...rest }) => {
   let currentUser = useSelector(state => state.user);
@@ -31,6 +32,8 @@ const ProtectedRoute = ({ component: path, ...rest }) => {
                   return <EventCalendar />;
                   case 'recipeBuilderProtect':
                     return <RecipeBuilder />;
+                  case 'settingsProtect':
+                    return <Settings />
               default:
                 return 'foo';
             }

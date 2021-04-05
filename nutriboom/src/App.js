@@ -18,6 +18,7 @@ function App() {
 let homeProtect = 'homeProtect';
 let calendarProtect = 'calendarProtect';
 let recipeBuilderProtect = 'recipeBuilderProtect';
+let settingsProtect = 'settingsProtect';
 
   return (
     <Provider store={store}>
@@ -71,7 +72,7 @@ let recipeBuilderProtect = 'recipeBuilderProtect';
 
           <ProtectedRoute path="/recipe-builder" component={recipeBuilderProtect} />
 
-          
+          <ProtectedRoute path="/settings" component={settingsProtect} />
             
           
 

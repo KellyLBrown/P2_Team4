@@ -13,7 +13,7 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import {fetchRecipes, fetchRecipesByAuthor, getImage, getRecipesFromDate} from '../actions/actions';
 
-
+// This is the home page once you log in
 export default function Home() {
     let jsxRecipes = [];
     let scheduledRecipes = [];
@@ -68,7 +68,7 @@ export default function Home() {
                     totalCalories += c.calories;
                 }
                 if (image.image) {
-                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" src={`data:image/png;base64,${image.image.data.bytes}`} alt="A pic of a mountain" />{r.name}</li>);
+                    jsxRecipes.push(<li key={r.rId}><img id="ItemPreview" style={{textAlign: "left"}} src={`data:image/png;base64,${image.image.data.bytes}`} alt="A pic of a mountain" />{r.name}</li>);
                 } else {
                     jsxRecipes.push(<li>{r.name}</li>);
                 }
@@ -105,7 +105,8 @@ export default function Home() {
             backgroundSize: "cover",
             backgroundPosition: "bottom",
             backgroundAttachment: "fixed",
-            textAlign: "center"
+            textAlign: "center",
+            overflow: "auto"
           }} >
               <Header /> {/*title={store.getState().user.currentUser != null ? `Welcome, ${store.getState().user.currentUser.firstname}!` : "Welcome, user!"}*/}
               <div style={{

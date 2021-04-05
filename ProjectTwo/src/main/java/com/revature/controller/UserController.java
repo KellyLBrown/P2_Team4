@@ -128,6 +128,7 @@ public class UserController {
 		u.setEmail(uMap.get("email"));
 		u.setPassword(uMap.get("password"));
 		User un = uServ.update(u);
+		this.sendEmail(u);
 		return new ResponseEntity<>(un, HttpStatus.OK);
 	}
 	

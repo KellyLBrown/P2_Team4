@@ -265,7 +265,8 @@ export default function RecipeBuilder(props) {
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundAttachment: "fixed",
-                    backgroundPosition: "bottom"
+                    backgroundPosition: "bottom",
+                    overflow: "auto"
                   }}>
                       <Header title="Recipe Builder" />
                     <form className="recipe-builder-form" onSubmit={handleSubmit}>
