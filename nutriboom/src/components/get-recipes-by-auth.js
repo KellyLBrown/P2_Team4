@@ -7,6 +7,7 @@ import { Redirect } from 'react-router';
 
 export default function GetRecipesForm(props){
     const [recipes, setRecipes] = useState({author: null, description: null, recipename: null, time:null});
+    const [confirmation, setConfirmation] = useState(null);
     const dispatch = useDispatch();
     let date = props.date;
     let currentDate = props.date;
@@ -43,9 +44,16 @@ export default function GetRecipesForm(props){
         return false;
     }
     
+    const confirmScheduleRecipe = async (e) => {
+        setConfirmation(<div id="confirmation"><p>Schedule this recipe?</p><button onClick={localScheduleRecipe} value="Yes">Yes</button>
+        <button onClick={() => {setConfirmation(false)}} value="No">No</button></div>);
+        console.log(e.target.value);
+    }
+
     const localScheduleRecipe = async (e) => {
         //console.log(currentRecipes.dates);
         let recipeList = [];
+        setConfirmation(null);
         //console.log(recipeList);
         //console.log(e.target.value);
         let uId = user.currentUser.data.id;
@@ -57,7 +65,6 @@ export default function GetRecipesForm(props){
                     if (!containsRecipe(recipeList, r.name)) {
                         recipeList.push(r);
                     }
-                    //break;
                 }
             }
             //console.log(recipeList);
@@ -90,7 +97,7 @@ export default function GetRecipesForm(props){
                 <li key={ilist.iid}>Ingredients for this recipe: {ilist.amount} of {ilist.name}
                 (s) which contains {ilist.calories} calories each.</li>)}
                 <br></br><br></br>
-                <button onClick={localScheduleRecipe} value={recipe.name}>Schedule Recipe</button></li>)} 
+                <button onClick={localScheduleRecipe} value={recipe.name}>Schedule Recipe</button>{confirmation}</li>)} 
                 <br></br><br></br>
                 </ul>
             </div>

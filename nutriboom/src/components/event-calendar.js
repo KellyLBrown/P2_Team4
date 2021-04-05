@@ -72,6 +72,9 @@ export default function EventCalendar(props) {
     }
 
     const checkDatesEqual = (otherDate) => {
+        if (!otherDate) {
+            return false;
+        }
         let dateAsString = otherDate.slice(0, 10);
         let day = date.getDate();
         let month = date.getMonth() + 1;
