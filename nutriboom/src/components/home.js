@@ -13,7 +13,7 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import {fetchRecipes, fetchRecipesByAuthor, getImage, getRecipesFromDate} from '../actions/actions';
 
-
+// This is the home page once you log in
 export default function Home() {
     let jsxRecipes = [];
     let scheduledRecipes = [];
