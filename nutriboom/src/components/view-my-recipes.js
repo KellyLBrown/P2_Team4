@@ -5,7 +5,9 @@ export default function ViewMyRecipes(props) {
     const date = props.date;
 
     return (
-        <div id="viewMyRecipes">
+
+        <div id="viewMyRecipes" style={{width: "100%", textAlign: "left"}}>
+
             
             <GetRecipesForm date={date} />
         </div>

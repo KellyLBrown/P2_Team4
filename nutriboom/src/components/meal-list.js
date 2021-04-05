@@ -30,7 +30,7 @@ export default function MealList(props) {
 
     if (!date) {
         return (
-            <div id="meal-list" >
+            <div id="meal-list" style={{textAlign: "left"}} >
             
                 <ul>{jsxRecipes}</ul>
                 
@@ -38,11 +38,10 @@ export default function MealList(props) {
         )
     }
     return (
-        <div id="meal-list" >
+        <div id="meal-list" style={{textAlign: "left"}}>
             
             <ul>{jsxRecipes}</ul>
 
-            <button style={{width: "105%"}} onClick={renderAddRecipe}>Add Recipe</button>
 
                
         </div>

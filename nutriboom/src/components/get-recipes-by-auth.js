@@ -66,46 +66,65 @@ export default function GetRecipesForm(props){
 
     //console.log(currentRecipes);
     if(currentRecipes.recipes.data != undefined){
+        
         if (image) {
             return (
-                <div id="register-form" className="row" class="row">
-                <form onSubmit={handleRecipe}>
-                    <input type="submit" value="Get my recipes" />
-                </form><ul>
-                Recipes: <br></br>{currentRecipes.recipes.data.map((recipe) => 
-                <li key= {recipe.name}><img id="ItemPreview" src={`data:image/png;base64,${image.bytes}`} alt="A picture of your recipe" />
-                 {recipe.name} <br></br><br></br> Steps:  {recipe.description}
-                <br></br><br></br>{recipe.ilist.map((ilist) => 
-                <li key={ilist.iid}>Ingredients for this recipe: {ilist.amount} of {ilist.name}
-                (s) which contains {ilist.calories} calories each.</li>)}
-                <br></br><br></br>
-                <button onClick={localScheduleRecipe} value={recipe.name}>Schedule Recipe</button></li>)} 
-                <br></br><br></br>
-                </ul>
-            </div>
+
+                <div style={{textAlign: "center"}}>
+                    <form onSubmit={handleRecipe}>
+                        <input type="submit" value="Get my recipes" />
+                    </form>
+
+                    <ul style={{textAlign: "left"}}>
+                    <h2 style={{fontWeight: "lighter"}}>Recipes:</h2><br></br>
+                        {currentRecipes.recipes.data.map((recipe) => 
+                        <li key= {recipe.name}>
+                        <h3 style={{display: "inline"}}>{recipe.name}</h3> <button style={{float: "right"}} onClick={localScheduleRecipe} value={recipe.name}>Schedule Recipe</button> <br></br>
+                        <img id="ItemPreview" src={`data:image/png;base64,${image.bytes}`} alt="A pic of a mountain" />
+                        <br></br> Steps:  {recipe.description}<br></br>
+                        
+                        <p>Ingredients for this recipe:  </p><br></br>
+                        {recipe.ilist.map((ilist) => 
+                        <li key={ilist.iid}>{ilist.amount} of {ilist.name}
+                        (s) which contains {ilist.calories} calories each.</li>)}
+                        <p></p><br></br>
+                        <p></p><br></br>
+                        <p></p><br></br>
+                        </li>)}
+                    </ul>
+                </div>
+
             )
         } else {
             return (
-                <div id="register-form" className="row" class="row">
-                <form onSubmit={handleRecipe}>
-                    <input type="submit" value="Get my recipes" />
-                </form><ul>
-                Recipes: <br></br>{currentRecipes.recipes.data.map((recipe) => 
-                <li key= {recipe.name}>{recipe.name} <br></br><br></br> Steps:  {recipe.description}
-                <br></br><br></br>{recipe.ilist.map((ilist) => 
-                <li key={ilist.iid}>Ingredients for this recipe: {ilist.amount} of {ilist.name}
-                (s) which contains {ilist.calories} calories each.</li>)}
-                <br></br><br></br>
-                <button onClick={localScheduleRecipe} value={recipe.name}>Schedule Recipe</button></li>)} 
-                <br></br><br></br>
-                </ul>
-            </div>
+                <div style={{textAlign: "center"}}>
+                    <form onSubmit={handleRecipe}>
+                        <input type="submit" value="Get my recipes" />
+                    </form>
+
+                    <ul style={{textAlign: "left"}}>
+                    <h2 style={{fontWeight: "lighter"}}>Recipes:</h2><br></br>
+                        {currentRecipes.recipes.data.map((recipe) => 
+                        <li key= {recipe.name}>
+                        <h3 style={{display: "inline"}}>{recipe.name}</h3> <button style={{float: "right"}} onClick={localScheduleRecipe} value={recipe.name}>Schedule Recipe</button> <br></br>
+                        <br></br> Steps:  {recipe.description}<br></br>
+                        
+                        <p>Ingredients for this recipe:  </p><br></br>
+                        {recipe.ilist.map((ilist) => 
+                        <li key={ilist.iid}>{ilist.amount} of {ilist.name}
+                        (s) which contains {ilist.calories} calories each.</li>)}
+                        <p></p><br></br>
+                        <p></p><br></br>
+                        <p></p><br></br>
+                        </li>)}
+                    </ul>
+                </div>
             )
         }
     }
 
     return (
-        <div id="register-form" className="row" class="row">
+        <div style={{textAlign: "center"}}>
             <form onSubmit={handleRecipe}>
                 <input type="submit" value="Get my recipes" />
             </form>
